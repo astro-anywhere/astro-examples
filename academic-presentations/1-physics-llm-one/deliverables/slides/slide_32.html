@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});">
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #FAF8F5;
+    color: #3A3A3A;
+    padding: 50px 60px;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 28px;
+    color: #3A3A3A;
+  }
+  .content {
+    display: flex;
+    gap: 40px;
+    height: calc(100% - 80px);
+  }
+  .left {
+    flex: 0 0 58%;
+    font-size: 22px;
+    line-height: 1.6;
+  }
+  .right {
+    flex: 0 0 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .right img, .right svg {
+    max-width: 100%;
+    max-height: 480px;
+    border-radius: 6px;
+  }
+  .caption {
+    font-size: 14px;
+    color: #A8B8A0;
+    margin-top: 8px;
+    text-align: center;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 14px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 21px;
+  }
+  ul li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: #8FA8B8;
+  }
+  .box-pink {
+    background: rgba(196, 168, 130, 0.15);
+    border-left: 3px solid #C4A882;
+    padding: 12px 16px;
+    margin: 18px 0;
+    border-radius: 4px;
+    font-size: 19px;
+    line-height: 1.5;
+  }
+  .highlight { color: #C4A882; font-weight: 600; }
+  .slide-num {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    font-size: 14px;
+    color: #A8B8A0;
+  }
+</style>
+</head>
+<body>
+  <h2>Result 9: Adjacent NT-End Attention Patterns</h2>
+  <div class="content">
+    <div class="left">
+      <ul>
+        <li>Attention concentrates between <span class="highlight">"adjacent" NT-end token pairs</span> across hierarchy levels</li>
+        <li>Three types of adjacency discovered:
+          <ul style="margin-top: 8px; margin-left: 10px;">
+            <li style="font-size: 19px; margin-bottom: 6px;"><span class="highlight">Same level</span> ($\ell' \to \ell$): sibling NT boundaries</li>
+            <li style="font-size: 19px; margin-bottom: 6px;"><span class="highlight">Deepest child</span>: parent boundary attends to its last child's boundary</li>
+            <li style="font-size: 19px; margin-bottom: 6px;"><span class="highlight">Parent level</span>: child boundary attends upward to parent boundary</li>
+          </ul>
+        </li>
+        <li>Measured as $B^{\text{end}\to\text{end}}_{l,h,\ell'\to\ell,r}$ for level pairs and head ranks $r$</li>
+      </ul>
+      <div class="box-pink">
+        <strong>Takeaway:</strong> Results 7&ndash;9 collectively show the transformer builds an <em>implicit bracket-matching system</em> &mdash; not through explicit rules, but through emergent attention patterns.
+      </div>
+    </div>
+    <div class="right">
+      <!-- SVG showing three adjacency types -->
+      <svg width="420" height="460" viewBox="0 0 420 460" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowAdj" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#3A3A3A" fill-opacity="0.6"/>
+          </marker>
+        </defs>
+
+        <text x="210" y="22" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="15" font-weight="600">Three Types of Adjacent NT-End Attention</text>
+
+        <!-- Type 1: Same Level (Sibling) -->
+        <rect x="15" y="45" width="390" height="115" rx="6" fill="rgba(143,168,184,0.06)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="30" y="65" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="14" font-weight="600">1. Same Level (Sibling)</text>
+
+        <!-- Parse tree nodes -->
+        <rect x="80" y="82" width="70" height="28" rx="6" fill="rgba(143,168,184,0.15)" stroke="#8FA8B8" stroke-width="2"/>
+        <text x="115" y="101" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">NT$_4$-A</text>
+        <rect x="260" y="82" width="70" height="28" rx="6" fill="rgba(143,168,184,0.15)" stroke="#8FA8B8" stroke-width="2"/>
+        <text x="295" y="101" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">NT$_4$-B</text>
+
+        <!-- Token boundary indicators below -->
+        <circle cx="148" cy="130" r="8" fill="rgba(196,168,130,0.4)" stroke="#C4A882" stroke-width="1.5"/>
+        <text x="148" y="134" text-anchor="middle" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="9" font-weight="700">end</text>
+        <circle cx="262" cy="130" r="8" fill="rgba(196,168,130,0.4)" stroke="#C4A882" stroke-width="1.5"/>
+        <text x="262" y="134" text-anchor="middle" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="9" font-weight="700">end</text>
+
+        <!-- Attention arc between siblings -->
+        <path d="M 156,126 Q 205,100 254,126" stroke="#C4A882" stroke-width="2.5" fill="none" stroke-opacity="0.8" marker-end="url(#arrowAdj)"/>
+        <text x="205" y="108" text-anchor="middle" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="12" font-weight="600">$\ell \to \ell$</text>
+
+        <!-- Type 2: Deepest Child -->
+        <rect x="15" y="175" width="390" height="115" rx="6" fill="rgba(196,168,130,0.06)" stroke="#C4A882" stroke-width="1"/>
+        <text x="30" y="195" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="14" font-weight="600">2. Deepest Child</text>
+
+        <!-- Parent node -->
+        <rect x="140" y="208" width="80" height="28" rx="6" fill="rgba(168,184,160,0.2)" stroke="#A8B8A0" stroke-width="2"/>
+        <text x="180" y="227" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">NT$_3$ (parent)</text>
+
+        <!-- Children -->
+        <rect x="80" y="252" width="60" height="24" rx="6" fill="rgba(143,168,184,0.15)" stroke="#8FA8B8" stroke-width="1.5"/>
+        <text x="110" y="269" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">NT$_4$</text>
+        <rect x="150" y="252" width="60" height="24" rx="6" fill="rgba(143,168,184,0.15)" stroke="#8FA8B8" stroke-width="1.5"/>
+        <text x="180" y="269" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">NT$_4$</text>
+        <rect x="220" y="252" width="60" height="24" rx="6" fill="rgba(196,168,130,0.25)" stroke="#C4A882" stroke-width="2"/>
+        <text x="250" y="269" text-anchor="middle" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="11" font-weight="600">NT$_4$</text>
+
+        <!-- Lines from parent to children -->
+        <line x1="160" y1="236" x2="110" y2="252" stroke="#3A3A3A" stroke-width="1" stroke-opacity="0.3"/>
+        <line x1="180" y1="236" x2="180" y2="252" stroke="#3A3A3A" stroke-width="1" stroke-opacity="0.3"/>
+        <line x1="200" y1="236" x2="250" y2="252" stroke="#3A3A3A" stroke-width="1" stroke-opacity="0.3"/>
+
+        <!-- Attention from parent-end to last child-end -->
+        <circle cx="220" cy="235" r="7" fill="rgba(168,184,160,0.4)" stroke="#A8B8A0" stroke-width="1"/>
+        <text x="220" y="239" text-anchor="middle" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="8" font-weight="700">end</text>
+        <circle cx="278" cy="262" r="7" fill="rgba(196,168,130,0.4)" stroke="#C4A882" stroke-width="1"/>
+        <text x="278" y="266" text-anchor="middle" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="8" font-weight="700">end</text>
+
+        <path d="M 226,234 Q 260,230 272,256" stroke="#C4A882" stroke-width="2.5" fill="none" stroke-opacity="0.8" marker-end="url(#arrowAdj)"/>
+        <text x="310" y="248" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="12" font-weight="600">$\ell{-}1 \to \ell$</text>
+
+        <!-- Type 3: Parent Level -->
+        <rect x="15" y="305" width="390" height="115" rx="6" fill="rgba(168,184,160,0.06)" stroke="#A8B8A0" stroke-width="1"/>
+        <text x="30" y="325" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="14" font-weight="600">3. Parent Level (Upward)</text>
+
+        <!-- Child node -->
+        <rect x="100" y="355" width="70" height="24" rx="6" fill="rgba(143,168,184,0.15)" stroke="#8FA8B8" stroke-width="1.5"/>
+        <text x="135" y="371" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">NT$_4$ (child)</text>
+
+        <!-- Parent -->
+        <rect x="250" y="340" width="90" height="28" rx="6" fill="rgba(168,184,160,0.2)" stroke="#A8B8A0" stroke-width="2"/>
+        <text x="295" y="359" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">NT$_3$ (parent)</text>
+
+        <!-- Boundary markers -->
+        <circle cx="168" cy="367" r="7" fill="rgba(143,168,184,0.4)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="168" y="371" text-anchor="middle" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="8" font-weight="700">end</text>
+        <circle cx="339" cy="354" r="7" fill="rgba(168,184,160,0.4)" stroke="#A8B8A0" stroke-width="1"/>
+        <text x="339" y="358" text-anchor="middle" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="8" font-weight="700">end</text>
+
+        <path d="M 176,364 Q 250,340 332,350" stroke="#A8B8A0" stroke-width="2.5" fill="none" stroke-opacity="0.7" marker-end="url(#arrowAdj)"/>
+        <text x="254" y="388" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="12" font-weight="600">$\ell \to \ell{-}1$</text>
+
+        <!-- Summary label -->
+        <text x="210" y="445" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13" font-style="italic">
+          All three patterns mirror CKY's span-combination steps
+        </text>
+      </svg>
+      <span class="caption">Figure: Three adjacency types (see paper Fig. 6c for data)</span>
+    </div>
+  </div>
+  <span class="slide-num">32 / 40</span>
+</body>
+</html>

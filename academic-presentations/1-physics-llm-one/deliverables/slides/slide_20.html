@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});">
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #FAF8F5;
+    color: #3A3A3A;
+    padding: 50px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #3A3A3A;
+  }
+  .top-zone {
+    display: flex;
+    gap: 30px;
+    flex: 0 0 65%;
+  }
+  .top-left {
+    flex: 0 0 55%;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  .top-right {
+    flex: 0 0 42%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .bottom-zone {
+    flex: 1;
+    margin-top: 16px;
+    padding: 14px 20px;
+    background: rgba(143, 168, 184, 0.08);
+    border-radius: 6px;
+    border-top: 2px solid #8FA8B8;
+    font-size: 18px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+  .bottom-zone .label {
+    font-weight: 600;
+    color: #8FA8B8;
+    margin-right: 12px;
+    white-space: nowrap;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 12px;
+    padding-left: 18px;
+    position: relative;
+    font-size: 20px;
+  }
+  ul li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: #8FA8B8;
+    font-size: 16px;
+  }
+  .highlight { color: #C4A882; font-weight: 600; }
+  .result-badge {
+    display: inline-block;
+    background: rgba(143,168,184,0.2);
+    border: 1px solid #8FA8B8;
+    border-radius: 4px;
+    padding: 2px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #8FA8B8;
+    margin-bottom: 12px;
+  }
+</style>
+</head>
+<body>
+  <h2>Result 2: High Generation Diversity (Birthday Paradox Test)</h2>
+  <div class="top-zone">
+    <div class="top-left">
+      <span class="result-badge">Result 2: Diversity</span>
+      <ul>
+        <li>High accuracy could come from <span class="highlight">memorization</span> &mdash; generating the same few valid strings repeatedly</li>
+        <li>The <span class="highlight">birthday paradox test</span> checks: if generating N strings, do we see duplicates earlier than expected?</li>
+        <li>Model entropy closely matches the <span class="highlight">ground-truth CFG entropy</span> across all variants</li>
+        <li>Transformers produce <span class="highlight">diverse</span> strings, sampling from the full distribution &mdash; not memorizing a subset</li>
+      </ul>
+    </div>
+    <div class="top-right">
+      <!-- SVG: Entropy comparison visualization -->
+      <svg width="380" height="310" viewBox="0 0 380 310" xmlns="http://www.w3.org/2000/svg">
+        <text x="190" y="18" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="14" font-weight="600">Entropy: Model vs Ground Truth</text>
+
+        <!-- Paired comparison bars -->
+        <!-- cfg3b -->
+        <g transform="translate(55, 45)">
+          <text x="35" y="0" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="12">cfg3b</text>
+          <rect x="0" y="10" width="30" height="170" rx="3" fill="rgba(143,168,184,0.25)" stroke="#8FA8B8" stroke-width="1"/>
+          <rect x="35" y="14" width="30" height="166" rx="3" fill="rgba(196,168,130,0.35)" stroke="#C4A882" stroke-width="1"/>
+          <text x="15" y="200" text-anchor="middle" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="10">GT</text>
+          <text x="50" y="200" text-anchor="middle" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="10">Model</text>
+        </g>
+
+        <!-- cfg3f -->
+        <g transform="translate(135, 45)">
+          <text x="35" y="0" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="12">cfg3f</text>
+          <rect x="0" y="8" width="30" height="172" rx="3" fill="rgba(143,168,184,0.25)" stroke="#8FA8B8" stroke-width="1"/>
+          <rect x="35" y="12" width="30" height="168" rx="3" fill="rgba(196,168,130,0.35)" stroke="#C4A882" stroke-width="1"/>
+          <text x="15" y="200" text-anchor="middle" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="10">GT</text>
+          <text x="50" y="200" text-anchor="middle" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="10">Model</text>
+        </g>
+
+        <!-- cfg3h -->
+        <g transform="translate(215, 45)">
+          <text x="35" y="0" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="12">cfg3h</text>
+          <rect x="0" y="15" width="30" height="165" rx="3" fill="rgba(143,168,184,0.25)" stroke="#8FA8B8" stroke-width="1"/>
+          <rect x="35" y="18" width="30" height="162" rx="3" fill="rgba(196,168,130,0.35)" stroke="#C4A882" stroke-width="1"/>
+          <text x="15" y="200" text-anchor="middle" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="10">GT</text>
+          <text x="50" y="200" text-anchor="middle" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="10">Model</text>
+        </g>
+
+        <!-- cfg3i -->
+        <g transform="translate(295, 45)">
+          <text x="35" y="0" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="12">cfg3i</text>
+          <rect x="0" y="20" width="30" height="160" rx="3" fill="rgba(143,168,184,0.25)" stroke="#8FA8B8" stroke-width="1"/>
+          <rect x="35" y="24" width="30" height="156" rx="3" fill="rgba(196,168,130,0.35)" stroke="#C4A882" stroke-width="1"/>
+          <text x="15" y="200" text-anchor="middle" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="10">GT</text>
+          <text x="50" y="200" text-anchor="middle" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="10">Model</text>
+        </g>
+
+        <!-- Match indicators -->
+        <text x="90" y="275" text-anchor="middle" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="13" font-weight="600">&asymp;</text>
+        <text x="170" y="275" text-anchor="middle" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="13" font-weight="600">&asymp;</text>
+        <text x="250" y="275" text-anchor="middle" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="13" font-weight="600">&asymp;</text>
+        <text x="330" y="275" text-anchor="middle" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="13" font-weight="600">&asymp;</text>
+
+        <text x="190" y="300" text-anchor="middle" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="11" font-style="italic">Schematic of Fig. 2 (center). Heights reflect relative entropy.</text>
+      </svg>
+    </div>
+  </div>
+  <div class="bottom-zone">
+    <span class="label">Implication:</span>
+    <span>The model is not memorizing a lookup table of valid strings. It has learned the <strong>generative process</strong> of the CFG, sampling from a distribution with near-identical entropy to the ground truth.</span>
+  </div>
+</body>
+</html>

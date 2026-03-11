@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #FAF8F5;
+    color: #3A3A3A;
+    padding: 50px 60px;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #3A3A3A;
+  }
+  .content {
+    display: flex;
+    gap: 36px;
+    height: calc(100% - 80px);
+  }
+  .left {
+    flex: 0 0 45%;
+    font-size: 21px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 8px;
+  }
+  .right {
+    flex: 0 0 52%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .right img {
+    max-width: 100%;
+    border-radius: 6px;
+    border: 1px solid rgba(143,168,184,0.3);
+    padding: 8px;
+    background: #fff;
+  }
+  .caption {
+    font-size: 13px;
+    color: #A8B8A0;
+    text-align: center;
+    margin-top: 2px;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 14px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 20px;
+  }
+  ul li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: #8FA8B8;
+  }
+  .highlight { color: #C4A882; font-weight: 600; }
+  .box-pink {
+    background: rgba(196, 168, 130, 0.15);
+    border-left: 3px solid #C4A882;
+    padding: 12px 16px;
+    margin: 16px 0 0 0;
+    border-radius: 4px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .tree-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid rgba(143,168,184,0.25);
+    width: 100%;
+  }
+  .tree-label {
+    font-size: 13px;
+    color: #8FA8B8;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+  <h2>Hierarchical Structure in Natural Language</h2>
+  <div class="content">
+    <div class="left">
+      <ul>
+        <li>Real sentences have <span class="highlight">deeply nested</span> phrase structure</li>
+        <li>The <strong>Penn TreeBank</strong> annotates English sentences with parse trees using ~28 non-terminal categories (NP, VP, PP, ...)</li>
+        <li>Even short sentences have <span class="highlight">4-5 levels</span> of hierarchy; longer sentences can reach 8+</li>
+        <li>Hierarchical depth grows with sentence complexity &mdash; not just length</li>
+      </ul>
+      <div class="box-pink">
+        <strong>Challenge:</strong> Can a model trained on flat token sequences reconstruct these hidden trees internally?
+      </div>
+    </div>
+    <div class="right">
+      <div class="tree-container">
+        <div class="tree-label">Short sentence (5 levels deep)</div>
+        <img src="figures/tree_real_p50.png" alt="Penn TreeBank parse tree (short sentence)" style="max-height: 160px;">
+      </div>
+      <div class="tree-container">
+        <div class="tree-label">Longer sentence (7 levels deep)</div>
+        <img src="figures/tree_real_p80.png" alt="Penn TreeBank parse tree (longer sentence)" style="max-height: 160px;">
+      </div>
+      <span class="caption">Penn TreeBank parse trees showing NP, VP, PP, S, SBAR hierarchies</span>
+    </div>
+  </div>
+</body>
+</html>

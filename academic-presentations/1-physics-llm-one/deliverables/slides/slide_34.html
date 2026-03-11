@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});">
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #FAF8F5;
+    color: #3A3A3A;
+    padding: 50px 60px;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 28px;
+    color: #3A3A3A;
+  }
+  .content {
+    display: flex;
+    gap: 40px;
+    height: calc(100% - 80px);
+  }
+  .left {
+    flex: 0 0 58%;
+    font-size: 20px;
+    line-height: 1.55;
+  }
+  .right {
+    flex: 0 0 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .right img, .right svg {
+    max-width: 100%;
+    max-height: 480px;
+    border-radius: 6px;
+  }
+  .caption {
+    font-size: 14px;
+    color: #A8B8A0;
+    margin-top: 8px;
+    text-align: center;
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0 14px 0;
+    font-size: 18px;
+  }
+  .comparison-table th {
+    background: rgba(143, 168, 184, 0.12);
+    color: #3A3A3A;
+    font-weight: 600;
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 2px solid #8FA8B8;
+    font-size: 17px;
+  }
+  .comparison-table td {
+    padding: 7px 12px;
+    border-bottom: 1px solid rgba(143, 168, 184, 0.2);
+    vertical-align: top;
+  }
+  .comparison-table tr:last-child td {
+    border-bottom: none;
+  }
+  .cky-col { color: #8FA8B8; }
+  .tf-col { color: #C4A882; }
+  .box-lavender {
+    background: rgba(155, 143, 191, 0.15);
+    border-left: 3px solid #9B8FBF;
+    padding: 10px 14px;
+    margin: 14px 0;
+    border-radius: 4px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .highlight { color: #C4A882; font-weight: 600; }
+  .slide-num {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    font-size: 14px;
+    color: #A8B8A0;
+  }
+</style>
+</head>
+<body>
+  <h2>CKY vs Transformer: A Side-by-Side Comparison</h2>
+  <div class="content">
+    <div class="left">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="cky-col">Classical CKY</th>
+            <th class="tf-col">Transformer (learned)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Input</strong></td>
+            <td>Token sequence + explicit grammar rules</td>
+            <td>Token sequence only (rules learned implicitly)</td>
+          </tr>
+          <tr>
+            <td><strong>State</strong></td>
+            <td>DP table $\text{DP}(i,j,a)$</td>
+            <td>Hidden states $E_k(x)$ encoding $s_\ell$, $\mathbf{1}_\ell$</td>
+          </tr>
+          <tr>
+            <td><strong>Span ID</strong></td>
+            <td>Explicit indices $(i, j)$</td>
+            <td>NT boundary indicators $\mathbf{1}_\ell(i) = 1$</td>
+          </tr>
+          <tr>
+            <td><strong>Combine</strong></td>
+            <td>$\text{DP}(i,k) \oplus \text{DP}(k,j)$ for all split points $k$</td>
+            <td>Boundary-to-boundary attention across layers</td>
+          </tr>
+          <tr>
+            <td><strong>Direction</strong></td>
+            <td>Bottom-up over span length</td>
+            <td>Bottom-up over transformer layers</td>
+          </tr>
+          <tr>
+            <td><strong>Output</strong></td>
+            <td>Parse tree $\text{DP}(1,n,S)$</td>
+            <td>Next-token probabilities (parse is implicit)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="box-lavender">
+        <strong>Key Difference:</strong> CKY requires <em>explicit rules</em> and runs in $O(n^3)$. The transformer learns the rules from data and implements a <span class="highlight">soft, parallel approximation</span> using multi-head attention &mdash; achieving comparable results in $O(L \cdot n^2)$ with $L$ layers.
+      </div>
+    </div>
+    <div class="right">
+      <!-- SVG S11: Simplified DP Recursion Comparison -->
+      <svg width="430" height="440" viewBox="0 0 430 440" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowCKY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#8FA8B8" fill-opacity="0.8"/>
+          </marker>
+          <marker id="arrowTF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#C4A882" fill-opacity="0.8"/>
+          </marker>
+        </defs>
+
+        <!-- CKY Side -->
+        <rect x="5" y="8" width="200" height="195" rx="8" fill="rgba(143,168,184,0.06)" stroke="#8FA8B8" stroke-width="1.5"/>
+        <text x="105" y="30" text-anchor="middle" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="15" font-weight="700">CKY Algorithm</text>
+
+        <!-- CKY flow: bottom-up -->
+        <rect x="30" y="155" width="68" height="30" rx="6" fill="rgba(143,168,184,0.15)" stroke="#8FA8B8" stroke-width="1.5"/>
+        <text x="64" y="175" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">DP(i,k)</text>
+
+        <rect x="108" y="155" width="68" height="30" rx="6" fill="rgba(143,168,184,0.15)" stroke="#8FA8B8" stroke-width="1.5"/>
+        <text x="142" y="175" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">DP(k,j)</text>
+
+        <rect x="55" y="95" width="96" height="34" rx="6" fill="rgba(143,168,184,0.25)" stroke="#8FA8B8" stroke-width="2"/>
+        <text x="103" y="117" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="12" font-weight="600">DP(i,j,a)</text>
+
+        <line x1="64" y1="155" x2="90" y2="129" stroke="#8FA8B8" stroke-width="1.5" stroke-opacity="0.7" marker-end="url(#arrowCKY)"/>
+        <line x1="142" y1="155" x2="116" y2="129" stroke="#8FA8B8" stroke-width="1.5" stroke-opacity="0.7" marker-end="url(#arrowCKY)"/>
+
+        <rect x="55" y="48" width="96" height="30" rx="6" fill="rgba(143,168,184,0.35)" stroke="#8FA8B8" stroke-width="2"/>
+        <text x="103" y="68" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="12" font-weight="600">DP(1,n,S)</text>
+
+        <line x1="103" y1="95" x2="103" y2="78" stroke="#8FA8B8" stroke-width="1.5" stroke-opacity="0.7" marker-end="url(#arrowCKY)"/>
+
+        <text x="170" y="140" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="10" font-style="italic">split k</text>
+
+        <!-- Transformer Side -->
+        <rect x="225" y="8" width="200" height="195" rx="8" fill="rgba(196,168,130,0.06)" stroke="#C4A882" stroke-width="1.5"/>
+        <text x="325" y="30" text-anchor="middle" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="15" font-weight="700">Transformer</text>
+
+        <!-- Transformer flow: layers -->
+        <rect x="248" y="160" width="68" height="28" rx="6" fill="rgba(196,168,130,0.15)" stroke="#C4A882" stroke-width="1.5"/>
+        <text x="282" y="179" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="10">$E_i$ (NT-end)</text>
+
+        <rect x="326" y="160" width="68" height="28" rx="6" fill="rgba(196,168,130,0.15)" stroke="#C4A882" stroke-width="1.5"/>
+        <text x="360" y="179" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="10">$E_j$ (NT-end)</text>
+
+        <rect x="268" y="105" width="106" height="32" rx="6" fill="rgba(196,168,130,0.25)" stroke="#C4A882" stroke-width="2"/>
+        <text x="321" y="120" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">Attn: $i \to j$</text>
+        <text x="321" y="132" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="10">(same level $\ell$)</text>
+
+        <line x1="282" y1="160" x2="308" y2="137" stroke="#C4A882" stroke-width="1.5" stroke-opacity="0.7" marker-end="url(#arrowTF)"/>
+        <line x1="360" y1="160" x2="334" y2="137" stroke="#C4A882" stroke-width="1.5" stroke-opacity="0.7" marker-end="url(#arrowTF)"/>
+
+        <rect x="273" y="54" width="96" height="30" rx="6" fill="rgba(196,168,130,0.35)" stroke="#C4A882" stroke-width="2"/>
+        <text x="321" y="74" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="12" font-weight="600">$p(x_{n+1})$</text>
+
+        <line x1="321" y1="105" x2="321" y2="84" stroke="#C4A882" stroke-width="1.5" stroke-opacity="0.7" marker-end="url(#arrowTF)"/>
+
+        <text x="395" y="148" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="10" font-style="italic">layers</text>
+
+        <!-- Correspondence arrows between sides -->
+        <path d="M 151,63 Q 190,50 273,63" stroke="#A8B8A0" stroke-width="2" fill="none" stroke-opacity="0.5" stroke-dasharray="5,3"/>
+        <text x="212" y="47" text-anchor="middle" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="11" font-weight="600">&cong;</text>
+
+        <path d="M 151,112 Q 200,95 268,112" stroke="#A8B8A0" stroke-width="2" fill="none" stroke-opacity="0.5" stroke-dasharray="5,3"/>
+        <text x="210" y="100" text-anchor="middle" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="11" font-weight="600">&cong;</text>
+
+        <path d="M 176,170 Q 210,165 248,170" stroke="#A8B8A0" stroke-width="2" fill="none" stroke-opacity="0.5" stroke-dasharray="5,3"/>
+        <text x="212" y="165" text-anchor="middle" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="11" font-weight="600">&cong;</text>
+
+        <!-- Bottom: summary callout -->
+        <rect x="15" y="225" width="400" height="56" rx="8" fill="rgba(168,184,160,0.12)" stroke="#A8B8A0" stroke-width="1.5"/>
+        <text x="215" y="248" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="14" font-weight="600">Both algorithms:</text>
+        <text x="215" y="270" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">Identify span boundaries &rarr; combine sub-spans bottom-up &rarr; produce output</text>
+
+        <!-- Advantages panel -->
+        <rect x="15" y="298" width="195" height="130" rx="6" fill="rgba(143,168,184,0.06)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="112" y="318" text-anchor="middle" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="13" font-weight="600">CKY Advantages</text>
+        <text x="25" y="340" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">&bull; Exact: guaranteed correct parse</text>
+        <text x="25" y="358" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">&bull; Interpretable table structure</text>
+        <text x="25" y="376" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">&bull; Works with any given CFG</text>
+        <text x="25" y="394" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11" fill-opacity="0.6">&bull; Requires explicit grammar</text>
+        <text x="25" y="412" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11" fill-opacity="0.6">&bull; $O(n^3)$ sequential</text>
+
+        <rect x="225" y="298" width="195" height="130" rx="6" fill="rgba(196,168,130,0.06)" stroke="#C4A882" stroke-width="1"/>
+        <text x="322" y="318" text-anchor="middle" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="13" font-weight="600">Transformer Advantages</text>
+        <text x="235" y="340" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">&bull; Learns rules from data alone</text>
+        <text x="235" y="358" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">&bull; Parallelizable across positions</text>
+        <text x="235" y="376" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">&bull; Generalizes beyond training CFG</text>
+        <text x="235" y="394" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11" fill-opacity="0.6">&bull; Approximate (soft attention)</text>
+        <text x="235" y="412" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11" fill-opacity="0.6">&bull; Requires sufficient depth (layers)</text>
+      </svg>
+      <span class="caption">Figure: CKY &harr; Transformer structural correspondence (SVG S11)</span>
+    </div>
+  </div>
+  <span class="slide-num">34 / 40</span>
+</body>
+</html>

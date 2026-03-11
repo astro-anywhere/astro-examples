@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics of Language Models: Part 1 - A0 Poster</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #FAF8F5;
+    --ink: #3A3A3A;
+    --sand: #C4A882;
+    --blue: #8FA8B8;
+    --sage: #A8B8A0;
+    --teal: #7FA8A0;
+    --gold: #C8B878;
+    --paper: #FFFFFF;
+    --rose: #B8A0A0;
+  }
+
+  @page { size: 841mm 1189mm; margin: 0; }
+
+  body {
+    width: 841mm;
+    height: 1189mm;
+    padding: 18mm;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  .poster-grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 146mm 1fr;
+    gap: 10mm;
+  }
+
+  .header {
+    border: 3px solid var(--sand);
+    background: linear-gradient(135deg, rgba(196,168,130,0.10), rgba(143,168,184,0.08));
+    border-radius: 10mm;
+    padding: 14mm 14mm 10mm;
+    display: grid;
+    grid-template-columns: 2.3fr 1fr;
+    gap: 8mm;
+  }
+
+  .header h1 {
+    font-size: 70px;
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 6mm;
+  }
+
+  .subtitle {
+    font-size: 30px;
+    color: var(--blue);
+    font-style: italic;
+    margin-bottom: 4mm;
+  }
+
+  .authors {
+    font-size: 30px;
+    color: var(--ink);
+    margin-bottom: 2mm;
+  }
+
+  .affil {
+    font-size: 25px;
+    color: var(--sage);
+  }
+
+  .header-summary {
+    border-left: 2px solid rgba(143,168,184,0.45);
+    padding-left: 8mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4mm;
+  }
+
+  .metric {
+    border-radius: 4mm;
+    padding: 4mm;
+    font-size: 24px;
+    line-height: 1.3;
+    background: var(--paper);
+    border-left: 4px solid var(--blue);
+  }
+
+  .metric strong { color: var(--sand); }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8mm;
+    height: 100%;
+  }
+
+  .column {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8mm;
+  }
+
+  .card {
+    background: var(--paper);
+    border-radius: 6mm;
+    border: 1.8px solid rgba(58,58,58,0.10);
+    box-shadow: 0 2mm 4mm rgba(58,58,58,0.06);
+    padding: 6.2mm;
+    overflow: hidden;
+  }
+
+  .card h2 {
+    font-size: 38px;
+    line-height: 1.1;
+    font-weight: 600;
+    margin-bottom: 3.2mm;
+    color: var(--ink);
+  }
+
+  .card p,
+  .card li {
+    font-size: 24px;
+    line-height: 1.35;
+  }
+
+  ul { list-style: none; }
+  li {
+    margin-bottom: 2.2mm;
+    padding-left: 6mm;
+    position: relative;
+  }
+  li::before {
+    content: "";
+    width: 3.2mm;
+    height: 3.2mm;
+    border-radius: 50%;
+    background: var(--blue);
+    position: absolute;
+    left: 0;
+    top: 2.4mm;
+  }
+
+  .small { font-size: 20px !important; line-height: 1.3 !important; }
+  .tiny { font-size: 17px !important; line-height: 1.25 !important; }
+
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm;
+    margin-top: 2.5mm;
+  }
+
+  .badge {
+    font-size: 20px;
+    padding: 1.5mm 2.5mm;
+    border-radius: 3mm;
+    background: rgba(143,168,184,0.15);
+    border: 1.5px solid var(--blue);
+  }
+
+  .card-motivation { height: 240mm; }
+  .card-background { height: 235mm; }
+  .card-rq { height: 225mm; }
+  .card-setup { height: 250mm; }
+
+  .card-method { height: 250mm; }
+  .card-insight { height: 180mm; }
+  .card-probing { height: 255mm; }
+  .card-mech { height: 270mm; }
+
+  .card-results { height: 330mm; }
+  .card-robust { height: 240mm; }
+  .card-discuss { height: 230mm; }
+  .card-qr { height: 170mm; }
+
+  .fig-wrap {
+    width: 100%;
+    margin-top: 3mm;
+    border-radius: 4mm;
+    border: 1.4px solid rgba(58,58,58,0.16);
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .fig-wrap img {
+    width: 100%;
+    display: block;
+  }
+
+  .fig-caption {
+    margin-top: 2mm;
+    font-size: 18px;
+    color: var(--sage);
+    line-height: 1.25;
+  }
+
+  .insight-box {
+    background: rgba(196,168,130,0.13);
+    border-left: 4px solid var(--sand);
+    border-radius: 4mm;
+    padding: 4mm;
+    margin-bottom: 3mm;
+  }
+
+  .insight-box p {
+    font-size: 25px;
+    line-height: 1.3;
+  }
+
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2mm;
+    margin: 3mm 0 1mm;
+  }
+
+  .kpi {
+    border-radius: 3mm;
+    text-align: center;
+    padding: 2mm 1mm;
+    background: rgba(168,184,160,0.12);
+    border: 1.4px solid var(--sage);
+  }
+
+  .kpi .v {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--sand);
+    line-height: 1.1;
+  }
+
+  .kpi .l {
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .split-note {
+    margin-top: 3mm;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.6mm;
+  }
+
+  .note-box {
+    border-radius: 3.4mm;
+    padding: 3mm;
+    border-left: 4px solid var(--teal);
+    background: rgba(127,168,160,0.12);
+  }
+
+  .note-box.limit {
+    border-left-color: var(--rose);
+    background: rgba(184,160,160,0.14);
+  }
+
+  .qr-grid {
+    display: grid;
+    grid-template-columns: 130mm 1fr;
+    gap: 5mm;
+    align-items: center;
+    height: 100%;
+  }
+
+  .qr-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4mm;
+    border: 1.6px solid rgba(58,58,58,0.15);
+    background: #fff;
+    padding: 2mm;
+  }
+
+  .qr-box img {
+    width: 100%;
+    max-width: 110mm;
+    height: auto;
+    display: block;
+  }
+
+  .cite {
+    font-size: 20px;
+    line-height: 1.28;
+  }
+
+  .cite strong { color: var(--sand); }
+  .mono {
+    font-family: 'Fira Code', 'Source Code Pro', 'Courier New', monospace;
+    font-size: 18px;
+    color: var(--teal);
+  }
+
+  .svg-wide {
+    width: 100%;
+    height: 94mm;
+    margin-top: 2.5mm;
+    border-radius: 4mm;
+    border: 1.3px solid rgba(58,58,58,0.15);
+    background: #fff;
+  }
+
+  .svg-mid {
+    width: 100%;
+    height: 88mm;
+    margin-top: 2.5mm;
+    border-radius: 4mm;
+    border: 1.3px solid rgba(58,58,58,0.15);
+    background: #fff;
+  }
+</style>
+</head>
+<body>
+  <div class="poster-grid">
+    <header class="header">
+      <div>
+        <h1>Physics of Language Models: Part 1<br>Learning Hierarchical Language Structures</h1>
+        <p class="subtitle">Can autoregressive transformers actually learn parse-tree structure?</p>
+        <p class="authors">Zeyuan Allen-Zhu, Yuanzhi Li</p>
+        <p class="affil">Meta FAIR and MBZUAI, ICML 2024</p>
+      </div>
+      <div class="header-summary">
+        <div class="metric"><strong>Core finding:</strong> GPT-style models with relative/rotary PE learn and encode NT hierarchy.</div>
+        <div class="metric"><strong>Mechanism:</strong> NT information is localized at boundary tokens and recovered linearly.</div>
+        <div class="metric"><strong>Impact:</strong> Attention behavior aligns with dynamic-programming style parsing.</div>
+      </div>
+    </header>
+
+    <main class="content-grid">
+      <div class="column">
+        <section class="card card-motivation">
+          <h2>Motivation</h2>
+          <p>Language requires hierarchical decisions. Flat next-token matching cannot resolve deep structural ambiguity.</p>
+          <svg class="svg-mid" viewBox="0 0 620 260" xmlns="http://www.w3.org/2000/svg" aria-label="Motivation gap chart">
+            <rect x="0" y="0" width="620" height="260" fill="#FAF8F5"/>
+            <text x="20" y="34" fill="#3A3A3A" font-size="26" font-family="Palatino Linotype, serif">Depth vs valid generation</text>
+            <line x1="60" y1="210" x2="580" y2="210" stroke="#3A3A3A" stroke-width="2"/>
+            <line x1="60" y1="50" x2="60" y2="210" stroke="#3A3A3A" stroke-width="2"/>
+            <rect x="120" y="118" width="80" height="92" fill="rgba(184,160,160,0.5)" stroke="#B8A0A0" stroke-width="2"/>
+            <rect x="250" y="90" width="80" height="120" fill="rgba(184,160,160,0.5)" stroke="#B8A0A0" stroke-width="2"/>
+            <rect x="380" y="68" width="80" height="142" fill="rgba(168,184,160,0.5)" stroke="#A8B8A0" stroke-width="2"/>
+            <rect x="500" y="62" width="80" height="148" fill="rgba(143,168,184,0.45)" stroke="#8FA8B8" stroke-width="2"/>
+            <text x="160" y="233" text-anchor="middle" fill="#3A3A3A" font-size="18" font-family="Palatino Linotype, serif">GPT-abs</text>
+            <text x="290" y="233" text-anchor="middle" fill="#3A3A3A" font-size="18" font-family="Palatino Linotype, serif">DeBERTa</text>
+            <text x="420" y="233" text-anchor="middle" fill="#3A3A3A" font-size="18" font-family="Palatino Linotype, serif">GPT-rel</text>
+            <text x="540" y="233" text-anchor="middle" fill="#3A3A3A" font-size="18" font-family="Palatino Linotype, serif">GPT-rot</text>
+            <text x="120" y="108" text-anchor="middle" fill="#3A3A3A" font-size="17" font-family="Palatino Linotype, serif">~58%</text>
+            <text x="250" y="80" text-anchor="middle" fill="#3A3A3A" font-size="17" font-family="Palatino Linotype, serif">~66%</text>
+            <text x="380" y="58" text-anchor="middle" fill="#3A3A3A" font-size="17" font-family="Palatino Linotype, serif">~96%</text>
+            <text x="500" y="52" text-anchor="middle" fill="#3A3A3A" font-size="17" font-family="Palatino Linotype, serif">~98%</text>
+          </svg>
+          <p class="fig-caption">Relative/rotary position encoding is the turning point for hierarchical learning.</p>
+        </section>
+
+        <section class="card card-background">
+          <h2>Background</h2>
+          <ul>
+            <li>Controlled synthetic CFGs isolate hierarchy from lexical semantics.</li>
+            <li>Depth extends to 7 NT levels and sequence lengths approach 300 tokens.</li>
+          </ul>
+          <div class="fig-wrap" style="margin-top:3mm;">
+            <img src="figures/tree_real_p50.png" alt="Original Penn Treebank parse tree">
+          </div>
+          <p class="fig-caption">Original paper parse-tree visual (PTB) grounds the hierarchy intuition.</p>
+        </section>
+
+        <section class="card card-rq">
+          <h2>Research Questions</h2>
+          <ul>
+            <li>Can transformers generate valid strings from deep CFGs?</li>
+            <li>Where is NT ancestor information stored in hidden states?</li>
+            <li>Do learned attention patterns resemble parsing algorithms?</li>
+          </ul>
+          <div class="badge-row">
+            <span class="badge">RQ1: Learnability</span>
+            <span class="badge">RQ2: Representation</span>
+            <span class="badge">RQ3: Mechanism</span>
+          </div>
+          <svg class="svg-wide" viewBox="0 0 620 270" xmlns="http://www.w3.org/2000/svg" aria-label="Research pipeline timeline">
+            <rect x="0" y="0" width="620" height="270" fill="#FAF8F5"/>
+            <line x1="70" y1="140" x2="550" y2="140" stroke="#3A3A3A" stroke-opacity="0.6" stroke-width="3"/>
+            <circle cx="130" cy="140" r="30" fill="rgba(143,168,184,0.2)" stroke="#8FA8B8" stroke-width="3"/>
+            <circle cx="310" cy="140" r="30" fill="rgba(196,168,130,0.22)" stroke="#C4A882" stroke-width="3"/>
+            <circle cx="490" cy="140" r="30" fill="rgba(168,184,160,0.25)" stroke="#A8B8A0" stroke-width="3"/>
+            <text x="130" y="145" text-anchor="middle" fill="#3A3A3A" font-size="17" font-family="Palatino Linotype, serif">1</text>
+            <text x="310" y="145" text-anchor="middle" fill="#3A3A3A" font-size="17" font-family="Palatino Linotype, serif">2</text>
+            <text x="490" y="145" text-anchor="middle" fill="#3A3A3A" font-size="17" font-family="Palatino Linotype, serif">3</text>
+            <text x="130" y="210" text-anchor="middle" fill="#3A3A3A" font-size="20" font-family="Palatino Linotype, serif">Generation</text>
+            <text x="310" y="210" text-anchor="middle" fill="#3A3A3A" font-size="20" font-family="Palatino Linotype, serif">Probing</text>
+            <text x="490" y="210" text-anchor="middle" fill="#3A3A3A" font-size="20" font-family="Palatino Linotype, serif">Attention</text>
+          </svg>
+        </section>
+
+        <section class="card card-setup">
+          <h2>Experimental Setup</h2>
+          <p>All models use GPT-2-small scale (12 layers, 12 heads, 768 dim) with matched training protocol.</p>
+          <div class="kpi-row">
+            <div class="kpi"><div class="v">7</div><div class="l">NT levels</div></div>
+            <div class="kpi"><div class="v">300</div><div class="l">vocabulary</div></div>
+            <div class="kpi"><div class="v">A100</div><div class="l">training GPU</div></div>
+          </div>
+          <svg class="svg-wide" viewBox="0 0 620 270" xmlns="http://www.w3.org/2000/svg" aria-label="Data to model flow">
+            <defs>
+              <marker id="arrL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#3A3A3A" fill-opacity="0.7"/>
+              </marker>
+            </defs>
+            <rect x="24" y="60" width="170" height="68" rx="12" fill="rgba(143,168,184,0.18)" stroke="#8FA8B8" stroke-width="3"/>
+            <text x="109" y="98" text-anchor="middle" fill="#3A3A3A" font-size="20" font-family="Palatino Linotype, serif">CFG generator</text>
+            <rect x="225" y="60" width="170" height="68" rx="12" fill="rgba(196,168,130,0.18)" stroke="#C4A882" stroke-width="3"/>
+            <text x="310" y="98" text-anchor="middle" fill="#3A3A3A" font-size="20" font-family="Palatino Linotype, serif">GPT variants</text>
+            <rect x="426" y="60" width="170" height="68" rx="12" fill="rgba(168,184,160,0.2)" stroke="#A8B8A0" stroke-width="3"/>
+            <text x="511" y="98" text-anchor="middle" fill="#3A3A3A" font-size="20" font-family="Palatino Linotype, serif">3 evidence tracks</text>
+            <line x1="194" y1="94" x2="225" y2="94" stroke="#3A3A3A" stroke-width="2.5" marker-end="url(#arrL)"/>
+            <line x1="395" y1="94" x2="426" y2="94" stroke="#3A3A3A" stroke-width="2.5" marker-end="url(#arrL)"/>
+            <text x="109" y="178" text-anchor="middle" fill="#8FA8B8" font-size="19" font-family="Palatino Linotype, serif">train sequences</text>
+            <text x="310" y="178" text-anchor="middle" fill="#C4A882" font-size="19" font-family="Palatino Linotype, serif">abs / rel / rotary / enc</text>
+            <text x="511" y="178" text-anchor="middle" fill="#A8B8A0" font-size="19" font-family="Palatino Linotype, serif">acc + probes + attention</text>
+          </svg>
+        </section>
+      </div>
+
+      <div class="column">
+        <section class="card card-method">
+          <h2>Method</h2>
+          <p>The study combines controlled training with representation and mechanism audits.</p>
+          <svg class="svg-wide" viewBox="0 0 620 270" xmlns="http://www.w3.org/2000/svg" aria-label="Method pipeline">
+            <defs>
+              <marker id="arrM" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#3A3A3A" fill-opacity="0.65"/>
+              </marker>
+            </defs>
+            <rect x="20" y="24" width="170" height="82" rx="10" fill="rgba(143,168,184,0.16)" stroke="#8FA8B8" stroke-width="3"/>
+            <text x="105" y="60" text-anchor="middle" fill="#3A3A3A" font-size="22" font-family="Palatino Linotype, serif">Train on CFG</text>
+            <text x="105" y="86" text-anchor="middle" fill="#3A3A3A" font-size="18" font-family="Palatino Linotype, serif">autoregressive loss</text>
+
+            <rect x="225" y="24" width="170" height="82" rx="10" fill="rgba(196,168,130,0.18)" stroke="#C4A882" stroke-width="3"/>
+            <text x="310" y="60" text-anchor="middle" fill="#3A3A3A" font-size="22" font-family="Palatino Linotype, serif">Linear probe</text>
+            <text x="310" y="86" text-anchor="middle" fill="#3A3A3A" font-size="18" font-family="Palatino Linotype, serif">recover NT states</text>
+
+            <rect x="430" y="24" width="170" height="82" rx="10" fill="rgba(168,184,160,0.20)" stroke="#A8B8A0" stroke-width="3"/>
+            <text x="515" y="60" text-anchor="middle" fill="#3A3A3A" font-size="22" font-family="Palatino Linotype, serif">Attention audit</text>
+            <text x="515" y="86" text-anchor="middle" fill="#3A3A3A" font-size="18" font-family="Palatino Linotype, serif">head-level patterns</text>
+
+            <line x1="190" y1="65" x2="225" y2="65" stroke="#3A3A3A" stroke-width="2.4" marker-end="url(#arrM)"/>
+            <line x1="395" y1="65" x2="430" y2="65" stroke="#3A3A3A" stroke-width="2.4" marker-end="url(#arrM)"/>
+
+            <rect x="124" y="148" width="372" height="98" rx="12" fill="rgba(127,168,160,0.13)" stroke="#7FA8A0" stroke-width="2.4"/>
+            <text x="310" y="182" text-anchor="middle" fill="#3A3A3A" font-size="23" font-family="Palatino Linotype, serif">Unified test:</text>
+            <text x="310" y="210" text-anchor="middle" fill="#3A3A3A" font-size="21" font-family="Palatino Linotype, serif">generation accuracy, entropy, KL divergence, NT locality</text>
+          </svg>
+          <ul class="small" style="margin-top:2.4mm;">
+            <li>Same architecture budget across PE variants for fair comparison.</li>
+            <li>Primary evidence from original paper plots, not re-estimated metrics.</li>
+          </ul>
+        </section>
+
+        <section class="card card-insight">
+          <h2>Key Insight</h2>
+          <div class="insight-box">
+            <p><strong>Transformers store parse-tree information at boundary tokens.</strong> A linear probe recovers NT ancestors almost perfectly.</p>
+          </div>
+          <p class="small">Interpretation: the model does not only memorize next-token statistics; it learns a local code for hierarchy that downstream attention can read.</p>
+        </section>
+
+        <section class="card card-probing">
+          <h2>Evidence: NT Probing</h2>
+          <div class="fig-wrap">
+            <img src="figures/predict_nt_all.png" alt="Original NT probing figure from paper">
+          </div>
+          <p class="fig-caption">Original figure: last-layer representations linearly encode NT ancestors. Relative and rotary variants lead.</p>
+          <ul class="small" style="margin-top:2.3mm;">
+            <li>Encoder baseline underperforms on deep NT levels.</li>
+            <li>Local-window probing retains strong performance near NT boundaries.</li>
+          </ul>
+        </section>
+
+        <section class="card card-mech">
+          <h2>How It Works (Mechanistic View)</h2>
+          <p>Attention heads specialize by distance and NT level, creating a computation graph aligned with dynamic programming recurrences.</p>
+          <svg class="svg-wide" viewBox="0 0 620 270" xmlns="http://www.w3.org/2000/svg" aria-label="Mechanism diagram">
+            <defs>
+              <marker id="arrD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#3A3A3A" fill-opacity="0.7"/>
+              </marker>
+            </defs>
+            <rect x="24" y="26" width="170" height="86" rx="10" fill="rgba(143,168,184,0.18)" stroke="#8FA8B8" stroke-width="2.6"/>
+            <text x="109" y="62" text-anchor="middle" fill="#3A3A3A" font-size="21" font-family="Palatino Linotype, serif">Boundary token</text>
+            <text x="109" y="88" text-anchor="middle" fill="#3A3A3A" font-size="18" font-family="Palatino Linotype, serif">local NT code</text>
+
+            <rect x="225" y="26" width="170" height="86" rx="10" fill="rgba(196,168,130,0.18)" stroke="#C4A882" stroke-width="2.6"/>
+            <text x="310" y="62" text-anchor="middle" fill="#3A3A3A" font-size="21" font-family="Palatino Linotype, serif">Specialized heads</text>
+            <text x="310" y="88" text-anchor="middle" fill="#3A3A3A" font-size="18" font-family="Palatino Linotype, serif">child/sibling/parent</text>
+
+            <rect x="426" y="26" width="170" height="86" rx="10" fill="rgba(168,184,160,0.2)" stroke="#A8B8A0" stroke-width="2.6"/>
+            <text x="511" y="62" text-anchor="middle" fill="#3A3A3A" font-size="21" font-family="Palatino Linotype, serif">DP-like update</text>
+            <text x="511" y="88" text-anchor="middle" fill="#3A3A3A" font-size="18" font-family="Palatino Linotype, serif">parse state advance</text>
+
+            <line x1="194" y1="68" x2="225" y2="68" stroke="#3A3A3A" stroke-width="2.3" marker-end="url(#arrD)"/>
+            <line x1="395" y1="68" x2="426" y2="68" stroke="#3A3A3A" stroke-width="2.3" marker-end="url(#arrD)"/>
+
+            <rect x="32" y="150" width="560" height="90" rx="10" fill="rgba(127,168,160,0.10)" stroke="#7FA8A0" stroke-width="2"/>
+            <text x="312" y="185" text-anchor="middle" fill="#3A3A3A" font-size="23" font-family="Palatino Linotype, serif">Observed macro-pattern</text>
+            <text x="312" y="214" text-anchor="middle" fill="#3A3A3A" font-size="20" font-family="Palatino Linotype, serif">position bias + boundary bias + same-level NT attention</text>
+          </svg>
+          <p class="fig-caption">This bridges interpretability evidence with classical CFG parsing ideas.</p>
+        </section>
+      </div>
+
+      <div class="column">
+        <section class="card card-results">
+          <h2>Results (Headline)</h2>
+          <p>The dominant empirical result is clear in the original chart: relative and rotary GPT variants learn CFG generation reliably.</p>
+          <div class="fig-wrap" style="margin-top:3mm;">
+            <img src="figures/generation_all_acc.png" alt="Original generation accuracy figure from paper">
+          </div>
+          <p class="fig-caption">Original paper figure (`generation/all_acc.pdf`): generation accuracy across CFG variants.</p>
+          <div class="kpi-row" style="margin-top:3mm;">
+            <div class="kpi"><div class="v">~98%</div><div class="l">GPT-rot peak</div></div>
+            <div class="kpi"><div class="v">~96%</div><div class="l">GPT-rel peak</div></div>
+            <div class="kpi"><div class="v">~60%</div><div class="l">GPT-abs / enc</div></div>
+          </div>
+        </section>
+
+        <section class="card card-robust">
+          <h2>Robustness</h2>
+          <div class="fig-wrap">
+            <img src="figures/robust_cfg3b.png" alt="Original robustness figure from paper">
+          </div>
+          <p class="fig-caption">Original robustness matrix (cfg3b): mixed clean/noisy prefixes trigger distinct generation modes.</p>
+          <ul class="small" style="margin-top:2mm;">
+            <li>Low temperature (tau &le; 0.2) improves robust decoding.</li>
+            <li>Training with mixed clean/corrupted data stabilizes behavior.</li>
+          </ul>
+        </section>
+
+        <section class="card card-discuss">
+          <h2>Discussion and Limitations</h2>
+          <div class="split-note">
+            <div class="note-box">
+              <p class="small"><strong>Implications</strong><br>Evidence supports the claim that autoregressive transformers can implement hierarchical algorithms, not just shallow heuristics.</p>
+            </div>
+            <div class="note-box limit">
+              <p class="small"><strong>Limitations</strong><br>Synthetic CFGs are controlled but simplified. Transfer to open-domain language and larger model scales needs direct validation.</p>
+            </div>
+          </div>
+          <p class="small" style="margin-top:3mm;">Part 2+ of the series extends this analysis to math reasoning and knowledge circuits.</p>
+        </section>
+
+        <section class="card card-qr">
+          <h2>Paper and Code Links</h2>
+          <div class="qr-grid">
+            <div class="qr-box">
+              <img src="qr-paper.svg" alt="QR code to arXiv paper">
+            </div>
+            <div class="cite">
+              <p><strong>Scan for paper:</strong> arXiv:2305.13673</p>
+              <p class="small" style="margin-top:2mm;">Allen-Zhu, Z., and Li, Y. (2024). Physics of Language Models: Part 1.</p>
+              <p class="small" style="margin-top:2mm;">Project page:</p>
+              <p class="mono">physics.allen-zhu.com/part-1</p>
+              <p class="small" style="margin-top:2mm;">Reference video talk and supplementary plots are linked on the project page.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

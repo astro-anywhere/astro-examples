@@ -1,0 +1,587 @@
+{
+  "$schema": "astro-export",
+  "version": "1.0",
+  "type": "project",
+  "exportedAt": "2026-03-11T16:00:23.027Z",
+  "astroVersion": "0.1.0",
+  "name": "Physics LLM Presentation Pack",
+  "description": "<p>You are an expert academic presentation designer who converts research papers into multiple polished deliverables.</p><h2>Paper Specification</h2><ul><li><p>Working Directory: /Users/zhuoran_cisco/Documents/astro-outputs/presentation/physcics-llm-1</p></li><li><p>Source Format: latex</p></li><li><p>Paper Link: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-primary underline underline-offset-2 hover:text-primary/80\" href=\"https://arxiv.org/abs/2305.13673\">https://arxiv.org/abs/2305.13673</a></p></li><li><p>Code Repository: {{githubUrl}}</p></li><li><p>Custom Requirements: - Use a lot of the figures provided by the paper and you need to first download the LaTeX source from the arxiv website. I think about the logic be very comprehensive and generate about 40 slides including detailed a lot of details in the paper and also be beginner-friendly. Have a background section talking about the setup and the background of transform architecture as well as use the specific about this paper and the context-free grammar which are complicated concepts so give a beginner-friendly but concise introduction with concrete examples and visualizations of examples. For those introductions you need to prepare very good visualizations as well.</p></li></ul><h2>Deliverables: slides, blog-post, poster</h2><h2>Configuration</h2><ul><li><p>Slide Count: detailed</p></li><li><p>Target Audience: researcher</p></li><li><p>Slide Theme: both</p></li><li><p>Blog Style: detailed</p></li><li><p>Poster Orientation: portrait</p></li></ul><h2>Skill Reference</h2><p>This project uses the <code>academic-presentation</code> skill. The skill's SKILL.md contains the complete rendering specification including:</p><ul><li><p>5 HTML slide layout types (title, section-divider, full-bullet, left-right-split, three-zone)</p></li><li><p>Color palette definitions (emph, blue, muted, teal, gold) for light and dark themes</p></li><li><p>Typography rules, box styles, SVG figure guidelines</p></li><li><p>HTML→PDF rendering via Playwright</p></li><li><p>Blog Markdown structure and poster CSS grid layout</p></li></ul><p>When source format is PDF or DOCX, the corresponding skill (pdf or docx) is also loaded with format-specific extraction instructions.</p><p><strong>The SKILL.md is the single source of truth for all rendering details.</strong> Reference it for slide CSS, color hex values, font sizes, and layout dimensions.</p><h2>Planning Guidelines</h2><p>Decompose this paper presentation into a DAG of tasks. The output structure depends on which deliverables are selected.</p><h3>Narrative Arc</h3><p>All deliverables follow this narrative structure:</p><ol><li><p><strong>Motivation</strong> — Why should the audience care? What gap exists?</p></li><li><p><strong>Methodology</strong> — What is the proposed approach? Architecture/algorithm.</p></li><li><p><strong>Results</strong> — Does it work? Quantitative evidence, comparisons.</p></li><li><p><strong>Discussion</strong> — Implications, limitations, future directions.</p></li></ol><h3>Task Structure</h3><p><strong>Phase 1: Paper Analysis (shared across all deliverables)</strong></p><ul><li><p>Obtain the paper source:</p><ul><li><p>If a paper link is provided, fetch/download from the link first</p></li><li><p>Read files from the working directory</p></li></ul></li><li><p>Parse the paper using the appropriate tool for the source format (latex):</p><ul><li><p><strong>PDF</strong> → use the PDF skill for extraction (pypdf, pdfplumber, or the Read tool on .pdf files)</p></li><li><p><strong>DOCX</strong> → use the DOCX skill for extraction</p></li><li><p><strong>LaTeX</strong> → read .tex files directly, parse \\section, \\subsection, equations, figures, and bibliography</p></li><li><p><strong>Markdown</strong> → read .md files directly</p></li></ul></li><li><p>Extract structure: sections, equations, figures, bibliography</p></li><li><p>Identify key contributions (3-5 points)</p></li><li><p>If GitHub repo provided, clone and identify key code files</p></li></ul><p><strong>Phase 2: Per-Deliverable Generation (parallel branches)</strong></p><p>For <strong>slides</strong> (when selected):</p><ul><li><p>Generate HTML slides using the 5 layout types from the skill</p></li><li><p>Each slide is a self-contained HTML file with embedded CSS</p></li><li><p>Use SVG for architecture diagrams and figure recreations</p></li><li><p>Render to PDF via Playwright headless browser</p></li><li><p>Target slide count: detailed</p></li></ul><p>For <strong>blog-post</strong> (when selected):</p><ul><li><p>Generate Markdown blog post with proper citations</p></li><li><p>Include figure references and equation rendering (LaTeX in Markdown)</p></li><li><p>Style: detailed</p></li></ul><p>For <strong>poster</strong> (when selected):</p><ul><li><p>Generate single-page HTML with CSS grid layout</p></li><li><p>Orientation: portrait (3-col portrait / 4-col landscape)</p></li><li><p>Render to A0 PDF via Playwright</p></li></ul><p><strong>Phase 3: Assembly &amp; Quality Check</strong></p><ul><li><p>Verify all outputs render correctly</p></li><li><p>Cross-check content consistency across deliverables</p></li><li><p>Run quality checklist from SKILL.md</p></li></ul><h3>Parallelism</h3><ul><li><p>Paper analysis must complete before any deliverable generation</p></li><li><p>All deliverable branches can run in parallel</p></li><li><p>Assembly depends on all branches completing</p></li></ul><h3>Labels</h3><ul><li><p>l1=Frontend (HTML/CSS rendering, Playwright)</p></li><li><p>l5=Research (paper analysis, content extraction)</p></li></ul><h3>Verification</h3><ul><li><p>\"auto\" for file creation and rendering tasks</p></li><li><p>\"human\" for content quality and narrative flow</p></li></ul><p></p>",
+  "data": {
+    "project": {
+      "id": "69600f96-8a8d-4360-b325-147d5b03c993",
+      "ownerId": "1694d677-84ac-4e9f-ad0a-fb56d760d059",
+      "number": null,
+      "name": "Physics LLM Presentation Pack",
+      "description": "<p>You are an expert academic presentation designer who converts research papers into multiple polished deliverables.</p><h2>Paper Specification</h2><ul><li><p>Working Directory: /Users/zhuoran_cisco/Documents/astro-outputs/presentation/physcics-llm-1</p></li><li><p>Source Format: latex</p></li><li><p>Paper Link: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-primary underline underline-offset-2 hover:text-primary/80\" href=\"https://arxiv.org/abs/2305.13673\">https://arxiv.org/abs/2305.13673</a></p></li><li><p>Code Repository: {{githubUrl}}</p></li><li><p>Custom Requirements: - Use a lot of the figures provided by the paper and you need to first download the LaTeX source from the arxiv website. I think about the logic be very comprehensive and generate about 40 slides including detailed a lot of details in the paper and also be beginner-friendly. Have a background section talking about the setup and the background of transform architecture as well as use the specific about this paper and the context-free grammar which are complicated concepts so give a beginner-friendly but concise introduction with concrete examples and visualizations of examples. For those introductions you need to prepare very good visualizations as well.</p></li></ul><h2>Deliverables: slides, blog-post, poster</h2><h2>Configuration</h2><ul><li><p>Slide Count: detailed</p></li><li><p>Target Audience: researcher</p></li><li><p>Slide Theme: both</p></li><li><p>Blog Style: detailed</p></li><li><p>Poster Orientation: portrait</p></li></ul><h2>Skill Reference</h2><p>This project uses the <code>academic-presentation</code> skill. The skill's SKILL.md contains the complete rendering specification including:</p><ul><li><p>5 HTML slide layout types (title, section-divider, full-bullet, left-right-split, three-zone)</p></li><li><p>Color palette definitions (emph, blue, muted, teal, gold) for light and dark themes</p></li><li><p>Typography rules, box styles, SVG figure guidelines</p></li><li><p>HTML→PDF rendering via Playwright</p></li><li><p>Blog Markdown structure and poster CSS grid layout</p></li></ul><p>When source format is PDF or DOCX, the corresponding skill (pdf or docx) is also loaded with format-specific extraction instructions.</p><p><strong>The SKILL.md is the single source of truth for all rendering details.</strong> Reference it for slide CSS, color hex values, font sizes, and layout dimensions.</p><h2>Planning Guidelines</h2><p>Decompose this paper presentation into a DAG of tasks. The output structure depends on which deliverables are selected.</p><h3>Narrative Arc</h3><p>All deliverables follow this narrative structure:</p><ol><li><p><strong>Motivation</strong> — Why should the audience care? What gap exists?</p></li><li><p><strong>Methodology</strong> — What is the proposed approach? Architecture/algorithm.</p></li><li><p><strong>Results</strong> — Does it work? Quantitative evidence, comparisons.</p></li><li><p><strong>Discussion</strong> — Implications, limitations, future directions.</p></li></ol><h3>Task Structure</h3><p><strong>Phase 1: Paper Analysis (shared across all deliverables)</strong></p><ul><li><p>Obtain the paper source:</p><ul><li><p>If a paper link is provided, fetch/download from the link first</p></li><li><p>Read files from the working directory</p></li></ul></li><li><p>Parse the paper using the appropriate tool for the source format (latex):</p><ul><li><p><strong>PDF</strong> → use the PDF skill for extraction (pypdf, pdfplumber, or the Read tool on .pdf files)</p></li><li><p><strong>DOCX</strong> → use the DOCX skill for extraction</p></li><li><p><strong>LaTeX</strong> → read .tex files directly, parse \\section, \\subsection, equations, figures, and bibliography</p></li><li><p><strong>Markdown</strong> → read .md files directly</p></li></ul></li><li><p>Extract structure: sections, equations, figures, bibliography</p></li><li><p>Identify key contributions (3-5 points)</p></li><li><p>If GitHub repo provided, clone and identify key code files</p></li></ul><p><strong>Phase 2: Per-Deliverable Generation (parallel branches)</strong></p><p>For <strong>slides</strong> (when selected):</p><ul><li><p>Generate HTML slides using the 5 layout types from the skill</p></li><li><p>Each slide is a self-contained HTML file with embedded CSS</p></li><li><p>Use SVG for architecture diagrams and figure recreations</p></li><li><p>Render to PDF via Playwright headless browser</p></li><li><p>Target slide count: detailed</p></li></ul><p>For <strong>blog-post</strong> (when selected):</p><ul><li><p>Generate Markdown blog post with proper citations</p></li><li><p>Include figure references and equation rendering (LaTeX in Markdown)</p></li><li><p>Style: detailed</p></li></ul><p>For <strong>poster</strong> (when selected):</p><ul><li><p>Generate single-page HTML with CSS grid layout</p></li><li><p>Orientation: portrait (3-col portrait / 4-col landscape)</p></li><li><p>Render to A0 PDF via Playwright</p></li></ul><p><strong>Phase 3: Assembly &amp; Quality Check</strong></p><ul><li><p>Verify all outputs render correctly</p></li><li><p>Cross-check content consistency across deliverables</p></li><li><p>Run quality checklist from SKILL.md</p></li></ul><h3>Parallelism</h3><ul><li><p>Paper analysis must complete before any deliverable generation</p></li><li><p>All deliverable branches can run in parallel</p></li><li><p>Assembly depends on all branches completing</p></li></ul><h3>Labels</h3><ul><li><p>l1=Frontend (HTML/CSS rendering, Playwright)</p></li><li><p>l5=Research (paper analysis, content extraction)</p></li></ul><h3>Verification</h3><ul><li><p>\"auto\" for file creation and rendering tasks</p></li><li><p>\"human\" for content quality and narrative flow</p></li></ul><p></p>",
+      "visionDoc": "---\nname: academic-presentation\nversion: \"2.0.0\"\ndescription: \"Convert academic papers into slides (PDF), blog posts (Markdown), and conference posters (PDF) using HTML-based rendering with a low-saturation color palette\"\ncategory: workflows\ntags: [academic, presentation, slides, blog, poster, pdf, html]\nallowedTools: [Read, Write, Edit, Glob, Grep, Bash]\n---\n\n# Academic Paper Presentation\n\nYou are an expert academic presentation designer. You convert research papers into three deliverable formats:\n\n1. **Slides** — HTML slides rendered to PDF via Playwright\n2. **Blog Post** — Markdown with citations and figures\n3. **Conference Poster** — Single-page HTML rendered to A0 PDF via Playwright\n\nAll deliverables use a low-saturation color palette with consistent typography and figure styling.\n\n---\n\n## 0. Document Reading — PDF Skill\n\n**CRITICAL**: When the paper source is PDF files, use the **PDF skill** (pre-loaded in your skill instructions) to read them. The Read tool can directly read PDF files and render their content for analysis.\n\nThe PDF skill handles text extraction with layout preservation, table extraction, figure identification, equation rendering, and multi-column layout parsing.\n\nFor **arXiv links**, fetch the LaTeX source or HTML directly. For **DOCX files** (if provided), use the DOCX skill (also pre-loaded).\n\n---\n\n## 0b. Workflow — Multi-Step Task Decomposition\n\n**CRITICAL**: Do NOT generate all slides in a single step. High-quality presentations require structured narrative thinking before any slide creation. Decompose into multiple Astro tasks.\n\n### Recommended Plan Structure\n\n```\nTask 1: Paper Analysis & Narrative Outline\n  → Output: outline/narrative-outline.md\n  → No dependencies\n  → Deep read of the paper, extract story arc, decide slide-by-slide outline\n\nTask 2: Slide Generation — Title + Motivation + Background (slides 1-6)\n  → Output: output/slides/slide_01.html through slide_06.html\n  → Depends on: Task 1\n\nTask 3: Slide Generation — Method / Theory (slides 7-12)\n  → Output: output/slides/slide_07.html through slide_12.html\n  → Depends on: Task 1 (can run in parallel with Task 2 if outline is complete)\n\nTask 4: Slide Generation — Results + Discussion + Conclusion (slides 13-18)\n  → Output: output/slides/slide_13.html through slide_18.html\n  → Depends on: Task 1\n\nTask 5: Blog Post Generation (if requested)\n  → Output: output/blog/post.md\n  → Depends on: Task 1 (can run in parallel with slides)\n\nTask 6: Poster Generation (if requested)\n  → Output: output/poster/poster.html\n  → Depends on: Task 1\n\nTask 7: PDF Assembly & Quality Review\n  → Output: output/slides/slides.pdf, output/poster/poster.pdf\n  → Depends on: Tasks 2, 3, 4, (5, 6 if requested)\n\nMilestone: Presentation Complete\n  → Depends on: Task 7\n```\n\n**Minimum 5 tasks** for slides-only. **7+ tasks** if blog and poster are also requested.\n\n### Task 1 Deep Dive: Narrative Outline\n\nThe outline is the most important task. It determines the quality of everything downstream. The outline must include:\n\n1. **Paper comprehension** (500+ words): What is the paper's core argument? What problem does it solve? What is the key insight that makes the approach work?\n\n2. **Story arc identification**: Every good presentation follows a dramatic structure:\n   - **Hook** (1-2 slides): What is the problem? Why should the audience care *right now*?\n   - **Context** (2-3 slides): What has been tried before? What are the limitations of prior approaches? What gap exists?\n   - **Key Insight** (1 slide): What is the crucial observation or idea that enables the new approach? This is the \"aha moment\" — the single slide the audience should remember.\n   - **Method** (3-6 slides): How does the approach work? Build up from simple intuition to full formalism. Use progressive disclosure — don't dump all math on one slide.\n   - **Evidence** (3-5 slides): Does it work? Show quantitative results, comparisons, ablations. Lead with the strongest result first.\n   - **Implications** (1-2 slides): So what? What does this enable? What are the limitations? What's next?\n\n3. **Figure inventory** (see Section 5.1): Catalog all figures in the paper source. For each, note: file path, what it shows, which slide it maps to. Identify gaps where the paper has no figure but the presentation needs one — these will be new SVGs.\n\n4. **Slide-by-slide plan**: For each slide, specify:\n   - Title\n   - Layout type (1-5)\n   - Key points (3-5 bullets max)\n   - Figure plan: `[original: path/to/fig.pdf]` or `[SVG: description of what to draw]` or `[none]` — follow the decision rubric in Section 5.2\n   - Which equations to include (if any)\n   - Transition: how does this slide connect to the next?\n\n5. **Adaptation for paper type**:\n   - **Empirical ML papers**: Heavy on results, comparisons, ablations. Method section focused on architecture diagrams and loss functions.\n   - **Theoretical papers**: Heavy on intuition-building, proof sketches, and implications. Use progressive formalization (intuition → informal statement → formal theorem).\n   - **Systems papers**: Heavy on architecture diagrams, benchmarks, and design decisions. Emphasize the \"why\" behind each design choice.\n   - **Survey papers**: Organize by taxonomy, use comparison tables, show the landscape evolution over time.\n\n**The outline must be reviewed and approved before proceeding to slide generation.**\n\n---\n\n## 1. Slide Layout System\n\nEvery slide is a self-contained HTML file with embedded CSS. The page size is **1280×720px** (16:9 aspect ratio). Use the following 5 layout types for all slides.\n\n### Math Rendering (KaTeX)\n\nWhen slides or blog posts contain equations, include KaTeX for math rendering. Add this to the `<head>` of any HTML file that uses `$...$` (inline) or `$$...$$` (display) math:\n\n```html\n<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css\">\n<script defer src=\"https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js\"></script>\n<script defer src=\"https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js\"\n  onload=\"renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});\">\n</script>\n```\n\nKaTeX's default font (KaTeX_Main) is based on Computer Modern, which pairs well with Palatino body text. Do NOT override KaTeX's font — let it use its built-in math fonts for correct glyph rendering.\n\n### Layout 1: Title Slide\n\nCentered title, authors, and affiliation. Used for the opening slide.\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body {\n    width: 1280px; height: 720px;\n    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;\n    background: #FAF8F5;\n    color: #3A3A3A;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    padding: 60px 100px;\n  }\n  h1 {\n    font-size: 42px;\n    font-weight: 700;\n    line-height: 1.3;\n    margin-bottom: 24px;\n    color: #3A3A3A;\n  }\n  .authors {\n    font-size: 22px;\n    color: #8FA8B8;\n    margin-bottom: 12px;\n  }\n  .affiliation {\n    font-size: 18px;\n    color: #A8B8A0;\n  }\n  .accent-line {\n    width: 80px;\n    height: 3px;\n    background: #C4A882;\n    margin: 20px auto;\n  }\n</style>\n</head>\n<body>\n  <h1>Paper Title Goes Here</h1>\n  <div class=\"accent-line\"></div>\n  <p class=\"authors\">Author A, Author B, Author C</p>\n  <p class=\"affiliation\">University / Lab Name</p>\n</body>\n</html>\n```\n\n### Layout 2: Section Divider\n\nFull-page centered large text. Used to introduce major sections.\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body {\n    width: 1280px; height: 720px;\n    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;\n    background: #FAF8F5;\n    color: #3A3A3A;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    padding: 60px 100px;\n  }\n  h1 {\n    font-size: 52px;\n    font-weight: 700;\n    color: #3A3A3A;\n    margin-bottom: 16px;\n  }\n  .subtitle {\n    font-size: 24px;\n    color: #8FA8B8;\n    font-style: italic;\n  }\n  .section-number {\n    font-size: 120px;\n    font-weight: 700;\n    color: #C4A882;\n    opacity: 0.15;\n    position: absolute;\n    top: 40px;\n    right: 80px;\n  }\n</style>\n</head>\n<body>\n  <span class=\"section-number\">02</span>\n  <h1>Section Title</h1>\n  <p class=\"subtitle\">Brief description of what this section covers</p>\n</body>\n</html>\n```\n\n### Layout 3: Full Bullet\n\nCentered bullets with color-box highlighting. The workhorse layout for content slides.\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body {\n    width: 1280px; height: 720px;\n    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;\n    background: #FAF8F5;\n    color: #3A3A3A;\n    padding: 50px 80px;\n  }\n  h2 {\n    font-size: 34px;\n    font-weight: 600;\n    margin-bottom: 32px;\n    color: #3A3A3A;\n  }\n  ul {\n    list-style: none;\n    padding: 0;\n  }\n  ul li {\n    font-size: 22px;\n    line-height: 1.6;\n    margin-bottom: 14px;\n    padding-left: 24px;\n    position: relative;\n  }\n  ul li::before {\n    content: '';\n    position: absolute;\n    left: 0;\n    top: 10px;\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: #8FA8B8;\n  }\n  .box-blue {\n    background: rgba(143, 168, 184, 0.15);\n    border-left: 3px solid #8FA8B8;\n    padding: 12px 16px;\n    margin: 16px 0;\n    border-radius: 4px;\n    font-size: 20px;\n  }\n  .box-green {\n    background: rgba(168, 184, 160, 0.15);\n    border-left: 3px solid #A8B8A0;\n    padding: 12px 16px;\n    margin: 16px 0;\n    border-radius: 4px;\n    font-size: 20px;\n  }\n  .box-pink {\n    background: rgba(196, 168, 130, 0.15);\n    border-left: 3px solid #C4A882;\n    padding: 12px 16px;\n    margin: 16px 0;\n    border-radius: 4px;\n    font-size: 20px;\n  }\n  .highlight { color: #C4A882; font-weight: 600; }\n</style>\n</head>\n<body>\n  <h2>Slide Title</h2>\n  <ul>\n    <li>First key point with <span class=\"highlight\">emphasis</span></li>\n    <li>Second key point explaining the concept</li>\n    <li>Third point with supporting detail</li>\n  </ul>\n  <div class=\"box-blue\">\n    <strong>Key Takeaway:</strong> Important conclusion or insight.\n  </div>\n</body>\n</html>\n```\n\n### Layout 4: Left-Right Split\n\nText 60% left, figure/image 40% right. Figure is top-aligned. Use for slides with diagrams.\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body {\n    width: 1280px; height: 720px;\n    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;\n    background: #FAF8F5;\n    color: #3A3A3A;\n    padding: 50px 60px;\n  }\n  h2 {\n    font-size: 34px;\n    font-weight: 600;\n    margin-bottom: 28px;\n    color: #3A3A3A;\n  }\n  .content {\n    display: flex;\n    gap: 40px;\n    height: calc(100% - 80px);\n  }\n  .left {\n    flex: 0 0 58%;\n    font-size: 22px;\n    line-height: 1.6;\n  }\n  .right {\n    flex: 0 0 38%;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n  }\n  .right img, .right svg {\n    max-width: 100%;\n    max-height: 480px;\n    border-radius: 6px;\n  }\n  .caption {\n    font-size: 14px;\n    color: #A8B8A0;\n    margin-top: 8px;\n    text-align: center;\n  }\n  ul { list-style: none; padding: 0; }\n  ul li {\n    margin-bottom: 12px;\n    padding-left: 20px;\n    position: relative;\n  }\n  ul li::before {\n    content: '→';\n    position: absolute;\n    left: 0;\n    color: #8FA8B8;\n  }\n</style>\n</head>\n<body>\n  <h2>Slide Title</h2>\n  <div class=\"content\">\n    <div class=\"left\">\n      <ul>\n        <li>Key point about the figure</li>\n        <li>Another observation or result</li>\n        <li>Technical detail with context</li>\n      </ul>\n    </div>\n    <div class=\"right\">\n      <!-- SVG figure or <img> goes here -->\n      <svg width=\"400\" height=\"300\" viewBox=\"0 0 400 300\">\n        <!-- Figure content -->\n      </svg>\n      <span class=\"caption\">Figure 1: Description</span>\n    </div>\n  </div>\n</body>\n</html>\n```\n\n### Layout 5: Three-Zone\n\nTop 70% is a left-right split, bottom 30% is a supplementary bar. Use for results + analysis slides.\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body {\n    width: 1280px; height: 720px;\n    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;\n    background: #FAF8F5;\n    color: #3A3A3A;\n    padding: 50px 60px;\n    display: flex;\n    flex-direction: column;\n  }\n  h2 {\n    font-size: 34px;\n    font-weight: 600;\n    margin-bottom: 20px;\n    color: #3A3A3A;\n  }\n  .top-zone {\n    display: flex;\n    gap: 30px;\n    flex: 0 0 65%;\n  }\n  .top-left {\n    flex: 0 0 55%;\n    font-size: 20px;\n    line-height: 1.5;\n  }\n  .top-right {\n    flex: 0 0 42%;\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n  }\n  .top-right img, .top-right svg {\n    max-width: 100%;\n    max-height: 320px;\n  }\n  .bottom-zone {\n    flex: 1;\n    margin-top: 16px;\n    padding: 14px 20px;\n    background: rgba(143, 168, 184, 0.08);\n    border-radius: 6px;\n    border-top: 2px solid #8FA8B8;\n    font-size: 18px;\n    line-height: 1.5;\n    display: flex;\n    align-items: center;\n  }\n  .bottom-zone .label {\n    font-weight: 600;\n    color: #8FA8B8;\n    margin-right: 12px;\n    white-space: nowrap;\n  }\n</style>\n</head>\n<body>\n  <h2>Slide Title</h2>\n  <div class=\"top-zone\">\n    <div class=\"top-left\">\n      <p>Main content and analysis goes here. Describe the results, methodology, or key insight that this slide presents.</p>\n    </div>\n    <div class=\"top-right\">\n      <!-- Figure, table, or chart -->\n      <svg width=\"380\" height=\"280\" viewBox=\"0 0 380 280\">\n        <!-- Chart/figure content -->\n      </svg>\n    </div>\n  </div>\n  <div class=\"bottom-zone\">\n    <span class=\"label\">Supplementary:</span>\n    <span>Additional context, ablation results, or comparison notes.</span>\n  </div>\n</body>\n</html>\n```\n\n---\n\n## 2. Color Palette\n\nThe palette uses low-saturation, muted tones that convey sophistication and academic rigor without visual distraction.\n\n### Light Mode\n\n| Role | Name | Hex | Usage |\n|------|------|-----|-------|\n| Background | Warm Off-White | `#FAF8F5` | Slide/poster background |\n| Text | Soft Black | `#3A3A3A` | Body text, headings |\n| Emphasis | Warm Sand | `#C4A882` | Key terms, takeaways, accent lines |\n| Blue | Dusty Blue | `#8FA8B8` | Technical elements, equations, references |\n| Muted | Sage | `#A8B8A0` | Supporting info, captions, secondary text |\n| Teal | Muted Teal | `#7FA8A0` | Callouts, special notes (use sparingly) |\n| Gold | Antique Gold | `#C8B878` | Highlights, awards, important numbers |\n\n### Dark Mode\n\n| Role | Name | Hex | Usage |\n|------|------|-----|-------|\n| Background | Charcoal | `#2A2A2E` | Slide/poster background |\n| Text | Warm White | `#E8E4E0` | Body text, headings |\n| Emphasis | Warm Sand | `#D4B892` | Key terms, takeaways |\n| Blue | Dusty Blue | `#9FB8C8` | Technical elements |\n| Muted | Sage | `#B8C8B0` | Supporting info |\n| Teal | Muted Teal | `#8FB8B0` | Callouts |\n| Gold | Antique Gold | `#D8C888` | Highlights |\n\n### Rules\n- **Max 2-3 accent colors per slide** — choose based on content type\n- Use **emphasis** for the single most important thing on the slide\n- Use **blue** for technical/code elements and box borders\n- Use **muted/sage** for captions, footnotes, and secondary labels\n- Never use fully saturated colors (#FF0000, #0000FF, etc.)\n\n---\n\n## 3. Typography\n\n### Font Stacks\n\nDefault font stack: `'Palatino Linotype', 'Book Antiqua', Palatino, serif`\n\n### Scale (Slides)\n\n| Element | Size | Weight | Line Height |\n|---------|------|--------|-------------|\n| H1 (title slide) | 42px | 700 | 1.3 |\n| H2 (slide title) | 34px | 600 | 1.3 |\n| Body | 22px | 400 | 1.6 |\n| Caption | 16px | 400 | 1.4 |\n| Code | 18px | 400 (mono) | 1.5 |\n| Footnote | 14px | 400 | 1.4 |\n\n### Scale (Poster)\n\n| Element | Size | Weight |\n|---------|------|--------|\n| Title | 72px | 700 |\n| Section heading | 36px | 600 |\n| Body | 24px | 400 |\n| Caption | 18px | 400 |\n\n### Code Font\nAlways use: `'Fira Code', 'Source Code Pro', 'Courier New', monospace`\n\n---\n\n## 4. Box Styles\n\nUse these colored box styles for callouts, key insights, and grouped information:\n\n```css\n.box-blue {\n  background: rgba(143, 168, 184, 0.15);\n  border-left: 3px solid #8FA8B8;\n  padding: 12px 16px;\n  margin: 16px 0;\n  border-radius: 4px;\n}\n\n.box-green {\n  background: rgba(168, 184, 160, 0.15);\n  border-left: 3px solid #A8B8A0;\n  padding: 12px 16px;\n  margin: 16px 0;\n  border-radius: 4px;\n}\n\n.box-pink {\n  background: rgba(196, 168, 130, 0.15);\n  border-left: 3px solid #C4A882;\n  padding: 12px 16px;\n  margin: 16px 0;\n  border-radius: 4px;\n}\n\n.box-beige {\n  background: rgba(200, 184, 120, 0.15);\n  border-left: 3px solid #C8B878;\n  padding: 12px 16px;\n  margin: 16px 0;\n  border-radius: 4px;\n}\n\n.box-lavender {\n  background: rgba(155, 143, 191, 0.15);\n  border-left: 3px solid #9B8FBF;\n  padding: 12px 16px;\n  margin: 16px 0;\n  border-radius: 4px;\n}\n```\n\n### When to Use Each\n- **box-blue** — Technical details, equations, code context\n- **box-green** — Results, positive outcomes, confirmations\n- **box-pink** — Key takeaways, important conclusions\n- **box-beige** — Highlights, awards, notable numbers\n- **box-lavender** — Theoretical notes, proofs, formal statements\n\n---\n\n## 5. Figures & Visuals\n\n### 5.1 Figure Inventory (Task 1 — Outline Phase)\n\nBefore generating any deliverable, build a **figure inventory** during the narrative outline. For each slide in the plan:\n\n1. **List every visual need**: What concept, result, or comparison would benefit from a figure on this slide?\n2. **Search the paper source** for existing figures:\n   - LaTeX: scan `\\includegraphics` paths, `figure` environments, image directories\n   - PDF: identify embedded figures (plots, diagrams, photos) by page\n   - Markdown/HTML: find `<img>` tags, `![](...)` references\n3. **Classify each visual need** using the decision rubric below\n4. **Record in the outline**: For each slide, note: `Figure: [original: fig3.pdf] / [SVG: architecture overview] / [none]`\n\n### 5.2 Figure Decision Rubric\n\nFor every slide or section that needs a visual, follow this decision process:\n\n```\nDoes the paper have a figure for this concept?\n├─ YES → Is it directly usable (clear, high-res, self-contained)?\n│   ├─ YES → USE ORIGINAL. Embed it directly.\n│   └─ NO (too complex, low-res, or needs annotation)\n│       → USE ORIGINAL + SUPPLEMENT with annotated SVG overlay or simplified SVG version\n└─ NO → Does the concept need a visual to be understood?\n    ├─ YES → DRAW NEW SVG. Create a diagram, chart, or illustration.\n    └─ NO → Use text-only layout (Layout 3: Full Bullet)\n```\n\n**Key principle**: Every slide that explains a method, shows results, or introduces a concept should have a figure. If the paper provides one, use it. If the paper doesn't, draw one. The worst outcome is a slide that *needs* a visual but has none — never skip a figure just because the paper didn't include one.\n\n### 5.3 Per-Act Figure Requirements\n\n| Act | Required Figures | Source Priority |\n|-----|-----------------|-----------------|\n| **Hook** (1-2 slides) | 0-1: A striking visual that sets up the problem | SVG showing the gap/failure, OR an original figure showing the limitation |\n| **Gap / Prior Work** (2-3 slides) | 1-2: Comparison table or timeline of prior approaches | SVG timeline/comparison diagram (usually no paper figure for this) |\n| **Key Insight** (1 slide) | 1: THE most important visual — makes the core idea click | Original if the paper has a clear \"key figure\"; otherwise SVG that captures the intuition |\n| **Method** (3-6 slides) | 2-4: Architecture diagram, algorithm flow, equation visualization | Original architecture figure if it exists + SVG for step-by-step build-up, simplified views, or components the paper doesn't visualize separately |\n| **Evidence** (3-5 slides) | 2-4: Result plots, comparison tables, ablation charts | **Always use original** result figures/tables from the paper — these are authoritative data. Draw SVG bar charts only for ablation summaries or custom comparisons not in the paper |\n| **Implications** (1-2 slides) | 0-1: Future directions diagram or limitation illustration | SVG (papers rarely have figures for this) |\n\n**Minimum total figures by deck size**:\n\n| Deck Size | Min Figures | Target | Notes |\n|-----------|-------------|--------|-------|\n| 10-15 slides | 8 | 10-12 | Nearly every content slide should have a visual |\n| 16-25 slides | 14 | 18-20 | Method and Evidence acts expand — more figures needed |\n| 26-40 slides | 22 | 28-32 | Deep dives get their own figures; progressive build-ups across multiple slides |\n\nA presentation where fewer than 60% of content slides (excluding title and section dividers) have a figure is too text-heavy. When in doubt, add a figure — a redundant visual is better than a missing one.\n\n### 5.4 Figure Types by Source\n\n**Use original paper figures for:**\n- Experimental results (plots, accuracy curves, loss curves) — these are data, not decoration\n- Architecture diagrams IF the paper's version is clear at slide scale\n- Qualitative examples (generated images, attention maps, sample outputs)\n- Tables with numerical results (recreate as styled HTML if needed for readability)\n\n**Draw new SVG diagrams for:**\n- Background/prerequisite concepts the paper assumes the reader knows\n- Simplified architecture overviews when the paper's figure is too detailed for one slide\n- Step-by-step method build-ups (progressive disclosure across multiple slides)\n- Comparison diagrams (this approach vs. prior work)\n- Intuition illustrations (analogies, geometric intuitions, toy examples)\n- Anything the presentation needs that the paper doesn't visualize\n\n**Both (original + new SVG) for:**\n- Complex architectures: show the original full figure on one slide, then an SVG-simplified version zooming into a key component on the next\n- Dense result tables: show the original table, then an SVG bar chart highlighting the key comparison\n\n### 5.5 Per-Deliverable Figure Rules\n\n**Slides**: Every slide with Layout 4 (Left-Right Split) or Layout 5 (Three-Zone) MUST have a figure in the right panel. Use Layout 3 (Full Bullet) only for text-heavy conceptual slides that truly don't need a visual. Aim for at least 60% of slides to have a figure.\n\n**Blog posts**: Must include ALL figures that appear in the slides, plus any additional ones helpful for a reader (who can't hear a verbal explanation). A blog post without figures is incomplete. Minimum: key result figure + method diagram + one concept SVG. Embed with `![Caption](path)` and add descriptive captions — a reader should understand each figure from the caption alone.\n\n**Posters**: Lead with the most impactful original figure prominently. Every poster section should have at least one visual element. Simplify complex SVGs for poster scale (larger labels, fewer details).\n\n### 5.6 SVG Generation Guidelines\n\nWhen generating NEW figures (not reusing originals), use inline SVG that matches the color palette.\n\n**For complex diagrams** (>5 nodes, multi-layer architectures, detailed flowcharts): consider breaking the figure into a dedicated sub-task so it can be iterated independently without blocking the rest of the slide generation.\n\n#### Colors\nOnly use colors from the palette. Map diagram elements:\n- Input/data nodes → dusty blue (`#8FA8B8`)\n- Processing/model nodes → warm sand (`#C4A882`)\n- Output/result nodes → sage (`#A8B8A0`)\n- Connections/arrows → soft black (`#3A3A3A` at 60% opacity)\n- Labels → soft black (`#3A3A3A`)\n- Background fills → palette color at 15% opacity\n\n#### Sizing\nSVGs MUST be sized to fit within the target container with margin to spare:\n- Left-Right Split right panel: **max 440×460px** (leave 20px padding from panel edges)\n- Three-Zone right panel: **max 360×300px**\n- Full-width figure: **max 1100×500px**\n- Blog inline figure: **max 700×500px**\n- Poster section figure: **max 220mm×280mm**\n\n#### Layout & Spacing — Preventing Overlap\n\n**CRITICAL**: Text overlap is the #1 quality problem in generated SVGs. Follow these rules strictly:\n\n1. **Minimum node size**: Every node (rectangle, circle, ellipse) must be large enough to contain its label text with at least **12px padding** on all sides. For a 16px font label, minimum node height is `16 + 12 + 12 = 40px`. Minimum node width is `(character_count × 9) + 24px`.\n\n2. **Minimum spacing between elements**:\n   - Between adjacent nodes: **at least 40px** gap (edge-to-edge, not center-to-center)\n   - Between a node and its connected arrow endpoint: **at least 10px**\n   - Between parallel arrows/lines: **at least 20px**\n   - Between any text label and any other element: **at least 8px**\n\n3. **Label placement rules**:\n   - Node labels: always `text-anchor=\"middle\"` centered both horizontally and vertically within the node\n   - Edge labels: place above or below the line, never overlapping the line itself\n   - Axis labels (for charts): outside the plot area, never overlapping data points\n   - If a label is too long for its container, either: (a) abbreviate it, (b) break into two lines using `<tspan>`, or (c) increase the container size\n\n4. **Verify before output**: After constructing the SVG, mentally check that no text overlaps with other text, no node overlaps with another node, and all arrows connect cleanly without crossing through labels. If any overlap exists, increase spacing or rearrange the layout.\n\n5. **Font sizing hierarchy**:\n   - Title/header text: 18-20px\n   - Node labels: 14-16px\n   - Edge labels / annotations: 12-14px\n   - Fine print / footnotes: 10-12px\n   - Never go below 10px — it's unreadable in slides\n\n#### Style\n- Rounded rectangles (`rx=\"6\"`) for nodes\n- 2px stroke width for borders\n- Arrow markers for directed connections\n- Font: use the selected font family at appropriate size (see hierarchy above)\n- White or off-white fill inside nodes for text readability (not transparent)\n\n4. **Example: Architecture Diagram**\n```svg\n<svg width=\"440\" height=\"300\" viewBox=\"0 0 440 300\" xmlns=\"http://www.w3.org/2000/svg\">\n  <!-- Input -->\n  <rect x=\"10\" y=\"120\" width=\"100\" height=\"50\" rx=\"6\"\n        fill=\"rgba(143,168,184,0.15)\" stroke=\"#8FA8B8\" stroke-width=\"2\"/>\n  <text x=\"60\" y=\"150\" text-anchor=\"middle\" fill=\"#3A3A3A\"\n        font-family=\"Palatino Linotype, serif\" font-size=\"16\">Input</text>\n\n  <!-- Arrow -->\n  <line x1=\"110\" y1=\"145\" x2=\"160\" y2=\"145\"\n        stroke=\"#3A3A3A\" stroke-opacity=\"0.6\" stroke-width=\"2\"\n        marker-end=\"url(#arrow)\"/>\n\n  <!-- Encoder -->\n  <rect x=\"160\" y=\"120\" width=\"120\" height=\"50\" rx=\"6\"\n        fill=\"rgba(196,168,130,0.15)\" stroke=\"#C4A882\" stroke-width=\"2\"/>\n  <text x=\"220\" y=\"150\" text-anchor=\"middle\" fill=\"#3A3A3A\"\n        font-family=\"Palatino Linotype, serif\" font-size=\"16\">Encoder</text>\n\n  <!-- Arrow -->\n  <line x1=\"280\" y1=\"145\" x2=\"330\" y2=\"145\"\n        stroke=\"#3A3A3A\" stroke-opacity=\"0.6\" stroke-width=\"2\"\n        marker-end=\"url(#arrow)\"/>\n\n  <!-- Output -->\n  <rect x=\"330\" y=\"120\" width=\"100\" height=\"50\" rx=\"6\"\n        fill=\"rgba(168,184,160,0.15)\" stroke=\"#A8B8A0\" stroke-width=\"2\"/>\n  <text x=\"380\" y=\"150\" text-anchor=\"middle\" fill=\"#3A3A3A\"\n        font-family=\"Palatino Linotype, serif\" font-size=\"16\">Output</text>\n\n  <!-- Arrow marker definition -->\n  <defs>\n    <marker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\"\n            markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"#3A3A3A\" fill-opacity=\"0.6\"/>\n    </marker>\n  </defs>\n</svg>\n```\n\n---\n\n## 6. HTML-to-PDF Rendering\n\nUse the **combined HTML approach** with Chrome/Chromium headless for PDF conversion. This avoids installing Playwright or downloading separate browser binaries.\n\n### Step 1: Combine slides into a single HTML file\n\nFirst, create a combined HTML file that includes all slides as print pages:\n\n```bash\n# combine-slides.sh — creates combined.html from individual slide HTML files\nnode -e \"\nconst fs = require('fs');\nconst path = require('path');\n\nconst slideDir = './output/slides';\nconst files = fs.readdirSync(slideDir)\n  .filter(f => f.endsWith('.html'))\n  .sort();\n\nlet html = '<!DOCTYPE html><html><head><meta charset=\\\"UTF-8\\\"><style>';\nhtml += '@page { size: 1280px 720px; margin: 0; }';\nhtml += '.slide { width: 1280px; height: 720px; page-break-after: always; overflow: hidden; position: relative; }';\nhtml += '</style></head><body>';\n\nfor (const file of files) {\n  const content = fs.readFileSync(path.join(slideDir, file), 'utf-8');\n  const bodyMatch = content.match(/<body[^>]*>([\\\\s\\\\S]*?)<\\\\/body>/i);\n  const styleMatch = content.match(/<style>([\\\\s\\\\S]*?)<\\\\/style>/i);\n  if (bodyMatch) {\n    html += '<div class=\\\"slide\\\">';\n    if (styleMatch) html += '<style>' + styleMatch[1] + '</style>';\n    html += bodyMatch[1];\n    html += '</div>';\n  }\n}\nhtml += '</body></html>';\n\nfs.writeFileSync(path.join(slideDir, 'combined.html'), html);\nconsole.log('Combined HTML saved (' + files.length + ' slides)');\n\"\n```\n\n### Step 2: Convert HTML to PDF\n\nTry these methods in order (first available wins):\n\n**Option A — Chrome/Chromium headless (preferred, no install needed)**\n```bash\n# macOS\n\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" \\\n  --headless --disable-gpu --no-margins --print-to-pdf=./output/slides/slides.pdf \\\n  --print-to-pdf-no-header \\\n  \"file://$(pwd)/output/slides/combined.html\"\n\n# Linux\ngoogle-chrome --headless --disable-gpu --no-margins --print-to-pdf=./output/slides/slides.pdf \\\n  --print-to-pdf-no-header \\\n  \"file://$(pwd)/output/slides/combined.html\"\n\n# If chromium is installed instead\nchromium --headless --disable-gpu --no-margins --print-to-pdf=./output/slides/slides.pdf \\\n  --print-to-pdf-no-header \\\n  \"file://$(pwd)/output/slides/combined.html\"\n```\n\n**Option B — puppeteer-core (uses system Chrome, no browser download)**\n```bash\nnpm install puppeteer-core\nnode -e \"\nconst puppeteer = require('puppeteer-core');\nconst path = require('path');\n\n(async () => {\n  // Find system Chrome\n  const execPaths = [\n    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',\n    '/usr/bin/google-chrome', '/usr/bin/chromium', '/usr/bin/chromium-browser',\n  ];\n  const execPath = execPaths.find(p => { try { require('fs').accessSync(p); return true; } catch { return false; } });\n  if (!execPath) { console.error('No Chrome/Chromium found'); process.exit(1); }\n\n  const browser = await puppeteer.launch({ executablePath: execPath, headless: 'new' });\n  const page = await browser.newPage();\n  await page.goto('file://' + path.resolve('./output/slides/combined.html'), { waitUntil: 'networkidle0' });\n  await page.pdf({\n    path: './output/slides/slides.pdf',\n    width: '1280px', height: '720px',\n    printBackground: true,\n    margin: { top: 0, right: 0, bottom: 0, left: 0 },\n  });\n  await browser.close();\n  console.log('PDF saved');\n})();\n\"\n```\n\n**Option C — Playwright (fallback if other options fail)**\n```bash\nnpx playwright install chromium\nnode -e \"\nconst { chromium } = require('playwright');\nconst path = require('path');\n(async () => {\n  const browser = await chromium.launch();\n  const page = await browser.newPage();\n  await page.goto('file://' + path.resolve('./output/slides/combined.html'), { waitUntil: 'networkidle' });\n  await page.pdf({ path: './output/slides/slides.pdf', width: '1280px', height: '720px', printBackground: true, margin: { top: 0, right: 0, bottom: 0, left: 0 } });\n  await browser.close();\n  console.log('PDF saved');\n})();\n\"\n```\n\n### Poster → PDF\n\nUse the same approach. For A0 posters, Chrome headless works but `--print-to-pdf` uses Letter size by default. Use puppeteer-core or Playwright for custom dimensions:\n\n```bash\n# puppeteer-core with custom A0 dimensions\nnode -e \"\nconst puppeteer = require('puppeteer-core');\nconst path = require('path');\n(async () => {\n  const execPaths = ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'];\n  const execPath = execPaths.find(p => { try { require('fs').accessSync(p); return true; } catch { return false; } });\n  const browser = await puppeteer.launch({ executablePath: execPath, headless: 'new' });\n  const page = await browser.newPage();\n  await page.goto('file://' + path.resolve('./output/poster/poster.html'), { waitUntil: 'networkidle0' });\n  await page.pdf({ path: './output/poster/poster.pdf', width: '841mm', height: '1189mm', printBackground: true, margin: { top: 0, right: 0, bottom: 0, left: 0 } });\n  await browser.close();\n  console.log('Poster PDF saved');\n})();\n\"\n```\n\n---\n\n## 7. Blog Post Format\n\n### Markdown Structure\n\n```markdown\n# [Paper Title]: [Catchy Subtitle]\n\n*A [detailed/succinct] summary of [Paper Title] by [Authors]*\n\n---\n\n## TL;DR\n\n[2-3 sentence summary of the paper's key contribution]\n\n## Motivation\n\n[Why this work matters. What problem exists in the field.]\n\n## Approach\n\n[Description of the methodology. Include key equations:]\n\n$$\n\\mathcal{L}(\\theta) = \\sum_{i=1}^{N} \\log p(x_i | \\theta)\n$$\n\n[Explain the equation in plain English.]\n\n## Key Results\n\n[Main experimental findings with specific numbers:]\n\n| Method | Accuracy | F1 Score |\n|--------|----------|----------|\n| Baseline | 78.3% | 0.76 |\n| **Proposed** | **84.7%** | **0.83** |\n\n## Discussion\n\n[Implications, limitations, and future directions.]\n\n## References\n\n1. Author et al., \"Title,\" Conference, Year. [arXiv:XXXX.XXXXX](https://arxiv.org/abs/XXXX.XXXXX)\n```\n\n### Detailed vs. Succinct\n\n- **Detailed** (~2000-4000 words): Full methodology walkthrough with equations, multiple figures, ablation analysis, and comprehensive references. Include code snippets if GitHub repo is available. Must include 4+ figures.\n- **Succinct** (~800-1500 words): Focus on motivation, key contribution, and main results. One equation max. Skip ablations. Must include 2+ figures.\n\n---\n\n## 8. Poster Format\n\n### HTML CSS Grid Layout\n\n#### Portrait (3 columns, A0: 841mm × 1189mm)\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body {\n    width: 841mm;\n    height: 1189mm;\n    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;\n    background: #FAF8F5;\n    color: #3A3A3A;\n    padding: 30mm;\n  }\n\n  .poster-grid {\n    display: grid;\n    grid-template-columns: 1fr 1fr 1fr;\n    grid-template-rows: auto 1fr;\n    gap: 20mm;\n    height: 100%;\n  }\n\n  .header {\n    grid-column: 1 / -1;\n    text-align: center;\n    padding-bottom: 20mm;\n    border-bottom: 3px solid #C4A882;\n  }\n\n  .header h1 {\n    font-size: 72px;\n    font-weight: 700;\n    margin-bottom: 12px;\n  }\n\n  .header .authors {\n    font-size: 32px;\n    color: #8FA8B8;\n  }\n\n  .section {\n    background: white;\n    border-radius: 8px;\n    padding: 20px;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.06);\n  }\n\n  .section h2 {\n    font-size: 36px;\n    font-weight: 600;\n    margin-bottom: 16px;\n    color: #3A3A3A;\n    border-bottom: 2px solid #8FA8B8;\n    padding-bottom: 8px;\n  }\n\n  .section p, .section li {\n    font-size: 24px;\n    line-height: 1.5;\n  }\n</style>\n</head>\n<body>\n  <div class=\"poster-grid\">\n    <div class=\"header\">\n      <h1>Paper Title</h1>\n      <p class=\"authors\">Author A, Author B — University Name</p>\n    </div>\n    <!-- Content sections fill the 3-column grid -->\n    <div class=\"section\">\n      <h2>Motivation</h2>\n      <p>Content...</p>\n    </div>\n    <div class=\"section\">\n      <h2>Method</h2>\n      <p>Content...</p>\n    </div>\n    <div class=\"section\">\n      <h2>Results</h2>\n      <p>Content...</p>\n    </div>\n    <!-- More sections as needed -->\n  </div>\n</body>\n</html>\n```\n\n#### Landscape (4 columns, A0: 1189mm × 841mm)\n\nSame structure but with `grid-template-columns: 1fr 1fr 1fr 1fr` and swapped width/height dimensions.\n\n### Poster Content Balancing — CRITICAL\n\nA poster with unevenly filled columns looks unprofessional. **Every column must be at least 95% filled** — all columns should end at roughly the same height. Empty space at the bottom of a column is the #1 poster layout failure.\n\n#### Column-Balancing Rules\n\n1. **Plan content BEFORE writing HTML.** Estimate how much text + figures each section will produce. Assign sections to columns so total content per column is approximately equal.\n2. **Redistribute when columns are uneven.** If one column is too short:\n   - Move a section from a longer column into the short one\n   - Expand the short column's content: add a figure, a callout box, additional bullet points, or a \"Key Takeaway\" summary box\n   - Split a long section across two columns (e.g., \"Results\" can become \"Results — Accuracy\" in col 2 and \"Results — Ablations\" in col 3)\n3. **Use `grid-row: span N` for sections that need more vertical space** (e.g., a tall figure or a key insight callout) — but only if this helps balance, not for decoration.\n4. **Every column must be at least 95% filled.** If after all content is placed a column is still short, add one or more of:\n   - A highlighted callout box with the key takeaway for that column's topic\n   - An additional figure (architecture diagram, comparison table, example visualization)\n   - A \"Background\" or \"Related Work\" mini-section that supports the adjacent content\n   - A QR code block + paper citation block at the bottom of the shortest column\n5. **Do NOT use `flex-grow` to fake balance.** Stretching a short section's box to fill space creates a visually obvious empty region. The fix is more *content*, not more whitespace in a stretched box.\n6. **Self-check before rendering:** After writing the poster HTML, mentally walk through each column and estimate its content height. Compare across all columns. If any column's content ends more than ~40mm above the others (on A0 scale), go back and add real content to that column before rendering to PDF. This is a blocking check — do not render until columns are balanced.\n\n#### Typical Content Distribution (Portrait, 3-column)\n\n| Column | Sections | Approx. Fill Target |\n|--------|----------|-------------------|\n| Left   | Motivation + Background/Related Work + Research Questions | 95-100% |\n| Middle | Method + Key Insight (callout) + possibly one result | 95-100% |\n| Right  | Results + Discussion + Conclusion/Future Work | 95-100% |\n\nIf \"Motivation + Research Questions\" is short (as it often is), **add a Background section, a Related Work comparison table, or a prominent figure** to fill the left column. Do NOT leave it half-empty.\n\n#### Anti-Pattern: The Half-Empty Column\n\n```\n❌ BAD (flex-grow fakes it)     ✅ GOOD (real content fills)\n┌──────┬──────┬──────┐         ┌──────┬──────┬──────┐\n│Motiv.│Method│Result│         │Motiv.│Method│Result│\n│      │      │      │         │      │      │      │\n│R.Q.  │ Key  │Disc. │         │Backgr│ Key  │Disc. │\n│      │Insigh│      │         │      │Insigh│      │\n│░░░░░░│      │Futur │         │R.Q.  │      │Futur │\n│░EMPTY│Figure│      │         │      │Figure│      │\n│░WITH░│      │      │         │Figure│      │Concl.│\n│░FLEX░│      │      │         │      │      │      │\n│░GROW░│      │      │         │Takea.│      │Takea.│\n└──────┴──────┴──────┘         └──────┴──────┴──────┘\n  60%    100%   95%              97%    100%   97%\n```\n\n---\n\n## 9. Content Narrative Arc — Deep Guide\n\nThe difference between a forgettable presentation and a memorable one is narrative structure. Every deliverable must tell a *story*, not just report facts.\n\n### The 6-Act Structure\n\n#### Act 1: The Hook (1-2 slides / 1 paragraph / 1 poster section)\n**Purpose**: Make the audience care in 30 seconds.\n\nTechniques:\n- **Start with a failure**: \"Current systems can only handle X. Real-world problems require Y.\"\n- **Start with a number**: \"GPT-4 uses 1.8 trillion parameters. We achieve comparable results with 7 billion.\"\n- **Start with a question**: \"Can we learn representations without any labels at all?\"\n- **Start with a contradiction**: \"The conventional wisdom is X. We show that the opposite is true.\"\n\n**Never** start with \"In this paper, we propose...\" — that's the method, not the motivation.\n\n#### Act 2: The Gap (2-3 slides / 1-2 paragraphs / 1 poster section)\n**Purpose**: Show what has been tried and why it's not enough.\n\nStructure:\n- **Prior work overview**: What approaches exist? Use a comparison table or timeline.\n- **Limitation identification**: What specifically fails? Be concrete — show an example where existing methods break down.\n- **The void**: Articulate the gap precisely. \"Existing methods handle A and B, but fail on C because of [specific reason].\"\n\n**Visual approach**: Use Left-Right Split layout — prior work on the left, its limitations on the right.\n\n#### Act 3: The Key Insight (1 slide / 1 paragraph / highlighted in poster)\n**Purpose**: The \"aha moment\" — the one idea that makes everything click.\n\nThis is the **most important slide**. It should be:\n- **Simple**: One sentence that captures the core idea\n- **Visual**: A diagram, analogy, or equation that makes the insight tangible\n- **Surprising**: If the insight is obvious, it's not novel enough\n\nUse Layout 3 (Full Bullet) with a single box-pink callout containing the key insight. Or use Layout 4 with a figure that makes the insight visual.\n\n#### Act 4: The Method (3-6 slides / detailed section / 1-2 poster sections)\n**Purpose**: How does the approach work?\n\n**Progressive disclosure** — build up complexity gradually:\n1. **High-level intuition** (1 slide): What does the system do at a 10,000-foot view? Use an architecture diagram (SVG).\n2. **Core mechanism** (1-2 slides): What is the key algorithmic/mathematical step? Introduce the main equation with plain-English annotation. Use Left-Right Split: equation on left, intuition on right.\n3. **Technical details** (1-2 slides): Formal definitions, loss functions, training procedure. Use Three-Zone layout: formalism in top-left, diagram in top-right, supplementary notes in bottom bar.\n4. **Design decisions** (0-1 slide): Why this approach over alternatives? What tradeoffs were made?\n\n**Equation presentation rules**:\n- Never show an equation without explaining what each variable means\n- Always show the equation's *purpose* before the equation itself (\"We minimize the distance between X and Y:\")\n- If an equation has >5 terms, build it up incrementally across slides\n\n#### Act 5: The Evidence (3-5 slides / tables + analysis / 1-2 poster sections)\n**Purpose**: Prove it works with quantitative results.\n\nStructure:\n1. **Main result** (1 slide): The headline number. Use Three-Zone layout — result table in top-right, analysis in top-left, takeaway in bottom bar.\n2. **Comparisons** (1-2 slides): How does it compare to baselines? Highlight the proposed method in **bold** in tables. Use color to draw attention: green box around the best result, not just bold text.\n3. **Ablations** (1 slide): What matters? Which components contribute most? Use a bar chart (SVG) showing the contribution of each component.\n4. **Qualitative examples** (0-1 slide): Show concrete outputs if applicable (generated images, parsed structures, predictions).\n\n**Table presentation rules**:\n- Highlight your method's row with a subtle background color (`rgba(178,152,110,0.1)`)\n- Bold the best result in each column\n- Include error bars or confidence intervals where available\n- Never show a table with >6 columns or >8 rows — split or summarize\n\n#### Act 6: The Implications (1-2 slides / 1-2 paragraphs / 1 poster section)\n**Purpose**: So what? What does this enable?\n\nStructure:\n- **Broader impact**: What does this result mean for the field?\n- **Limitations** (be honest): What doesn't work? Under what conditions does the method fail?\n- **Future work**: What's the natural next step?\n- **Call to action**: Link to code/data if available. What should the audience try?\n\n### Slide Count Guidelines by Paper Type\n\n| Paper Type | Total Slides | Hook | Gap | Insight | Method | Evidence | Implications |\n|------------|-------------|------|-----|---------|--------|----------|--------------|\n| Empirical ML | 15-20 | 1-2 | 2-3 | 1 | 3-4 | 4-6 | 1-2 |\n| Theoretical | 12-16 | 1-2 | 2-3 | 1 | 4-6 | 2-3 | 1-2 |\n| Systems | 14-18 | 1-2 | 2 | 1 | 4-6 | 3-4 | 1-2 |\n| Survey | 16-22 | 1 | 3-4 | 1 | 6-10 | 2-3 | 1-2 |\n\n### Transition Quality\n\nEvery slide should have a logical connection to the next. Common transitions:\n- **\"But...\"** — introduces a limitation that motivates the next topic\n- **\"How?\"** — the previous slide claimed something, the next shows how\n- **\"Does it work?\"** — transitions from method to results\n- **\"So what?\"** — transitions from results to implications\n\nA slide that doesn't logically follow from the previous one breaks the narrative.\n\n---\n\n## 10. Multi-Paper Handling\n\nWhen multiple papers are provided:\n\n1. **Shared Analysis Phase**: Each paper is analyzed independently in parallel branches\n2. **Emphasis Weighting**: If `customRequirements` specifies relative emphasis, allocate proportional space\n3. **Overarching Story**: When generating deliverables for multiple related papers:\n   - Identify the common thread or progression\n   - Use consistent terminology across all deliverables\n   - Cross-reference between papers where relevant\n   - In slides, add a \"Landscape\" slide showing how papers relate\n\n---\n\n## 11. Quality Checklist\n\nBefore marking any deliverable as complete, verify:\n\n### Slides\n- [ ] One idea per slide — no information overload\n- [ ] Max 6-8 bullet points per Full Bullet slide\n- [ ] Every equation has a plain-English annotation\n- [ ] At least 60% of slides have a figure (original or SVG)\n- [ ] All original paper figures referenced in the outline are included\n- [ ] New SVG figures drawn for concepts the paper doesn't visualize\n- [ ] Generated SVGs use palette colors and have no text overlap\n- [ ] Max 2-3 accent colors per slide\n- [ ] Title slide has paper title, authors, and affiliation\n- [ ] Section dividers introduce each major topic\n- [ ] HTML is self-contained (no external CSS/JS dependencies)\n- [ ] Playwright renders clean PDF without clipping or overflow\n\n### Blog Post\n- [ ] TL;DR at the top (2-3 sentences)\n- [ ] All claims backed by specific numbers from the paper\n- [ ] Includes ALL figures from the slides (original + SVG)\n- [ ] Minimum figures: key result + method diagram + 1 concept SVG\n- [ ] Every figure has a descriptive caption (readable standalone)\n- [ ] Proper citation format with arXiv/DOI links\n- [ ] Equations have accompanying plain-English explanation\n- [ ] Tables are properly formatted Markdown\n- [ ] Word count matches style parameter (detailed: 2000-4000, succinct: 800-1500)\n\n### Poster\n- [ ] Fits single A0 page without overflow\n- [ ] Header spans full width with title and authors\n- [ ] CSS grid layout matches orientation (3-col portrait, 4-col landscape)\n- [ ] **Column balance: every column at least 95% filled — no visible empty space at the bottom**\n- [ ] No `flex-grow` faking balance — short columns filled with real content (sections, figures, callout boxes), not stretched whitespace\n- [ ] Text is readable at poster viewing distance (24px+ body, 36px+ headings)\n- [ ] Key figure/diagram is prominent and legible\n- [ ] QR code or URL to paper/code included",
+      "status": "active",
+      "startDate": null,
+      "targetDate": null,
+      "lead": null,
+      "health": null,
+      "initiativeId": null,
+      "teamId": "96d77ff5-e7fa-4c9a-86f0-70d41f774183",
+      "progress": 0,
+      "labels": [],
+      "color": "#3b82f6",
+      "icon": "📋",
+      "sourceDirectory": null,
+      "repository": null,
+      "defaultEnvironment": null,
+      "computeBackends": [],
+      "mergeQueueEnabled": false,
+      "mergeQueueMergeMethod": "squash",
+      "source": {
+        "isGit": false,
+        "localPath": "/Users/zhuoran_cisco/Documents/astro-outputs/presentation/physcics-llm-1",
+        "remoteType": "none"
+      },
+      "deliveryMode": null,
+      "projectType": "plan",
+      "githubOwner": null,
+      "githubRepo": null,
+      "githubRepoId": null,
+      "references": [],
+      "githubSyncSettings": null,
+      "projectBranch": "astro/69600f",
+      "projectPrUrl": null,
+      "projectPrNumber": null,
+      "createdAt": "2026-03-11T03:15:51.112Z",
+      "updatedAt": "2026-03-11T16:00:18.424Z"
+    },
+    "nodes": [
+      {
+        "id": "1c59534a-fc1c-45a7-b0e2-29021ae4bf52",
+        "projectId": "69600f96-8a8d-4360-b325-147d5b03c993",
+        "number": 4,
+        "type": "task",
+        "title": "Narrative Blueprint and 40-Slide Storyboard",
+        "description": "Write `outline/narrative-outline.md` with a 500+ word comprehension summary and full 40-slide storyboard following Motivation → Methodology → Results → Discussion. For each slide specify title, layout type (1-5), 3-5 key points, equation plan, figure plan, and transition line. Must include beginner-friendly but concise background section on Transformer setup and CFG concepts with concrete examples/visualization specs.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "76ebe6b2-7554-49ce-b84e-1c8cc19dd002"
+        ],
+        "environment": null,
+        "verification": "human",
+        "position": {
+          "x": 40,
+          "y": 340
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "high",
+        "estimate": "L",
+        "dueDate": null,
+        "milestoneId": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "labelIds": [
+          "l5"
+        ],
+        "actualEndDate": "2026-03-11T04:41:24.576Z",
+        "content": "<p>Write `outline/narrative-outline.md` with a 500+ word comprehension summary and full 40-slide storyboard following Motivation → Methodology → Results → Discussion. For each slide specify title, layout type (1-5), 3-5 key points, equation plan, figure plan, and transition line. Must include beginner-friendly but concise background section on Transformer setup and CFG concepts with concrete examples/visualization specs.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T03:20:26.944Z",
+        "updatedAt": "2026-03-11T04:57:02.377Z"
+      },
+      {
+        "id": "3c6d74f0-f262-4f96-8e2a-4087af63e62e",
+        "projectId": "69600f96-8a8d-4360-b325-147d5b03c993",
+        "number": 5,
+        "type": "task",
+        "title": "Generate Slides 01-12 (Hook + Background)",
+        "description": "Create `output/slides/slide_01.html` through `slide_12.html` using the 5 required layouts and palette/typography rules. Focus on title, motivation, prior gap, and beginner-friendly foundations (Transformer architecture, context-free grammar intuition, concrete parsing examples). Add high-quality custom SVGs for prerequisite concepts and early pipeline visuals.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "1c59534a-fc1c-45a7-b0e2-29021ae4bf52"
+        ],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 40,
+          "y": 440
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "high",
+        "estimate": "L",
+        "dueDate": null,
+        "milestoneId": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "labelIds": [
+          "l1"
+        ],
+        "actualEndDate": "2026-03-11T05:08:10.537Z",
+        "content": "<p>Create `output/slides/slide_01.html` through `slide_12.html` using the 5 required layouts and palette/typography rules. Focus on title, motivation, prior gap, and beginner-friendly foundations (Transformer architecture, context-free grammar intuition, concrete parsing examples). Add high-quality custom SVGs for prerequisite concepts and early pipeline visuals.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T03:20:26.944Z",
+        "updatedAt": "2026-03-11T05:08:10.578Z"
+      },
+      {
+        "id": "b6515bdc-0347-4052-974c-3cd98a1fd701",
+        "projectId": "69600f96-8a8d-4360-b325-147d5b03c993",
+        "number": 10,
+        "type": "task",
+        "title": "Generate Portrait Poster and A0 PDF",
+        "description": "Create `output/poster/poster.html` using portrait A0 3-column CSS grid and render `output/poster/poster.pdf`. Include header, motivation/background, method, key insight, results, discussion, limitations, and QR/citation block. Enforce column balancing (>=95% fill per column) with real content (figures/callouts), not stretched whitespace.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "1c59534a-fc1c-45a7-b0e2-29021ae4bf52"
+        ],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 560,
+          "y": 640
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "high",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "labelIds": [
+          "l1"
+        ],
+        "actualEndDate": "2026-03-11T14:31:01.939Z",
+        "content": "<p>Create `output/poster/poster.html` using portrait A0 3-column CSS grid and render `output/poster/poster.pdf`. Include header, motivation/background, method, key insight, results, discussion, limitations, and QR/citation block. Enforce column balancing (&gt;=95% fill per column) with real content (figures/callouts), not stretched whitespace.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T03:20:26.944Z",
+        "updatedAt": "2026-03-11T15:34:08.376Z"
+      },
+      {
+        "id": "c003a2e9-c8a9-4062-8c1c-1d0ee999ac20",
+        "projectId": "69600f96-8a8d-4360-b325-147d5b03c993",
+        "number": 11,
+        "type": "task",
+        "title": "Cross-Deliverable QA and Consistency Gate",
+        "description": "Run final quality checks across slides, blog, and poster: narrative consistency, claim-number consistency, equation explanation coverage, figure coverage targets, citation completeness, and rendering sanity checks. Produce `output/qa/report.md` with pass/fail checklist and required fixes if any.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [],
+        "environment": null,
+        "verification": "human",
+        "position": {
+          "x": 300,
+          "y": 740
+        },
+        "startDate": "2026-03-11",
+        "endDate": null,
+        "priority": "high",
+        "estimate": "S",
+        "dueDate": null,
+        "milestoneId": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "labelIds": [
+          "l5"
+        ],
+        "content": "<p>Run final quality checks across slides, blog, and poster: narrative consistency, claim-number consistency, equation explanation coverage, figure coverage targets, citation completeness, and rendering sanity checks. Produce `output/qa/report.md` with pass/fail checklist and required fixes if any.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T03:20:26.944Z",
+        "updatedAt": "2026-03-11T15:40:09.178Z",
+        "autoPr": false,
+        "clientId": "c003a2e9-c8a9-4062-8c1c-1d0ee999ac20",
+        "positionX": 300,
+        "positionY": 740,
+        "syncSource": null,
+        "githubPrData": null,
+        "githubComments": [],
+        "commitAfterSha": null,
+        "githubIssueUrl": null,
+        "githubSyncedAt": null,
+        "commitBeforeSha": null,
+        "mergeQueueStatus": null,
+        "githubIssueNumber": null,
+        "githubSyncVersion": 0
+      },
+      {
+        "id": "2519266a-5c1b-46e1-8033-5ec3964c8f92",
+        "projectId": "69600f96-8a8d-4360-b325-147d5b03c993",
+        "number": 1,
+        "type": "task",
+        "title": "Bootstrap ArXiv LaTeX Workspace",
+        "description": "Initialize the project from arXiv first: download and extract https://arxiv.org/e-print/2305.13673 into `source/arxiv-2305.13673/`, then create working folders `outline/`, `assets/figures/`, `assets/svg/`, `output/slides/`, `output/blog/`, `output/poster/`. Do not start content generation yet. Done means the LaTeX source (including `cfg-ob4.tex` and figure assets) is present and directory scaffolding is ready.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 40,
+          "y": 40
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "high",
+        "estimate": "S",
+        "dueDate": null,
+        "milestoneId": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "labelIds": [
+          "l5"
+        ],
+        "actualEndDate": "2026-03-11T03:22:53.899Z",
+        "content": "<p>Initialize the project from arXiv first: download and extract https://arxiv.org/e-print/2305.13673 into `source/arxiv-2305.13673/`, then create working folders `outline/`, `assets/figures/`, `assets/svg/`, `output/slides/`, `output/blog/`, `output/poster/`. Do not start content generation yet. Done means the LaTeX source (including `cfg-ob4.tex` and figure assets) is present and directory scaffolding is ready.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T03:20:26.944Z",
+        "updatedAt": "2026-03-11T03:22:54.551Z"
+      },
+      {
+        "id": "e04e9896-101a-43b6-b890-c9293caeda88",
+        "projectId": "69600f96-8a8d-4360-b325-147d5b03c993",
+        "number": 2,
+        "type": "task",
+        "title": "Paper Structure and Contribution Extraction",
+        "description": "Parse `source/arxiv-2305.13673/cfg-ob4.tex` and extract: section hierarchy, key equations, bibliography signals, and all `\\includegraphics` references. Write `outline/paper-structure.md` with 3-5 key contributions and evidence anchors (section/equation/figure refs). If a real GitHub URL is provided (not `{{githubUrl}}`), clone into `external/repo/` and add `outline/repo-notes.md` identifying key code files; otherwise record repo as unavailable in `outline/repo-notes.md`.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "2519266a-5c1b-46e1-8033-5ec3964c8f92"
+        ],
+        "environment": null,
+        "verification": "human",
+        "position": {
+          "x": 40,
+          "y": 140
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "high",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "labelIds": [
+          "l5"
+        ],
+        "actualEndDate": "2026-03-11T03:28:19.540Z",
+        "content": "<p>Parse `source/arxiv-2305.13673/cfg-ob4.tex` and extract: section hierarchy, key equations, bibliography signals, and all `\\includegraphics` references. Write `outline/paper-structure.md` with 3-5 key contributions and evidence anchors (section/equation/figure refs). If a real GitHub URL is provided (not `{{githubUrl}}`), clone into `external/repo/` and add `outline/repo-notes.md` identifying key code files; otherwise record repo as unavailable in `outline/repo-notes.md`.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T03:20:26.944Z",
+        "updatedAt": "2026-03-11T03:28:19.582Z"
+      },
+      {
+        "id": "76ebe6b2-7554-49ce-b84e-1c8cc19dd002",
+        "projectId": "69600f96-8a8d-4360-b325-147d5b03c993",
+        "number": 3,
+        "type": "task",
+        "title": "Figure Inventory and Visual Asset Plan",
+        "description": "Create `outline/figure-inventory.md` by mapping paper figures to presentation needs using the rubric (original vs original+annotated vs new SVG). Require a 40-slide-ready plan with at least 22 visuals and >60% content slides visualized. Include per-slide visual tags like `[original: path]`, `[SVG: description]`, or `[none]`. Prioritize original experimental figures and define beginner-focused new SVGs for Transformer basics and CFG parsing examples.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "e04e9896-101a-43b6-b890-c9293caeda88"
+        ],
+        "environment": null,
+        "verification": "human",
+        "position": {
+          "x": 40,
+          "y": 240
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "high",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "labelIds": [
+          "l5"
+        ],
+        "actualEndDate": "2026-03-11T03:41:18.901Z",
+        "content": "<p>Create `outline/figure-inventory.md` by mapping paper figures to presentation needs using the rubric (original vs original+annotated vs new SVG). Require a 40-slide-ready plan with at least 22 visuals and &gt;60% content slides visualized. Include per-slide visual tags like `[original: path]`, `[SVG: description]`, or `[none]`. Prioritize original experimental figures and define beginner-focused new SVGs for Transformer basics and CFG parsing examples.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T03:20:26.944Z",
+        "updatedAt": "2026-03-11T03:41:19.412Z"
+      },
+      {
+        "id": "1f74168d-4e61-447f-8db4-f6675cd582c2",
+        "projectId": "69600f96-8a8d-4360-b325-147d5b03c993",
+        "number": 6,
+        "type": "task",
+        "title": "Generate Slides 13-28 (Method + Core Evidence)",
+        "description": "Create `output/slides/slide_13.html` through `slide_28.html` covering CFG family design, model behavior interpretation, attention pattern findings, and dynamic-programming connection. Reuse many original paper figures (authoritative results/plots) and add SVG simplifications where paper visuals are too dense. Ensure equations are annotated in plain language.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "1c59534a-fc1c-45a7-b0e2-29021ae4bf52"
+        ],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 300,
+          "y": 440
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "high",
+        "estimate": "L",
+        "dueDate": null,
+        "milestoneId": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "labelIds": [
+          "l1"
+        ],
+        "actualEndDate": "2026-03-11T05:11:09.135Z",
+        "content": "<p>Create `output/slides/slide_13.html` through `slide_28.html` covering CFG family design, model behavior interpretation, attention pattern findings, and dynamic-programming connection. Reuse many original paper figures (authoritative results/plots) and add SVG simplifications where paper visuals are too dense. Ensure equations are annotated in plain language.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T03:20:26.944Z",
+        "updatedAt": "2026-03-11T05:11:09.176Z"
+      },
+      {
+        "id": "be3dd84e-501e-4e0d-a888-35622641c958",
+        "projectId": "69600f96-8a8d-4360-b325-147d5b03c993",
+        "number": 9,
+        "type": "task",
+        "title": "Generate Detailed Blog Post",
+        "description": "Write `output/blog/post.md` (2000-4000 words) with TL;DR, Motivation, Approach, Key Results, Discussion, References. Include equation blocks with plain-English explanation, quantitative tables, and all figures used in slides (original + new SVGs) with standalone captions. Keep terminology aligned with slide deck.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "1c59534a-fc1c-45a7-b0e2-29021ae4bf52"
+        ],
+        "environment": null,
+        "verification": "human",
+        "position": {
+          "x": 300,
+          "y": 640
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "high",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "labelIds": [
+          "l5"
+        ],
+        "actualEndDate": "2026-03-11T05:02:07.359Z",
+        "content": "<p>Write `output/blog/post.md` (2000-4000 words) with TL;DR, Motivation, Approach, Key Results, Discussion, References. Include equation blocks with plain-English explanation, quantitative tables, and all figures used in slides (original + new SVGs) with standalone captions. Keep terminology aligned with slide deck.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T03:20:26.944Z",
+        "updatedAt": "2026-03-11T05:02:07.396Z"
+      },
+      {
+        "id": "13b915be-8bdd-454b-bac9-d6284e98f568",
+        "projectId": "69600f96-8a8d-4360-b325-147d5b03c993",
+        "number": 7,
+        "type": "task",
+        "title": "Generate Slides 29-40 (Extensions + Discussion)",
+        "description": "Create `output/slides/slide_29.html` through `slide_40.html` for robustness, implicit CFGs, PTB/other CFG extensions, uniform-attention findings, limitations, implications, and future directions. Keep researcher-level detail while preserving beginner clarity through recap visuals and concise takeaways.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "1c59534a-fc1c-45a7-b0e2-29021ae4bf52"
+        ],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 560,
+          "y": 440
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "medium",
+        "estimate": "L",
+        "dueDate": null,
+        "milestoneId": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "labelIds": [
+          "l1"
+        ],
+        "actualEndDate": "2026-03-11T05:08:31.644Z",
+        "content": "<p>Create `output/slides/slide_29.html` through `slide_40.html` for robustness, implicit CFGs, PTB/other CFG extensions, uniform-attention findings, limitations, implications, and future directions. Keep researcher-level detail while preserving beginner clarity through recap visuals and concise takeaways.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T03:20:26.944Z",
+        "updatedAt": "2026-03-11T05:08:31.683Z"
+      },
+      {
+        "id": "8861ca02-bf80-421c-b138-9768d73d3020",
+        "projectId": "69600f96-8a8d-4360-b325-147d5b03c993",
+        "number": 8,
+        "type": "task",
+        "title": "Assemble and Render Dual-Theme Slide PDFs",
+        "description": "Combine all 40 slide HTML files into print-ready combined HTML and render PDFs for both themes: `output/slides/slides-light.pdf` and `output/slides/slides-dark.pdf` (1280x720 pages). Ensure no clipping/overflow and preserve figure legibility. Keep source HTML self-contained and consistent with the skill styling spec.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "3c6d74f0-f262-4f96-8e2a-4087af63e62e",
+          "1f74168d-4e61-447f-8db4-f6675cd582c2",
+          "13b915be-8bdd-454b-bac9-d6284e98f568"
+        ],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 300,
+          "y": 540
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "high",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "labelIds": [
+          "l1"
+        ],
+        "actualEndDate": "2026-03-11T05:35:08.160Z",
+        "content": "<p>Combine all 40 slide HTML files into print-ready combined HTML and render PDFs for both themes: `output/slides/slides-light.pdf` and `output/slides/slides-dark.pdf` (1280x720 pages). Ensure no clipping/overflow and preserve figure legibility. Keep source HTML self-contained and consistent with the skill styling spec.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T03:20:26.944Z",
+        "updatedAt": "2026-03-11T05:35:08.206Z"
+      },
+      {
+        "id": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "projectId": "69600f96-8a8d-4360-b325-147d5b03c993",
+        "number": 12,
+        "type": "milestone",
+        "title": "Presentation Pack Complete",
+        "description": "Slides (light+dark PDFs), detailed blog post, and portrait poster are complete and quality-reviewed.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [],
+        "environment": null,
+        "verification": "human",
+        "position": {
+          "x": 300,
+          "y": 840
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": null,
+        "estimate": null,
+        "dueDate": null,
+        "milestoneId": null,
+        "labelIds": [],
+        "content": "<p>Slides (light+dark PDFs), detailed blog post, and portrait poster are complete and quality-reviewed.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T03:20:26.944Z",
+        "updatedAt": "2026-03-11T15:40:14.210Z",
+        "autoPr": false,
+        "clientId": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "positionX": 300,
+        "positionY": 840,
+        "syncSource": null,
+        "githubPrData": null,
+        "githubComments": [],
+        "commitAfterSha": null,
+        "githubIssueUrl": null,
+        "githubSyncedAt": null,
+        "commitBeforeSha": null,
+        "mergeQueueStatus": null,
+        "githubIssueNumber": null,
+        "githubSyncVersion": 0
+      }
+    ],
+    "edges": [
+      {
+        "id": "9b739dbe-7c30-4ae7-b207-b9a78b8a1561",
+        "source": "2519266a-5c1b-46e1-8033-5ec3964c8f92",
+        "target": "e04e9896-101a-43b6-b890-c9293caeda88",
+        "type": "dependency"
+      },
+      {
+        "id": "2459dab1-e3df-4f12-8d1c-fe0111ec2612",
+        "source": "e04e9896-101a-43b6-b890-c9293caeda88",
+        "target": "76ebe6b2-7554-49ce-b84e-1c8cc19dd002",
+        "type": "dependency"
+      },
+      {
+        "id": "71e53f12-4282-4b4d-820d-fd280cf70b03",
+        "source": "76ebe6b2-7554-49ce-b84e-1c8cc19dd002",
+        "target": "1c59534a-fc1c-45a7-b0e2-29021ae4bf52",
+        "type": "dependency"
+      },
+      {
+        "id": "a3803b85-cc54-4c27-8ff7-fc89ffb59a87",
+        "source": "1c59534a-fc1c-45a7-b0e2-29021ae4bf52",
+        "target": "3c6d74f0-f262-4f96-8e2a-4087af63e62e",
+        "type": "branch"
+      },
+      {
+        "id": "fc4a928b-fcee-42c8-b0d4-5b109f188327",
+        "source": "1c59534a-fc1c-45a7-b0e2-29021ae4bf52",
+        "target": "1f74168d-4e61-447f-8db4-f6675cd582c2",
+        "type": "branch"
+      },
+      {
+        "id": "c069d82b-b76c-4d01-8bf8-743767313dcc",
+        "source": "1c59534a-fc1c-45a7-b0e2-29021ae4bf52",
+        "target": "13b915be-8bdd-454b-bac9-d6284e98f568",
+        "type": "branch"
+      },
+      {
+        "id": "cd4d701d-95f2-408a-bdf6-13c708f550cb",
+        "source": "3c6d74f0-f262-4f96-8e2a-4087af63e62e",
+        "target": "8861ca02-bf80-421c-b138-9768d73d3020",
+        "type": "dependency"
+      },
+      {
+        "id": "ca4f1cf8-4dbb-488b-9a2a-70e8c7d39757",
+        "source": "1f74168d-4e61-447f-8db4-f6675cd582c2",
+        "target": "8861ca02-bf80-421c-b138-9768d73d3020",
+        "type": "dependency"
+      },
+      {
+        "id": "cc802f80-ea21-4456-b391-c336be95b0a1",
+        "source": "13b915be-8bdd-454b-bac9-d6284e98f568",
+        "target": "8861ca02-bf80-421c-b138-9768d73d3020",
+        "type": "dependency"
+      },
+      {
+        "id": "1c405fc6-712f-43de-a184-e98a8b52f76a",
+        "source": "1c59534a-fc1c-45a7-b0e2-29021ae4bf52",
+        "target": "be3dd84e-501e-4e0d-a888-35622641c958",
+        "type": "branch"
+      },
+      {
+        "id": "f9b883cd-2614-4522-bbd9-aad7e8896f87",
+        "source": "1c59534a-fc1c-45a7-b0e2-29021ae4bf52",
+        "target": "b6515bdc-0347-4052-974c-3cd98a1fd701",
+        "type": "branch"
+      },
+      {
+        "id": "7617a26a-9e63-421f-b17a-e73d30805ac4",
+        "source": "8861ca02-bf80-421c-b138-9768d73d3020",
+        "target": "c003a2e9-c8a9-4062-8c1c-1d0ee999ac20",
+        "type": "dependency"
+      },
+      {
+        "id": "a831eb09-91b5-417b-87dc-60bbe57d8c18",
+        "source": "be3dd84e-501e-4e0d-a888-35622641c958",
+        "target": "c003a2e9-c8a9-4062-8c1c-1d0ee999ac20",
+        "type": "dependency"
+      },
+      {
+        "id": "83021b9f-81a7-4492-a4c7-7a71112a60b3",
+        "source": "b6515bdc-0347-4052-974c-3cd98a1fd701",
+        "target": "c003a2e9-c8a9-4062-8c1c-1d0ee999ac20",
+        "type": "dependency"
+      },
+      {
+        "id": "c4e752d7-5458-44ca-a451-9ae1b5481729",
+        "source": "c003a2e9-c8a9-4062-8c1c-1d0ee999ac20",
+        "target": "a259d288-ce4f-4190-b19d-ea86fbb8aa0d",
+        "type": "dependency"
+      }
+    ]
+  }
+}

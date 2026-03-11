@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #FAF8F5;
+    color: #3A3A3A;
+    padding: 50px 80px;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 28px;
+    color: #3A3A3A;
+  }
+  .intro {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 22px;
+    color: #3A3A3A;
+  }
+  .highlight { color: #C4A882; font-weight: 600; }
+  .table-container {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 17px;
+  }
+  thead th {
+    background: rgba(143,168,184,0.15);
+    color: #3A3A3A;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #8FA8B8;
+    font-size: 16px;
+  }
+  tbody td {
+    padding: 9px 14px;
+    border-bottom: 1px solid rgba(143,168,184,0.2);
+    vertical-align: top;
+    line-height: 1.4;
+  }
+  tbody tr:last-child td {
+    border-bottom: 2px solid #8FA8B8;
+  }
+  .ref { color: #8FA8B8; font-size: 15px; }
+  .scope { color: #A8B8A0; font-size: 15px; }
+  .limit { color: #B8A0A0; font-size: 15px; font-style: italic; }
+  .box-pink {
+    background: rgba(196, 168, 130, 0.15);
+    border-left: 3px solid #C4A882;
+    padding: 14px 18px;
+    margin: 18px 0 0 0;
+    border-radius: 4px;
+    font-size: 19px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+  <h2>Prior Work: Formal Languages Meet Neural Networks</h2>
+  <p class="intro">Several lines of work have explored what neural networks learn about language structure. Each provides important insights, but <span class="highlight">none offers a complete mechanistic picture</span>.</p>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 24%;">Work</th>
+          <th style="width: 22%;">Approach</th>
+          <th style="width: 22%;">Finding</th>
+          <th style="width: 32%;">Limitation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="ref">Deletang et al. 2023</span></td>
+          <td>Tested NNs on Chomsky hierarchy</td>
+          <td><span class="scope">Transformers struggle with context-free tasks</span></td>
+          <td><span class="limit">Very short sequences (length &le;10); toy-scale models</span></td>
+        </tr>
+        <tr>
+          <td><span class="ref">Hewitt &amp; Manning 2019</span></td>
+          <td>Structural probes on BERT</td>
+          <td><span class="scope">Parse tree distances encoded in embeddings</span></td>
+          <td><span class="limit">Probing only &mdash; no mechanism for how structure is computed</span></td>
+        </tr>
+        <tr>
+          <td><span class="ref">Olsson et al. 2022</span></td>
+          <td>Mechanistic interp. of induction heads</td>
+          <td><span class="scope">In-context copying circuits</span></td>
+          <td><span class="limit">Simple pattern matching; not hierarchical composition</span></td>
+        </tr>
+        <tr>
+          <td><span class="ref">Zhao et al. 2023</span></td>
+          <td>Transformers parse while predicting</td>
+          <td><span class="scope">Concurrent finding: implicit parsing</span></td>
+          <td><span class="limit">Theoretical focus; limited empirical depth</span></td>
+        </tr>
+        <tr>
+          <td><span class="ref">Murty et al. 2023</span></td>
+          <td>Intrinsic compositionality</td>
+          <td><span class="scope">Tree structure in representations</span></td>
+          <td><span class="limit">Real language only; no controlled experiments</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box-pink">
+    <strong>The Gap:</strong> No prior work provides a <span class="highlight">controlled study</span> showing that transformers learn hierarchical parsing at realistic scale, with both <em>probing evidence</em> (what is learned) and <em>mechanistic evidence</em> (how it is computed via attention).
+  </div>
+</body>
+</html>
