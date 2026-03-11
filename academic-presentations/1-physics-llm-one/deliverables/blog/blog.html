@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics of Language Models: How Transformers Learn to Parse</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 22mm 18mm;
+  }
+
+  :root {
+    --bg: #FAF8F5;
+    --text: #3A3A3A;
+    --text-light: #6A6A6A;
+    --sand: #C4A882;
+    --blue: #6E8AA4;
+    --sage: #A8B8A0;
+    --code-bg: #F5F2EE;
+    --table-border: #E0DCD8;
+    --link: #6E8AA4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 32px 64px;
+    font-size: 16px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Typography ── */
+  h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.3em;
+    color: var(--text);
+  }
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 1.8em 0 0.6em;
+    padding-bottom: 0.25em;
+    border-bottom: 2px solid var(--sand);
+    color: var(--text);
+  }
+
+  h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 1.4em 0 0.5em;
+    color: var(--text);
+  }
+
+  h4, h5, h6 {
+    font-size: 1.05em;
+    font-weight: 600;
+    margin: 1.2em 0 0.4em;
+  }
+
+  p {
+    margin: 0.8em 0;
+  }
+
+  a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(110,138,164,0.3);
+  }
+  a:hover {
+    border-bottom-color: var(--link);
+  }
+
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+
+  /* ── Horizontal rule ── */
+  hr {
+    border: none;
+    height: 2px;
+    background: var(--sand);
+    margin: 2.5em 0;
+    opacity: 0.5;
+  }
+
+  /* ── Lists ── */
+  ul, ol {
+    margin: 0.8em 0;
+    padding-left: 1.8em;
+  }
+  li {
+    margin: 0.35em 0;
+  }
+  ul li::marker {
+    color: var(--blue);
+  }
+  ol li::marker {
+    color: var(--blue);
+    font-weight: 600;
+  }
+
+  /* ── Code ── */
+  code {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.88em;
+    background: var(--code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    color: var(--text);
+  }
+  pre {
+    background: var(--code-bg);
+    border-left: 3px solid var(--blue);
+    border-radius: 6px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    margin: 1.2em 0;
+    line-height: 1.5;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.85em;
+  }
+
+  /* ── Blockquote ── */
+  blockquote {
+    border-left: 4px solid var(--sand);
+    background: rgba(196,168,130,0.08);
+    padding: 12px 20px;
+    margin: 1.2em 0;
+    border-radius: 0 6px 6px 0;
+  }
+  blockquote p {
+    margin: 0.3em 0;
+    color: var(--text-light);
+  }
+
+  /* ── Figures ── */
+  figure {
+    margin: 1.8em 0;
+    text-align: center;
+  }
+  figure img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--table-border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  figcaption {
+    margin-top: 8px;
+    font-size: 0.88em;
+    color: var(--text-light);
+    line-height: 1.4;
+    font-style: italic;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── Tables ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1.2em 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92em;
+  }
+  th {
+    background: rgba(110,138,164,0.1);
+    font-weight: 600;
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--blue);
+    text-align: left;
+  }
+  td {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--table-border);
+  }
+  tr:last-child td {
+    border-bottom: none;
+  }
+  tbody tr:hover {
+    background: rgba(110,138,164,0.04);
+  }
+
+  /* ── Math ── */
+  .math-block {
+    margin: 1.2em 0;
+    padding: 12px 16px;
+    background: rgba(110,138,164,0.06);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 6px 6px 0;
+    overflow-x: auto;
+    text-align: center;
+  }
+
+  /* ── Print ── */
+  @media print {
+    body {
+      padding: 0;
+      max-width: none;
+      font-size: 11pt;
+    }
+    figure {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    h2, h3 {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    pre, blockquote, .table-wrap {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+<h1>Physics of Language Models: How Transformers Learn to Parse</h1>
+<p><em>A detailed summary of "Physics of Language Models: Part 1, Learning Hierarchical Language Structures" by Zeyuan Allen-Zhu and Yuanzhi Li (ICML 2024)</em></p>
+<hr>
+<h2>TL;DR</h2>
+<p>Transformers trained on synthetic context-free grammars (CFGs) don't just memorize patterns -- they build internal parse trees and implement a form of dynamic programming through their attention mechanisms. This paper provides the first controlled, mechanistic evidence that autoregressive language models learn genuine hierarchical reasoning, not just surface-level statistics.</p>
+<hr>
+<h2>Motivation</h2>
+<p>Large language models like GPT-4 produce remarkably coherent text, but a fundamental question persists: <strong>do they actually understand the hierarchical structure of language, or are they sophisticated pattern matchers?</strong></p>
+<p>Natural language is deeply hierarchical. A sentence like "The cat that chased the mouse that ate the cheese ran away" requires tracking nested dependencies across multiple levels. In formal terms, this structure is captured by <em>context-free grammars</em> (CFGs), where production rules recursively expand non-terminal symbols into terminal words. Every valid sentence has an underlying parse tree -- and generating grammatically correct text requires implicitly constructing (or at least respecting) that tree.</p>
+<p>The challenge is that next-token prediction in a hierarchical language is fundamentally different from simple pattern matching. Consider a sequence generated by a CFG with deep nesting: the correct next token at any position may depend on structural information dozens or hundreds of tokens back. A flat n-gram model would fail catastrophically. The question is whether transformers fail too, or whether they discover some form of structural reasoning.</p>
+<p>Prior work has approached this from two directions. <strong>Formal language studies</strong> (e.g., Deletang et al., 2023) tested neural networks on the Chomsky hierarchy but used toy-scale tasks. <strong>Structural probing studies</strong> (e.g., Hewitt and Manning, 2019) found syntactic information in pretrained models but couldn't control what structure was available to learn. <strong>Mechanistic interpretability</strong> work (e.g., Wang et al., 2022; Olsson et al., 2022) reverse-engineered specific circuits in transformers but focused on simple behaviors like "induction heads" rather than full hierarchical parsing.</p>
+<p>What was missing was a <strong>controlled study at realistic scale</strong> that could answer: can transformers learn deep hierarchical structure, and if so, <em>how</em>?</p>
+<figure><img src="figures/v2_freal_p50.png" alt="Context-free grammar parse trees for natural language (Penn TreeBank). Short and long sentences exhibit rich hierarchical nesting with multiple levels of non-terminal symbols." loading="lazy"><figcaption>Figure 1: Parse trees for real English sentences from the Penn TreeBank. Even simple sentences have multi-level hierarchical structure that a language model must implicitly respect to generate correct text.</figcaption></figure>
+<hr>
+<h2>Approach</h2>
+<h3>The Synthetic CFG Testbed</h3>
+<p>Allen-Zhu and Li designed a family of synthetic context-free grammars with precisely controlled properties, creating an ideal testbed that isolates hierarchical reasoning from lexical semantics. Their CFGs have:</p>
+<ul>
+<li><strong>Up to 7 hierarchy levels</strong> with non-terminal (NT) counts per level such as $(1, 3, 9, 27, 81, 27, 9)$</li>
+<li><strong>Sequence lengths up to 300 tokens</strong> -- far beyond toy-scale tasks</li>
+<li><strong>Vocabulary of 300 terminal symbols</strong> -- large enough to prevent memorization</li>
+<li><strong>Long-range dependencies</strong> requiring bracket matching across the full sequence length</li>
+<li><strong>Local ambiguity</strong> where the correct next token depends on the global parse state, not just the local context window</li>
+</ul>
+<p>Each CFG variant (cfg3b, cfg3f, cfg3g, cfg3h, cfg3i) tests a different structural property -- varying rule lengths, hierarchy depths, and terminal distributions. This systematic design means any pattern the model learns must reflect genuine structural understanding rather than surface shortcuts.</p>
+<figure><img src="figures/plots.png" alt="CFG data examples: production rules and sample output strings for several grammar variants. Each variant controls different structural properties while maintaining deep hierarchical nesting." loading="lazy"><figcaption>Figure 2: Examples of the synthetic CFG families used in this work. Production rules generate sequences with deep hierarchical structure. The challenge for a language model is that next-token prediction requires tracking parse state across hundreds of tokens.</figcaption></figure>
+<h3>Key Notation</h3>
+<p>The paper introduces precise notation for the hierarchical structure. For a sequence $x = (x_1, x_2, \ldots, x_n)$ generated by a CFG:</p>
+<ul>
+<li><strong>NT ancestor indices</strong> $s_\ell(i)$: the non-terminal symbol at level $\ell$ that dominates position $i$ in the parse tree</li>
+<li><strong>NT boundaries</strong>: positions where the NT ancestor changes, marking the edge of a constituent</li>
+<li><strong>NT-end boundary</strong> $b_\ell(i)$: indicator for whether position $i$ is the last token under a level-$\ell$ non-terminal</li>
+</ul>
+<p>These quantities are the ground truth the paper probes for in the transformer's hidden states.</p>
+<figure><img src="figures/plots.png" alt="NT notation diagram showing ancestor indices, boundary indicators, and position counters with color-coded values at NT boundary positions." loading="lazy"><figcaption>Figure 3: Notation for non-terminal (NT) structure. For each position in the token sequence (bottom row), the NT ancestor indices ($s_3$--$s_6$) and boundary counts are shown. Color coding highlights NT boundaries -- the key structural landmarks the transformer must learn to identify.</figcaption></figure>
+<h3>Models Under Test</h3>
+<p>Four model variants were compared, all based on the GPT-2-small architecture (12 layers, 12 attention heads, 768 hidden dimensions, ~86M parameters):</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Model</th><th style="text-align:left">Positional Encoding</th><th style="text-align:left">Direction</th><th style="text-align:left">Key Property</th></tr></thead>
+<tbody><tr><td style="text-align:left"><strong>GPT-2 (abs)</strong></td><td style="text-align:left">Absolute</td><td style="text-align:left">Autoregressive</td><td style="text-align:left">Vanilla GPT-2 baseline</td></tr>
+<tr><td style="text-align:left"><strong>GPT-2 (rel)</strong></td><td style="text-align:left">Relative (DeBERTa-style)</td><td style="text-align:left">Autoregressive</td><td style="text-align:left">Relative distance bias in attention</td></tr>
+<tr><td style="text-align:left"><strong>GPT-2 (rot)</strong></td><td style="text-align:left">Rotary (RoPE)</td><td style="text-align:left">Autoregressive</td><td style="text-align:left">Rotation-based position encoding</td></tr>
+<tr><td style="text-align:left"><strong>DeBERTa</strong></td><td style="text-align:left">Relative</td><td style="text-align:left">Bidirectional (encoder)</td><td style="text-align:left">Encoder baseline</td></tr>
+</tbody></table></div>
+<p>The critical architectural variable turned out to be the <strong>positional encoding scheme</strong>, not the model size or depth.</p>
+<h3>Three-Pronged Evaluation</h3>
+<p>The paper evaluates the trained models on three complementary axes:</p>
+<ol>
+<li><strong>Generation accuracy</strong>: Can the model produce valid strings from the grammar? Measured by sampling sequences autoregressively and checking grammatical validity.</li>
+<li><strong>Distribution matching</strong>: Does the model's probability distribution over sequences match the ground-truth CFG distribution? Measured via KL divergence:</li>
+</ol>
+<div class="math-block">$$\text{KL} = \frac{1}{|S|}\sum_{x\in S} \frac{1}{m(x)+1} \sum_i \sum_t \Pr_{p^*}[t \mid x_{<i}] \log \frac{\Pr_{p^*}[t \mid x_{<i}]}{\Pr_p[t \mid x_{<i}]}$$</div>
+<p>This measures the average per-token divergence between the ground-truth conditional distribution $p^*$ and the model's learned distribution $p$, averaged over positions and sequences. Low KL means the model has learned the full probabilistic structure, not just the most-likely outputs.</p>
+<ol>
+<li><strong>Internal probing</strong>: What information do the hidden states encode? This is where the deepest insights emerge.</li>
+</ol>
+<hr>
+<h2>Key Results</h2>
+<h3>Results 1--3: Transformers Learn CFGs Accurately</h3>
+<p>The headline result is striking: <strong>GPT-2 with relative or rotary positional embeddings achieves near-perfect generation accuracy</strong> across all CFG variants. The model generates grammatically valid sequences, produces diverse outputs (verified via a birthday paradox duplicate-detection test), and closely matches the ground-truth probability distribution.</p>
+<figure><img src="figures/all_acc.png" alt="Generation accuracy across CFG variants for all four model types. GPT-2 with relative and rotary PE achieve near-perfect accuracy; absolute PE and DeBERTa (encoder) fail." loading="lazy"><figcaption>Figure 4: Generation accuracy across CFG variants. GPT-2 with relative (rel) and rotary (rot) positional embeddings consistently achieves high accuracy. Vanilla GPT-2 with absolute PE and the bidirectional DeBERTa encoder fail to learn the deeper grammars.</figcaption></figure>
+<figure><img src="figures/entropy.png" alt="Entropy comparison between model-generated distributions and ground-truth CFG distributions, showing close match for relative and rotary PE models." loading="lazy"><figcaption>Figure 5: Entropy comparison between model and ground-truth distributions. Models with relative/rotary PE closely match the ground-truth entropy, indicating they learn the full distributional structure -- not just the mode.</figcaption></figure>
+<figure><img src="figures/KLdiv.png" alt="KL divergence from ground-truth to model-generated distributions, confirming distribution matching." loading="lazy"><figcaption>Figure 6: KL divergence from ground-truth CFG to model distributions. Lower is better. Relative and rotary PE models achieve near-zero divergence, while absolute PE models show significant distributional mismatch.</figcaption></figure>
+<p>The failure of absolute positional embeddings is notable: they encode position as a fixed vector added to each token, which doesn't naturally capture relative distances between constituents. Relative and rotary encodings, which represent <em>distances</em> between positions rather than absolute locations, align much better with the recursive, distance-dependent structure of CFGs.</p>
+<p><strong>Key quantitative findings:</strong></p>
+<ul>
+<li>Relative/rotary PE models achieve <strong>>95% generation accuracy</strong> on most CFG variants</li>
+<li>KL divergence drops to <strong><0.05</strong> for the best models</li>
+<li>The birthday paradox test confirms <strong>high generation diversity</strong> -- the model doesn't simply memorize training sequences</li>
+<li>Absolute PE and encoder (DeBERTa) models fail, especially on deeper grammars</li>
+</ul>
+<h3>Results 4--5: Hidden States Encode Full Parse Trees</h3>
+<p>The most surprising finding comes from <strong>linear probing</strong> the transformer's hidden states. A linear probe is a simple linear classifier applied to the model's internal representations -- if a linear probe can recover some information, it means that information is explicitly encoded in the representation (not buried in a complex nonlinear manifold).</p>
+<p>The probing equation is:</p>
+<div class="math-block">$$G_{i}(x) = \sum_{r \in [H],\, k \in [m(x)]} w_{r, i \to k} \cdot f_r(E_k(x)) \in \mathbb{R}^{|\text{NT}|}$$</div>
+<p>Here, $E_k(x)$ is the hidden state at position $k$ in the last transformer layer, $f_r$ is a per-head probing function, and $w_{r, i \to k}$ are learned weights. The probe predicts the full NT ancestor index vector at each position -- essentially recovering the parse tree from the hidden representation.</p>
+<p><strong>Result 4</strong> shows that this linear probe achieves <strong>near-perfect accuracy</strong> on the GPT-2 models with relative/rotary PE. The transformer's last-layer hidden states almost perfectly encode the full non-terminal ancestor information at every position. Remarkably, encoder models (DeBERTa) cannot encode this information -- suggesting that the autoregressive training objective is crucial.</p>
+<p><strong>Result 5</strong> goes further: the NT information is not distributed globally but is <strong>concentrated locally at NT boundary positions</strong>. A restricted probe that only looks at positions $i \pm 1$ (the immediate neighbors of NT boundaries) recovers almost as much information as the full probe:</p>
+<div class="math-block">$$G_{i}(x) = \sum_{r \in [H],\, k \in [m(x)],\, |i-k| \leq \delta} w_{r, i \to k} \cdot f_r(E_k(x))$$</div>
+<p>With $\delta = 1$, accuracy remains high. This means the transformer has learned to <em>concentrate</em> parse-tree information at structurally meaningful positions -- the boundaries between constituents.</p>
+<figure><img src="figures/all_predict_nt.png" alt="NT ancestor probing accuracy across CFG variants and model types. Linear probes on GPT-2 (rel/rot) last-layer hidden states recover near-perfect parse information." loading="lazy"><figcaption>Figure 7: NT ancestor probing accuracy. Linear probes on the last-layer hidden states of GPT-2 with relative/rotary PE achieve near-perfect accuracy in recovering the full NT ancestor index vector. DeBERTa (encoder) fails.</figcaption></figure>
+<figure><img src="figures/all_predict_nt_at_ntend_diag.png" alt="Diagonal probing results showing that NT information is concentrated at positions adjacent to NT boundaries, confirming local encoding." loading="lazy"><figcaption>Figure 8: Diagonal probing results. Even when the probe is restricted to use only the hidden state at position $i \pm 1$, it still recovers high-accuracy NT information -- confirming that parse structure is locally encoded at NT boundary positions.</figcaption></figure>
+<h3>Results 6--9: Attention Implements Dynamic Programming</h3>
+<p>The deepest insight of the paper comes from analyzing the attention patterns themselves. The authors discover four progressively more specific patterns that collectively reveal the transformer is implementing a form of <strong>CKY-style dynamic programming</strong>:</p>
+<p><strong>Result 6 -- Position-based attention</strong>: Different heads attend at different distance scales, creating a multi-resolution view of the sequence. Some heads focus on nearby tokens (local structure), while others reach across the full sequence (long-range dependencies).</p>
+<figure><img src="figures/GPT_base_attention.png" alt="Position-based attention heatmaps for 12 heads of GPT-2, showing multi-scale distance patterns where each head specializes in a different range." loading="lazy"><figcaption>Figure 9: Attention patterns across 12 heads of GPT-2. Each head specializes in a different distance range, creating multi-scale coverage from local to long-range dependencies.</figcaption></figure>
+<p><strong>Result 7 -- Boundary-biased attention</strong>: Attention is disproportionately directed toward tokens at NT boundaries. These boundary positions are the structurally important landmarks in the parse tree.</p>
+<figure><img src="figures/GPTrel_nt_to_any.png" alt="Attention bias toward NT boundary tokens, showing disproportionately high attention at structurally meaningful positions." loading="lazy"><figcaption>Figure 10: Attention to NT boundaries. Tokens at NT-end positions receive disproportionately high attention, showing the model has learned to identify structural landmarks.</figcaption></figure>
+<p><strong>Result 8 -- Same-level NT-end attention</strong>: When both the source and target positions are NT boundaries, attention is highest when they are at the <strong>same NT level</strong> -- exactly the pattern needed for sibling-to-sibling communication in a parse tree.</p>
+<figure><img src="figures/GPTrel_NT4_nt_to_nt.png" alt="NT-end to NT-end attention at level 4, showing strongest attention between same-level boundary positions." loading="lazy"><figcaption>Figure 11: NT-end to NT-end attention at level 4. Attention is strongest between positions that are both NT boundaries at the same hierarchical level -- enabling sibling constituents to communicate.</figcaption></figure>
+<p><strong>Result 9 -- Adjacent NT-end attention</strong>: The most refined pattern shows attention concentrating between <strong>adjacent</strong> NT-end token pairs: siblings (same level), children (deepest level), and parent-level boundaries. This is precisely the information flow needed by the CKY parsing algorithm.</p>
+<figure><img src="figures/GPTrel_pattern.png" alt="Adjacent NT-end attention patterns summarizing the concentration of attention between sibling, child, and parent-level NT boundaries." loading="lazy"><figcaption>Figure 12: Adjacent NT-end attention pattern (Result 9). Attention concentrates between structurally adjacent NT boundaries -- siblings, children, and parents in the parse tree -- mirroring the information flow of CKY dynamic programming.</figcaption></figure>
+<h3>The CKY Connection</h3>
+<p>These attention patterns collectively mirror the <strong>CKY (Cocke-Younger-Kasami) algorithm</strong>, the classical dynamic programming algorithm for CFG parsing. In CKY, to parse a span $(i, j)$ with non-terminal $a$, the algorithm checks all split points $k \in (i, j)$ and combines sub-parses. The paper formalizes this connection:</p>
+<div class="math-block">$$\mathbf{1}_\ell(i) = 1,\; \mathbf{1}_\ell(j) = 1,\; \forall k \in (i,j)\; \mathbf{1}_\ell(k)=0 \text{ and } s_\ell(j) = a \implies \text{DP}(i,j,a) = 1$$</div>
+<p>This links the transformer's learned NT boundary indicators ($\mathbf{1}_\ell$) and NT ancestor symbols ($s_\ell$) to classical CKY parsing recurrences. The attention patterns implement the information propagation that CKY achieves through its table lookups -- but the transformer discovers this algorithm from data, without being told about dynamic programming.</p>
+<figure><img src="figures/plots.png" alt="Dynamic programming connection diagram showing CKY-style DP table linked to transformer attention patterns, with the key corollary that GPT mimics dynamic programming." loading="lazy"><figcaption>Figure 13: The CKY dynamic programming connection. Top: classical CKY parse table $DP(i,j,a)$. Middle: the transformer's attention patterns between NT-end positions. The transformer's learned attention implements the same information flow as CKY parsing, but discovered entirely from data.</figcaption></figure>
+<h3>Results 10--13: Extensions and Robustness</h3>
+<p>The paper extends the framework in two important directions:</p>
+<p><strong>Implicit CFGs (Result 10):</strong> In real language, "non-terminal" categories correspond to bags of interchangeable words (all nouns, all verbs), not single tokens. The authors test "implicit CFGs" where each terminal symbol is replaced by a bag of words. The transformer still learns the latent hierarchical structure -- hidden embeddings for tokens in the same NT category become divergence-correlated, even though the model never sees explicit category labels.</p>
+<figure><img src="figures/correlation_cfg7f1_uniform.png" alt="Embedding correlation matrices for implicit CFGs, showing divergence-correlated hidden representations within the same NT subset for both uniform and non-uniform terminal distributions." loading="lazy"><figcaption>Figure 14: Embedding correlation for implicit CFGs. Left: uniform terminal distribution. The correlation structure reveals the model has learned the latent NT categories without explicit supervision.</figcaption></figure>
+<p><strong>Robustness (Results 11--13):</strong> When training data is corrupted (15% of tokens randomly replaced), the transformer exhibits a fascinating <strong>"mode switch" behavior</strong>:</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Input Condition</th><th style="text-align:left">Model Behavior</th><th style="text-align:left">Validity</th></tr></thead>
+<tbody><tr><td style="text-align:left">Clean prefix</td><td style="text-align:left">Correct generation</td><td style="text-align:left">Grammatically valid</td></tr>
+<tr><td style="text-align:left">Corrupted prefix</td><td style="text-align:left">Random generation</td><td style="text-align:left">Length-valid but not grammatically correct</td></tr>
+<tr><td style="text-align:left">Mixed prefix</td><td style="text-align:left">Length-valid strings</td><td style="text-align:left">Partial structure preserved</td></tr>
+</tbody></table></div>
+<p>At low temperatures ($\tau \leq 0.2$), the model recovers robust generation even after corruption. This mode switch suggests the transformer maintains separate "modes" for structured and unstructured generation, switching between them based on the input distribution.</p>
+<figure><img src="figures/cfg3b_robust_acc.png" alt="Robustness results matrix showing generation accuracy under various corruption conditions and temperatures." loading="lazy"><figcaption>Figure 15: Robustness results under corrupted training data. The 9-row matrix shows different training/test corruption conditions across temperatures $\tau = 0.1, 0.2, 1.0$. The model exhibits "mode switch" behavior -- generating correctly on clean prefixes and switching to random (but length-valid) generation on corrupted prefixes.</figcaption></figure>
+<hr>
+<h2>Discussion</h2>
+<h3>What This Means for Understanding LLMs</h3>
+<p>This work provides the strongest mechanistic evidence to date that transformers learn <strong>genuine hierarchical reasoning</strong>, not just statistical correlations. Three findings are particularly significant:</p>
+<ol>
+<li><strong>Parse trees are linearly encoded.</strong> The fact that a simple linear probe recovers full parse-tree information means the representation is not buried in a complex manifold -- it's readily accessible, suggesting the model "thinks" in terms of hierarchical structure.</li>
+<li><strong>Attention implements dynamic programming.</strong> The transformer didn't just memorize input-output mappings; it discovered an algorithm that mirrors classical CKY parsing. This is a form of <em>emergent algorithm discovery</em> -- the model invents a systematic procedure from training signal alone.</li>
+<li><strong>Positional encoding is the critical architectural choice.</strong> Not model size, not depth, not training data volume -- the key enabler is how the model represents positions. Relative and rotary encodings succeed because they naturally capture the distance-dependent structure of hierarchical languages. This has direct implications for architecture design.</li>
+</ol>
+<h3>Limitations</h3>
+<p>Several important caveats apply:</p>
+<ul>
+<li><strong>Synthetic data only.</strong> The CFGs, while complex (300-token sequences, 7 hierarchy levels, 100k+ vocabulary), are still simpler than natural language. The paper does not claim transformers parse English in the same way.</li>
+<li><strong>No public code repository.</strong> The experiments cannot be independently reproduced without reimplementation. The project page at <a href="https://physics.allen-zhu.com/part-1">physics.allen-zhu.com/part-1</a> provides supplementary materials.</li>
+<li><strong>GPT-2 scale.</strong> Modern LLMs are orders of magnitude larger. Whether the same mechanisms scale to billion-parameter models on natural language remains open.</li>
+<li><strong>Encoder failure.</strong> The finding that bidirectional encoders (DeBERTa) fail to encode deep NT information is surprising and deserves further investigation -- it may reflect a fundamental limitation of masked language modeling for hierarchical structure.</li>
+</ul>
+<h3>The Bigger Picture: Physics of Language Models</h3>
+<p>This paper is Part 1 of the "Physics of Language Models" series by Allen-Zhu and collaborators, which aims to build a rigorous, experimentally-grounded theory of how language models work:</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Part</th><th style="text-align:left">Topic</th><th style="text-align:left">Key Question</th></tr></thead>
+<tbody><tr><td style="text-align:left"><strong>1</strong> (this paper)</td><td style="text-align:left">Hierarchical structure (CFGs)</td><td style="text-align:left">Can transformers parse?</td></tr>
+<tr><td style="text-align:left"><strong>2.1--2.2</strong></td><td style="text-align:left">Grade-school math</td><td style="text-align:left">Can transformers reason step-by-step?</td></tr>
+<tr><td style="text-align:left"><strong>3.1--3.3</strong></td><td style="text-align:left">Knowledge storage and manipulation</td><td style="text-align:left">How do transformers store facts?</td></tr>
+<tr><td style="text-align:left"><strong>4.1</strong></td><td style="text-align:left">Architecture design</td><td style="text-align:left">What makes an architecture effective?</td></tr>
+</tbody></table></div>
+<p>The series represents a shift from treating LLMs as black boxes to building a "physics" of their behavior -- understanding the fundamental mechanisms through controlled experiments, much as physicists study simplified systems to discover universal laws.</p>
+<h3>Future Directions</h3>
+<p>The paper suggests several natural next steps:</p>
+<ul>
+<li><strong>Bridging to natural language:</strong> Do real-world LLMs (GPT-4, LLaMA) exhibit the same DP-like attention patterns when processing hierarchical natural language?</li>
+<li><strong>Training dynamics:</strong> How does the DP mechanism <em>emerge</em> during training? Is there a phase transition, as seen in "grokking" phenomena?</li>
+<li><strong>Architecture implications:</strong> Can the insights about positional encoding guide the design of more efficient architectures for hierarchical reasoning?</li>
+<li><strong>Compositionality:</strong> How do the hierarchical parsing abilities discovered here interact with semantic composition -- the process of building meaning from parts?</li>
+</ul>
+<hr>
+<h2>References</h2>
+<ol>
+<li>Allen-Zhu, Z. and Li, Y. "Physics of Language Models: Part 1, Learning Hierarchical Language Structures." <em>ICML 2024</em>. <a href="https://arxiv.org/abs/2305.13673">arXiv:2305.13673</a></li>
+<li>Radford, A. et al. "Language Models are Unsupervised Multitask Learners." <em>OpenAI</em>, 2019.</li>
+<li>He, P. et al. "DeBERTa: Decoding-enhanced BERT with Disentangled Attention." <em>ICLR 2021</em>. <a href="https://arxiv.org/abs/2006.03654">arXiv:2006.03654</a></li>
+<li>Su, J. et al. "RoFormer: Enhanced Transformer with Rotary Position Embedding." <em>arXiv:2104.09864</em>, 2021.</li>
+<li>Hewitt, J. and Manning, C.D. "A Structural Probe for Finding Syntax in Word Representations." <em>NAACL 2019</em>.</li>
+<li>Deletang, G. et al. "Neural Networks and the Chomsky Hierarchy." <em>ICLR 2023</em>.</li>
+<li>Wang, K. et al. "Interpretability in the Wild: A Circuit for Indirect Object Identification in GPT-2 Small." <em>ICLR 2023</em>.</li>
+<li>Olsson, C. et al. "In-Context Learning and Induction Heads." <em>arXiv:2209.11895</em>, 2022.</li>
+<li>Baker, J.K. "Trainable Grammars for Speech Recognition." <em>JASA</em>, 1979.</li>
+<li>Marcus, M. et al. "Building a Large Annotated Corpus of English: The Penn Treebank." <em>Computational Linguistics</em>, 1993.</li>
+<li>Zhao, S. et al. "Transformers Learn to Parse while Predicting Next Tokens." <em>arXiv</em>, 2023.</li>
+<li>Nanda, N. et al. "Progress Measures for Grokking via Mechanistic Interpretability." <em>ICLR 2023</em>.</li>
+<li>Murty, S. et al. "Characterizing Intrinsic Compositionality in Transformers with Tree Projections." <em>arXiv</em>, 2023.</li>
+</ol>
+<hr>
+<p><em>Project page: <a href="https://physics.allen-zhu.com/part-1">physics.allen-zhu.com/part-1</a> | 100-minute talk: <a href="https://youtu.be/kf_eGgVtOcs">YouTube</a> | ICML 2024 tutorial: <a href="https://youtu.be/yBL7J0kgldU">YouTube</a></em></p>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics of Language Models: The Magic of Canon Layers</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 22mm 18mm;
+  }
+
+  :root {
+    --bg: #FAF8F5;
+    --text: #3A3A3A;
+    --text-light: #6A6A6A;
+    --sand: #C4A882;
+    --blue: #6E8AA4;
+    --sage: #A8B8A0;
+    --code-bg: #F5F2EE;
+    --table-border: #E0DCD8;
+    --link: #6E8AA4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 32px 64px;
+    font-size: 16px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Typography ── */
+  h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.3em;
+    color: var(--text);
+  }
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 1.8em 0 0.6em;
+    padding-bottom: 0.25em;
+    border-bottom: 2px solid var(--sand);
+    color: var(--text);
+  }
+
+  h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 1.4em 0 0.5em;
+    color: var(--text);
+  }
+
+  h4, h5, h6 {
+    font-size: 1.05em;
+    font-weight: 600;
+    margin: 1.2em 0 0.4em;
+  }
+
+  p {
+    margin: 0.8em 0;
+  }
+
+  a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(110,138,164,0.3);
+  }
+  a:hover {
+    border-bottom-color: var(--link);
+  }
+
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+
+  /* ── Horizontal rule ── */
+  hr {
+    border: none;
+    height: 2px;
+    background: var(--sand);
+    margin: 2.5em 0;
+    opacity: 0.5;
+  }
+
+  /* ── Lists ── */
+  ul, ol {
+    margin: 0.8em 0;
+    padding-left: 1.8em;
+  }
+  li {
+    margin: 0.35em 0;
+  }
+  ul li::marker {
+    color: var(--blue);
+  }
+  ol li::marker {
+    color: var(--blue);
+    font-weight: 600;
+  }
+
+  /* ── Code ── */
+  code {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.88em;
+    background: var(--code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    color: var(--text);
+  }
+  pre {
+    background: var(--code-bg);
+    border-left: 3px solid var(--blue);
+    border-radius: 6px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    margin: 1.2em 0;
+    line-height: 1.5;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.85em;
+  }
+
+  /* ── Blockquote ── */
+  blockquote {
+    border-left: 4px solid var(--sand);
+    background: rgba(196,168,130,0.08);
+    padding: 12px 20px;
+    margin: 1.2em 0;
+    border-radius: 0 6px 6px 0;
+  }
+  blockquote p {
+    margin: 0.3em 0;
+    color: var(--text-light);
+  }
+
+  /* ── Figures ── */
+  figure {
+    margin: 1.8em 0;
+    text-align: center;
+  }
+  figure img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--table-border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  figcaption {
+    margin-top: 8px;
+    font-size: 0.88em;
+    color: var(--text-light);
+    line-height: 1.4;
+    font-style: italic;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── Tables ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1.2em 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92em;
+  }
+  th {
+    background: rgba(110,138,164,0.1);
+    font-weight: 600;
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--blue);
+    text-align: left;
+  }
+  td {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--table-border);
+  }
+  tr:last-child td {
+    border-bottom: none;
+  }
+  tbody tr:hover {
+    background: rgba(110,138,164,0.04);
+  }
+
+  /* ── Math ── */
+  .math-block {
+    margin: 1.2em 0;
+    padding: 12px 16px;
+    background: rgba(110,138,164,0.06);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 6px 6px 0;
+    overflow-x: auto;
+    text-align: center;
+  }
+
+  /* ── Print ── */
+  @media print {
+    body {
+      padding: 0;
+      max-width: none;
+      font-size: 11pt;
+    }
+    figure {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    h2, h3 {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    pre, blockquote, .table-wrap {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+<h1>Physics of Language Models: The Magic of Canon Layers</h1>
+<p><em>A detailed summary of Part 4.1 (NeurIPS 2025) and Part 4.2 by Zeyuan Allen-Zhu (FAIR at Meta)</em></p>
+<hr>
+<h2>TL;DR</h2>
+<p>Canon layers are lightweight convolutional components (<0.5% parameter overhead) that act as "horizontal residual links," promoting information flow between neighboring token positions. In synthetic benchmarks (Part 4.1), they boost reasoning depth by 2--4x, revive weak architectures like NoPE and GLA to match or surpass stronger baselines, and reveal that Mamba2's built-in conv1d is the true source of its performance advantage. In real-world pretraining at 1--8B scale on up to 2T tokens (Part 4.2), all synthetic predictions transfer faithfully: LlamaCanon consistently outperforms vanilla Llama by ~2% MMLU across all 8 controlled comparisons, and GLA+Canon matches or exceeds GDN and Mamba2 at scale.</p>
+<hr>
+<h2>Motivation: Why Architecture Comparison Is Broken</h2>
+<p>Choosing the right architecture for a language model should be straightforward: train multiple architectures on the same data, evaluate, and pick the winner. In practice, this is far harder than it sounds. Zeyuan Allen-Zhu's <em>Physics of Language Models</em> series identifies three fundamental challenges that undermine the reliability of architecture comparisons at academic scale.</p>
+<p><strong>Challenge 1: Pretraining loss is an unreliable proxy for intelligence.</strong> State-space models like Mamba can achieve impressively low perplexity by rapidly memorizing surface-level patterns, yet fail on reasoning tasks that require multi-hop inference. A model with lower loss is not necessarily a smarter model.</p>
+<p><strong>Challenge 2: Noise below emergence thresholds.</strong> At the standard academic scale of 1.3B parameters trained on 100B tokens, even the simplest 2-hop reasoning tasks produce random-guessing accuracy (~30--36%). Meanwhile, random seed variation alone causes 2--4% accuracy swings on benchmarks like LAMBADA (up to 4%) and BoolQ (up to 3%). When the noise floor exceeds the signal from architectural differences, published comparisons may be reporting randomness, not real effects.</p>
+<p><strong>Challenge 3: Data quality and grokking confounds.</strong> Many failures in complex reasoning stem from insufficient or noisy training data, not from architectural limitations. Grokking behavior -- where models suddenly acquire capabilities after extended training -- and reinforcement learning-based post-training further obscure which improvements are attributable to architecture versus training recipe.</p>
+<p>The physicist's solution? Build an idealized laboratory. Just as Galileo studied objects in vacuum before tackling air resistance, Allen-Zhu constructs a <strong>synthetic pretraining playground</strong> with infinite, perfectly clean data -- eliminating the noise that plagues real-world comparisons. This synthetic approach, detailed in Part 4.1, makes architectural differences visible even at small (GPT2-small) scale, where they would be invisible in real pretraining.</p>
+<figure><img src="../figures/noisy-comparison.png" alt="Noisy real-life comparisons vs. clean synthetic signals. At academic scale (1.3B/100B), random seed variation masks architectural differences. The synthetic playground produces clear, reproducible separation." loading="lazy"><figcaption>Figure 1: The core motivation -- real-world pretraining at academic scale produces noisy, often indistinguishable results across architectures (left), while the synthetic playground yields clean, reproducible signals (right). Source: Part 4.1, Figure 1.</figcaption></figure>
+<hr>
+<h2>The Synthetic Pretraining Playground [4.1]</h2>
+<p>The playground consists of five synthetic tasks, each designed to isolate a specific atomic capability. The tasks follow four strict design criteria: they must not be "shallow" (no simple associative recall), they must test mental/"System 1" reasoning without chain-of-thought, they must not depend on length generalization (all use 2048--4096 token dense contexts), and they must target broadly applicable skills.</p>
+<figure><img src="../figures/five-tasks.png" alt="The five synthetic tasks -- Depo, Brevo, Capo, Mano, and Lano -- each targeting a distinct dimension of language model capability." loading="lazy"><figcaption>Figure 2: Overview of the five synthetic pretraining tasks. Each task isolates a specific capability, enabling controlled architectural comparisons. Source: Part 4.1.</figcaption></figure>
+<p>The five tasks are:</p>
+<ol>
+<li><strong>Depo</strong> (Reasoning Depth): k-hop traversal over directed permutations. Given a chain of mappings A->B->C->...->Z, predict the endpoint after k hops. Tests how deeply a model can compose sequential inferences.</li>
+<li><strong>Brevo</strong> (Reasoning Breadth): Recursive traversal of directed acyclic graphs (DAGs), requiring topological sort-like computation. Tests the model's ability to handle branching inference paths simultaneously.</li>
+<li><strong>Capo</strong> (Knowledge Capacity): Storage and recall of biographical facts. Measures raw bits-per-parameter knowledge density, probing how efficiently the architecture utilizes its parameter budget for memorization.</li>
+<li><strong>Mano</strong> (Knowledge Manipulation): Arithmetic operations on retrieved knowledge (modular arithmetic mod 23). Tests the ability to not just store but actively transform retrieved information.</li>
+<li><strong>Lano</strong> (Hierarchical Structure): Parsing context-free grammars (CFGs) via dynamic programming. Tests the model's ability to learn and execute hierarchical, recursive language patterns.</li>
+</ol>
+<p>Each task uses controlled parameters (3 data scales x 4 model scales), enabling "mini scaling laws" that reveal how architectural choices affect capability trajectories. The initial comparison (Result 0) immediately recovers known real-world rankings: GLA performs weakest overall, Mamba2 excels at knowledge tasks (Capo, Mano) but lags in reasoning, GDN occasionally surpasses Llama(RoPE) on reasoning, and RoPE dominates reasoning depth (Depo) and hierarchical structure (Lano). This validates the playground's fidelity -- but also reveals that the comparison is not yet fair: some architectures are missing a critical component.</p>
+<hr>
+<h2>Canon Layers: The Key Innovation [4.1]</h2>
+<h3>The Problem: Shooting Birds with Cannons</h3>
+<p>Consider associative recall: given the sequence <code>[A] [B] ... [A] [?]</code>, predict B. Under causal masking, the first [A] cannot attend forward to see [B]. The standard solution requires <em>two</em> attention layers: the first copies information from A into B's representation (since B can attend backward to A), and the second uses this enriched representation to perform the lookup. This means the model spends global $O(n^2)$ attention computation just to pass information between adjacent tokens -- like "shooting a bird with a cannon."</p>
+<figure><img src="../figures/associative-recall.png" alt="The associative recall problem and token copying experiment demonstrating that attention wastes global compute on local information transfer." loading="lazy"><figcaption>Figure 3: The "shooting birds with cannons" problem. A trivial token-copying experiment shows that 1-layer RoPE requires d >= 128, while 2-layer RoPE or 1-layer RoPE + Canon achieves 100% with d = 16. Source: Part 4.1.</figcaption></figure>
+<h3>The Solution: Horizontal Residual Links</h3>
+<p>The key insight is an analogy to one of deep learning's most important innovations. <strong>Vertical residual connections</strong> ($h' = h + f(h)$) transformed deep networks by preserving gradient flow across layers. <strong>Horizontal residual connections</strong> ($h'_t = h_t + g(h_{t-1}, h_{t-2}, h_{t-3})$) transform sequence models by preserving local context flow across token positions.</p>
+<p>Named after the musical form -- Pachelbel's Canon in D, where violins play the same melody with fixed temporal delays, creating overlapping horizontal repetition -- Canon layers compute:</p>
+<div class="math-block">$$h'_t = h_t + \text{causal\_conv1d}_w([h_t, h_{t-1}, h_{t-2}, h_{t-3}])$$</div>
+<p>This is implemented as a 1-d causal convolution with kernel size 4, using the efficient CUDA kernel from the H3 library (<code>causal_conv1d</code> package). The residual form is critical: it preserves the vertical information pathway while adding horizontal mixing.</p>
+<figure><img src="../figures/canon-illustration.png" alt="Canon layer illustration showing the formula, musical analogy, and ABCD insertion points." loading="lazy"><figcaption>Figure 4: Illustration of Canon layers. The musical "Canon" analogy -- melodies at fixed temporal delays -- maps naturally to aggregating hidden states from neighboring positions. Source: Part 4.1.</figcaption></figure>
+<h3>Integration: Four Insertion Points</h3>
+<p>Canon layers can be inserted at four positions within any Transformer block:</p>
+<ul>
+<li><strong>Canon-A</strong>: Before attention (after RMSNorm), dimension $m = d$</li>
+<li><strong>Canon-B</strong>: Inside attention (after Q/K/V projection), dimension $m = 3d$</li>
+<li><strong>Canon-C</strong>: Before MLP (after RMSNorm), dimension $m = d$</li>
+<li><strong>Canon-D</strong>: Inside MLP (before activation), dimension $m = 4d$ (or $\frac{16}{3}d$ for gated MLP)</li>
+</ul>
+<p>Combining all four gives "Canon-ABCD" (full-score Canon). The same positions extend naturally to linear attention (GLA) and state-space models (Mamba2, GDN). For linear models, the existing <code>conv1d</code> in Mamba2/GLA/GDN is effectively a partial Canon-B (non-residual, with activation). The recommended integration is Canon-AbCD(res): keep the original non-residual conv1d and add residual Canon at positions A, C, and D.</p>
+<h3>Implementation Simplicity</h3>
+<p>The implementation is remarkably lightweight. Here's the core from the released <code>canon_helper.py</code>:</p>
+<pre><code class="language-python">class ShortConvolution(nn.Conv1d):
+    """Canon layer: causal conv1d with optional residual."""
+    def __init__(self, hidden_size, kernel_size, bias=False,
+                 activation=None, use_fast_conv1d=True, **kwargs):
+        super().__init__(
+            in_channels=hidden_size,
+            out_channels=hidden_size,
+            kernel_size=kernel_size,
+            groups=hidden_size,  # depthwise convolution
+            bias=bias,
+            padding=kernel_size - 1,
+            **kwargs
+        )
+
+def apply_canon(store_name, canon, hidden_states, cache, layer_idx, attention_mask):
+    hidden_states2, conv_state = canon(x=hidden_states, ...)
+    if canon._zeyuan_residual:
+        return hidden_states + hidden_states2  # the key residual link
+    else:
+        return hidden_states2</code></pre>
+<p>The parameter overhead is minimal: fewer than <strong>0.45% parameters</strong> for GPT2-small, and just <strong>0.0063%</strong> for a 1.3B-parameter Llama. Runtime overhead with a naive implementation is 12--20% on an H100 GPU, with room for further optimization.</p>
+<p>A remarkable finding: even <strong>random fixed weights</strong> for the horizontal mixing already produce notable improvements. The specific learned mixing pattern matters less than the <em>existence</em> of the mixing pathway -- suggesting the absence of local mixing was a fundamental architectural bottleneck.</p>
+<hr>
+<h2>When Transformers Meet Canon [4.1]</h2>
+<h3>Result 2: Reasoning Depth Explosion</h3>
+<p>The most dramatic finding: Canon layers boost Transformer reasoning depth by <strong>2--4x</strong>. On Depo1 (K=8), vanilla RoPE achieves near-zero accuracy at k=4 hops, while RoPE+Canon exceeds 50% at k=8. On the harder Depo2 (K=16) with multi-token edges (10--14 tokens each), RoPE completely fails while RoPE+Canon achieves near-perfect performance up to k=16.</p>
+<p>Beyond reasoning depth, Canon improves reasoning breadth by ~30% (Brevo), knowledge capacity by 10--15% (Capo), and knowledge manipulation length by ~30% (Mano).</p>
+<figure><img src="../figures/depo-rope-canon.png" alt="Depo training curves showing RoPE vs. RoPE+Canon on multi-token reasoning depth tasks." loading="lazy"><figcaption>Figure 5: Canon boosts reasoning depth 2--4x. RoPE+Canon (green) dramatically outperforms vanilla RoPE (blue) on the Depo reasoning depth task. Source: Part 4.1, Result 2.</figcaption></figure>
+<h3>Result 3: NoPE Revived</h3>
+<p>Without Canon, NoPE (no positional encoding) achieves essentially zero on all tasks. With Canon, NoPE matches RoPE+Canon and even surpasses it on Depo. This means RoPE usage can be greatly reduced -- using RoPE on only 1/4 of the dimensions with Canon outperforms full RoPE+Canon, with the added benefit of significantly better length generalization.</p>
+<h3>Result 4: Ablation -- Cumulative, Residual, No Activation</h3>
+<p>The ablation study reveals clean design principles: each Canon component (A/B/C/D) contributes meaningfully and stacking amplifies gains; the residual connection is essential for stable training; no activation function (e.g., SiLU) is needed, as the surrounding attention and MLP blocks already provide nonlinearity; and Canon-ACD alone (without modifying attention) already outperforms partial Canon-B or prior work like Primer.</p>
+<h3>Result 5: MLP and MoE Recovery</h3>
+<p>Gated MLP (SwiGLU) achieves slightly better reasoning but 30% less knowledge capacity. Canon partially recovers this capacity loss. For Mixture-of-Experts (MoE), which suffers 10x less knowledge acquisition in the low-exposure regime, Canon-ABC accelerates knowledge acquisition and recovers ~50% of the capacity loss.</p>
+<hr>
+<h2>When Linear Models Meet Canon [4.1]</h2>
+<h3>Result 6: GLA Transformed</h3>
+<p>Canon dramatically improves Gated Linear Attention (GLA): reasoning depth jumps from 1-hop to 4-hop (a <strong>4x improvement</strong>), reasoning breadth doubles, and knowledge manipulation length more than doubles. GLA+Canon surpasses Mamba2 on multiple tasks, particularly Brevo (reasoning breadth).</p>
+<h3>Result 7: Mamba2's Secret Revealed</h3>
+<p>This is perhaps the most provocative finding. Mamba2 includes a non-linear <code>conv1d</code> within each SSM block (inherited from H3's "shift-SSM"). This is effectively a partial Canon-B: horizontal mixing on selected coordinates, with SiLU activation, without residual connections. <strong>Removing this conv1d drops Mamba2 to GLA-level performance</strong> -- on both synthetic and real-world data. The SSM mechanism itself contributes less to Mamba2's advantage than its built-in conv1d.</p>
+<p>Adding full Canon-AbCD yields further improvements beyond Mamba2's built-in conv1d.</p>
+<figure><img src="../figures/depo-gla-canon-abcd.png" alt="GLA original vs. GLA+Canon on the Depo reasoning depth task, showing the dramatic 1-hop to 4-hop improvement." loading="lazy"><figcaption>Figure 6: Canon transforms GLA. Vanilla GLA (left) achieves only 1-hop reasoning; GLA+Canon-ABCD (right) reaches 4-hop, surpassing Mamba2. Source: Part 4.1, Result 6.</figcaption></figure>
+<h3>Results 8--9: GDN and the Architecture Summary</h3>
+<p>GDN benefits least from Canon because its gated delta-rule update already captures some Canon-like behavior -- it's less dependent on external horizontal mixing. The crucial synthesis (Result 9): <strong>most linear-model performance achievable with Mamba2 or GDN can be achieved with simple GLA+Canon.</strong> This suggests that many modern linear-model innovations may largely replicate Canon-like mixing rather than introduce fundamentally new computation.</p>
+<div class="table-wrap"><table>
+<thead><tr><th style="text-align:left">Architecture</th><th style="text-align:left">Reasoning Depth</th><th style="text-align:left">Reasoning Breadth</th><th style="text-align:left">Knowledge</th><th style="text-align:left">Canon Effect</th></tr></thead>
+<tbody><tr><td style="text-align:left">GLA</td><td style="text-align:left">1-hop</td><td style="text-align:left">Low</td><td style="text-align:left">Medium</td><td style="text-align:left"><strong>Massive</strong> (4x depth)</td></tr>
+<tr><td style="text-align:left">GLA + Canon</td><td style="text-align:left">4-hop</td><td style="text-align:left">High</td><td style="text-align:left">High</td><td style="text-align:left">--</td></tr>
+<tr><td style="text-align:left">Mamba2</td><td style="text-align:left">3-hop</td><td style="text-align:left">Medium</td><td style="text-align:left">High</td><td style="text-align:left">Moderate</td></tr>
+<tr><td style="text-align:left">Mamba2 (no conv1d)</td><td style="text-align:left">1-hop</td><td style="text-align:left">Low</td><td style="text-align:left">Medium</td><td style="text-align:left">Drops to GLA level</td></tr>
+<tr><td style="text-align:left">GDN</td><td style="text-align:left">3-hop</td><td style="text-align:left">High</td><td style="text-align:left">High</td><td style="text-align:left">Minimal</td></tr>
+</tbody></table></div>
+<p><em>Table 1: Summary of Canon's impact across linear architectures on the synthetic playground. GLA benefits most; Mamba2's conv1d is its main advantage; GDN already captures Canon-like behavior. Source: Part 4.1, Results 6--9.</em></p>
+<hr>
+<h2>Scaling to Reality: Part 4.2 Results</h2>
+<p>Part 4.2 is the critical validation: do the synthetic predictions from small-scale controlled experiments actually transfer to real-world pretraining at industrial scale?</p>
+<h3>Experimental Setup</h3>
+<p>The experimental design is rigorously controlled:</p>
+<ul>
+<li><strong>16 Transformer models</strong>: Llama vs. LlamaCanon at 1B, 3B, and 8B parameters, trained on 1T or 2T tokens from the open-source Nemotron-CC dataset, with 2 learning rates each.</li>
+<li><strong>48 linear models</strong>: GLA5, GDN2, and Mamba2, each with and without Canon layers, at 1B, 3B, and 8B parameters, with 2--3 learning rates. The "5" and "2" suffixes denote low-rank gating modifications for fair comparison.</li>
+<li><strong>Identical settings</strong>: Same data, same hyperparameters, same training infrastructure. No cherry-picking -- all learning rates are reported.</li>
+</ul>
+<figure><img src="../figures/table-params-transformer.png" alt="Model configurations for the 16 Transformer and 48 linear models in Part 4.2." loading="lazy"><figcaption>Figure 7: Model configurations for the 16 released Llama/LlamaCanon models. Identical hyperparameters across each Llama/LlamaCanon pair ensure rigorous controlled comparison. Source: Part 4.2.</figcaption></figure>
+<h3>Transformer Results: LlamaCanon Dominates</h3>
+<p>LlamaCanon outperforms vanilla Llama in <strong>all 8 controlled comparisons</strong> across 1B/3B/8B at 1T/2T tokens. The gains are consistent and meaningful:</p>
+<ul>
+<li><strong>~2% MMLU improvement</strong> across all model sizes and training budgets</li>
+<li>Gains visible across HellaSwag, ARC, PIQA, WinoGrande, and other benchmarks</li>
+<li>LlamaCanon 3B outperforms several open-source 3B models trained on comparable compute</li>
+<li>The performance gap widens with more training tokens (1T to 2T), suggesting Canon's benefits compound with scale</li>
+</ul>
+<figure><img src="../figures/model-training-time.png" alt="Performance vs. compute Pareto frontier showing LlamaCanon models consistently above vanilla Llama." loading="lazy"><figcaption>Figure 8: LlamaCanon pushes the Pareto frontier. On a performance-vs-compute scatter plot, LlamaCanon models (green) consistently dominate their vanilla Llama counterparts (blue) and are competitive with open-source models trained on comparable or greater data. Source: Part 4.2.</figcaption></figure>
+<p>The MMLU training curves tell a compelling story: Canon's advantage emerges early in training and persists throughout. LlamaCanon leads at every checkpoint, suggesting that horizontal mixing accelerates learning from the very beginning.</p>
+<figure><img src="../figures/curve-mmlu.png" alt="MMLU training curves for all Llama and LlamaCanon models, showing Canon advantage emerges early and persists." loading="lazy"><figcaption>Figure 9: MMLU accuracy vs. training tokens for all 16 Llama/LlamaCanon models. Canon's advantage is visible from early training and remains consistent throughout. Source: Part 4.2.</figcaption></figure>
+<h3>Linear Model Results: Synthetic Predictions Confirmed</h3>
+<p>The linear model results at 1--8B scale faithfully validate every synthetic prediction:</p>
+<ul>
+<li><strong>GLA+Canon achieves significant gains</strong> (validating Result 6): Canon dramatically improves GLA even when the base model already includes conv1d mixing.</li>
+<li><strong>GLA+Canon >= GDN</strong> across 1B/3B/8B benchmarks (validating Result 9): the simpler architecture with Canon matches or exceeds the more complex GDN.</li>
+<li><strong>GLA+Canon > Mamba2</strong> consistently (validating Results 7--9): the ranking holds across all scales.</li>
+<li><strong>GDN + Canon yields marginal improvement</strong> (validating Result 8): GDN's gating already captures most Canon-like behavior.</li>
+<li>At 8B scale, GLA+Canon and GDN+Canon both reach ~67--68% on the lm_eval average -- within noise of each other.</li>
+</ul>
+<figure><img src="../figures/table-performance-linear.png" alt="Summary of linear model findings at scale, showing GLA+Canon matching GDN and exceeding Mamba2." loading="lazy"><figcaption>Figure 10: Linear model benchmark results at 1--8B scale. GLA+Canon (highlighted) matches or exceeds GDN and consistently outperforms Mamba2, confirming synthetic Results 6--9. Source: Part 4.2.</figcaption></figure>
+<p>The training dynamics confirm these trends. GLA+Canon MMLU curves rise faster and higher than baseline GLA at all scales. At 1.3B parameters, GLA5+Canon approaches GDN2-conv performance, echoing the synthetic finding that most modern linear-model innovations may largely replicate Canon-like mixing.</p>
+<figure><img src="../figures/mmlu-gla.png" alt="GLA MMLU training curves at scale showing Canon advantage." loading="lazy"><figcaption>Figure 11: MMLU training curves for GLA models with and without Canon at 1B/3B/8B scale. Canon's advantage emerges early and is consistent across all sizes. Source: Part 4.2.</figcaption></figure>
+<hr>
+<h2>Error Analysis: Why Deep Reasoning Fails [4.1 + 4.2]</h2>
+<h3>The Memory Dynamics Bottleneck</h3>
+<p>Results 10--11 from Part 4.1, confirmed at scale in Part 4.2, reveal why linear models have a fundamental ceiling on reasoning depth. When all architectures are equipped with full Canon (enabling a fair comparison), a clear hierarchy emerges:</p>
+<ul>
+<li><strong>Reasoning depth</strong>: Transformers achieve 2--4x deeper reasoning than any linear model</li>
+<li><strong>Knowledge capacity</strong>: Linear models achieve ~40% higher raw storage than Transformers</li>
+</ul>
+<p>The intuitive explanation would be "linear models have insufficient memory." But this is wrong. Mamba2 passes 128-dimensional state per layer; at the scale tested, this gives each layer ~1.2 million floats of recurrent state for data that requires fewer than 1,700 bits of information. The memory is more than sufficient.</p>
+<p>The real bottleneck is <strong>memory dynamics</strong>: how information is encoded during compression and retrieved for reasoning. Each hop of multi-step reasoning requires reading from and writing to the recurrent state. Even tiny compression or retrieval errors compound across hops -- if 1-hop accuracy is 95%, k-hop accuracy drops to roughly $0.95^k$, which falls below 50% by k=14. Linear models, with their imperfect 1-hop retrieval, diverge exponentially faster than Transformers (which achieve near-perfect 1-hop) on multi-hop tasks.</p>
+<h3>The 2-Hop Failure</h3>
+<p>The most sobering finding spans both Part 4.1 and 4.2:</p>
+<ul>
+<li><strong>Part 4.1</strong> (1.3B/100B): All models fail 2-hop reasoning even within 100-token contexts, achieving only random-guessing accuracy (30--36%).</li>
+<li><strong>Part 4.2</strong> (1B--8B, 1T tokens): Even at 8B scale with 1T high-quality tokens, no model achieves 2-hop reasoning on the simple birth-year retrieval task.</li>
+</ul>
+<p>This is not a linear-model-specific limitation -- Transformers also fail. The difference is that 1-hop tasks separate the architectures: Transformers outperform linear models even at context length L=0 (fewer than 100 tokens), confirming that the retrieval weakness is intrinsic to linear model design, not a context-length issue.</p>
+<figure><img src="../figures/real-life-results.png" alt="Training curves showing error accumulation across reasoning hops for different architectures." loading="lazy"><figcaption>Figure 12: Real-life experiment results at 1.3B/100B academic scale. All models fail 2-hop reasoning (right column), but 1-hop separates architectures: Transformers outperform linear models even at short contexts. Source: Part 4.1, Result 12.</figcaption></figure>
+<p>This analysis explains the rise of <strong>hybrid architectures</strong>: Falcon-H1 (Transformer + Mamba2), Qwen3-Next (Transformer + GDN), and others combine Transformer layers for deep reasoning with linear layers for long-context efficiency. Canon layers, as a universal add-on, complement this hybrid approach.</p>
+<hr>
+<h2>Key Takeaways and Future Directions</h2>
+<h3>Canon as an Architectural Primitive</h3>
+<p>Canon layers join the short list of simple, universal architectural innovations -- alongside residual connections and LoRA -- that improve virtually every architecture they touch:</p>
+<ul>
+<li>They <strong>revive weak architectures</strong>: NoPE matches RoPE; GLA matches Mamba2/GDN</li>
+<li>They <strong>enhance strong architectures</strong>: RoPE+Canon achieves 2--4x deeper reasoning</li>
+<li>They <strong>reduce RoPE dependence</strong>: enabling better length generalization</li>
+<li>They <strong>are architecture-agnostic</strong>: the same mechanism works for Transformers, linear attention, and state-space models</li>
+<li>They <strong>add minimal cost</strong>: <0.5% parameters, 12--20% runtime (optimizable)</li>
+</ul>
+<h3>The Synthetic Pretraining Methodology</h3>
+<p>Part 4.2's validation is just as important as the Canon invention itself. The fact that predictions from a synthetic playground with GPT2-small-sized models faithfully transfer to 8B-parameter real-world pretraining is powerful evidence for the "physics approach" to architecture science. Instead of expensive, noisy, large-scale experiments, researchers can use controlled synthetic benchmarks to develop and test architectural innovations cheaply and reliably.</p>
+<h3>Open Questions</h3>
+<p>Several important directions remain:</p>
+<ul>
+<li><strong>Dynamic convolutions</strong>: Can input-dependent Canon weights (where the mixing pattern adapts to content) provide further gains beyond the fixed learned kernel?</li>
+<li><strong>Optimal placement</strong>: The paper finds that Canon-ACD (without modifying attention) often suffices, but the optimal subset may be task-dependent.</li>
+<li><strong>Hybrid architectures</strong>: Canon layers naturally complement sliding-window attention + linear layer hybrids. What is the optimal Canon configuration in these settings?</li>
+<li><strong>Post-training interaction</strong>: How do Canon layers interact with instruction tuning and RLHF? Does the 2-hop failure persist after post-training?</li>
+<li><strong>Interpretability</strong>: What exactly are the learned Conv1d kernels doing? Can we interpret the horizontal mixing patterns to understand what information flows between adjacent positions?</li>
+</ul>
+<hr>
+<h2>Resources</h2>
+<p>All code, data, and 64 pretrained model weights are publicly available:</p>
+<ul>
+<li><strong>Project page</strong>: <a href="https://physics.allen-zhu.com/part-4-architecture-design/part-4-1">physics.allen-zhu.com</a></li>
+<li><strong>GitHub</strong>: <a href="https://github.com/facebookresearch/PhysicsLM4">github.com/facebookresearch/PhysicsLM4</a></li>
+<li><strong>HuggingFace models</strong>: <a href="https://huggingface.co/collections/facebook/physics-of-language-models-part-42-6883fa5e7218a7369f22a806">Physics of Language Models Part 4.2 collection</a></li>
+</ul>
+<hr>
+<h2>References</h2>
+<ol>
+<li>Allen-Zhu, Z. "Physics of Language Models: Part 4.1, Architecture Design and the Magic of Canon Layers." <em>NeurIPS 2025</em>. Full version: <a href="https://ssrn.com/abstract=5240330">SSRN 5240330</a></li>
+<li>Allen-Zhu, Z. "Physics of Language Models: Part 4.2, Canon Layers at Scale where Synthetic Pretraining Resonates in Reality." 2025. <a href="https://physics.allen-zhu.com/part-4-architecture-design/part-4-2">Project page</a></li>
+<li>Yang, S. et al. "Gated Linear Attention Transformers with Hardware-Efficient Training." <em>ICML 2024</em>. <a href="https://arxiv.org/abs/2312.06635">arXiv:2312.06635</a></li>
+<li>Dao, T. and Gu, A. "Transformers are SSMs: Generalized Models and Efficient Algorithms with Structured State Spaces." <em>ICML 2024</em>. <a href="https://arxiv.org/abs/2405.21060">arXiv:2405.21060</a></li>
+<li>Yang, S. et al. "Gated Delta Networks: Improving Mamba2 with Delta Rule." <em>NeurIPS 2024</em>. <a href="https://arxiv.org/abs/2412.06464">arXiv:2412.06464</a></li>
+<li>Fu, D. et al. "Hungry Hungry Hippos: Towards Language Modeling with State Space Models." <em>ICLR 2023</em>. <a href="https://arxiv.org/abs/2212.14052">arXiv:2212.14052</a></li>
+<li>Arora, S. et al. "Just Read Twice: Closing the Recall Gap for Recurrent Language Models." 2024. <a href="https://arxiv.org/abs/2407.05483">arXiv:2407.05483</a></li>
+<li>Nvidia. "Nemotron-CC: Transforming Web Data into High-Quality Synthetic Data for Language Model Training." 2024. <a href="https://arxiv.org/abs/2412.02595">arXiv:2412.02595</a></li>
+</ol>
+</body>
+</html>
