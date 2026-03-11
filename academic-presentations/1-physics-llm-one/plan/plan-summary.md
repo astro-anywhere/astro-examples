@@ -1,9 +1,3 @@
-# Physics of Language Models: Part 1
-
-**Paper**: [Physics of Language Models: Part 1, Learning Hierarchical Language Structures](https://arxiv.org/abs/2305.13673)
-**Authors**: Zeyuan Allen-Zhu, Yuanzhi Li
-**Venue**: ICML 2024
-
 ## Planning DAG
 
 **12 tasks** &bull; **15 dependencies**
@@ -28,13 +22,3 @@
 > ◆ = milestone
 >
 > **[View full task descriptions and prompts →](plan/plan-detail.md)**
-
-## Deliverables
-
-| Format | Location | Description |
-|--------|----------|-------------|
-| Slides | `deliverables/slides/` | 40 individual HTML slides + combined light/dark PDFs |
-| Blog Post | `deliverables/blog/post.md` | Detailed summary (~4000 words) with 13 figures |
-| Poster | `deliverables/poster/` | A0 portrait poster (HTML + PDF) with 4 key figures |
-
-All deliverables are self-contained -- figures are copied locally, no external path dependencies.

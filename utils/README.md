@@ -1,20 +1,41 @@
-# Astro Examples -- Utils
+# Utils
 
 Tools for visualizing and inspecting Astro planning DAGs exported as `.astro.json` files.
 
-## Planned Tools
+## render-plan.js
 
-- **`dag-viewer.html`** -- Browser-based DAG visualization (renders nodes, edges, status, and dependencies)
-- **`print-plan.js`** -- CLI tool to pretty-print task titles, descriptions, and prompts from a plan JSON
+Generate a visual DAG diagram (SVG) and detailed plan documentation from any Astro export.
 
-## Usage
+### Usage
 
 ```bash
-# View a plan DAG in the browser
-open utils/dag-viewer.html
-
-# Pretty-print plan tasks
-node utils/print-plan.js ../academic-presentations/1-physics-llm-one/plan/plan.astro.json
+node utils/render-plan.js <plan.astro.json> <output-dir>
 ```
 
-> Under development -- check back soon.
+### Outputs
+
+| File | Description |
+|------|-------------|
+| `dag.svg` | Visual DAG diagram with task nodes, dependency edges, and milestone markers |
+| `plan-detail.md` | Full documentation: per-task description, metadata, dependencies, and prompts |
+| `plan-summary.md` | Compact summary table suitable for embedding in a README |
+
+### Design
+
+- **Consistent palette** across all projects (Palatino font, warm off-white background, muted blue/sand/green accents)
+- **Topological layout** -- nodes arranged by dependency rank, parallel tasks side-by-side
+- **Edge types** -- solid lines for dependencies, dashed lines for branches (parallel fan-out)
+- **Milestone markers** -- dashed border for milestone/gate nodes
+- **Estimate badges** -- XS/S/M/L/XL shown on each task node
+
+### Examples
+
+```bash
+# Academic presentation plan
+node utils/render-plan.js academic-presentations/1-physics-llm-one/plan/plan.astro.json \
+  academic-presentations/1-physics-llm-one/plan/
+
+# Paper review plan
+node utils/render-plan.js paper-reviews/1-gba-sparse-autoencoder/plan/plan.astro.json \
+  paper-reviews/1-gba-sparse-autoencoder/plan/
+```

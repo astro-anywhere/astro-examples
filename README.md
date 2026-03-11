@@ -2,37 +2,57 @@
 
 Example projects built with [Astro](https://github.com/astro-anywhere) -- a planning-first platform for builders and scientists.
 
-Each example includes the planning DAG (exported as `.astro.json`) and the final deliverables produced by Astro's AI-assisted execution pipeline.
+Each example includes the **planning DAG** (exported as `.astro.json`), a **visual DAG diagram**, **detailed task descriptions with prompts**, and the **final deliverables** produced by Astro's AI-assisted execution pipeline.
 
 ## Examples
 
 ### Academic Presentations
 
-| # | Paper | Deliverables | Plan |
-|---|-------|-------------|------|
-| 1 | [Physics of Language Models: Part 1](https://arxiv.org/abs/2305.13673) -- Allen-Zhu & Li, ICML 2024 | Slides (40 HTML + PDF), Blog Post (Markdown), Conference Poster (A0 PDF) | 12-node DAG |
+| # | Paper | Deliverables | DAG |
+|---|-------|-------------|-----|
+| [1](academic-presentations/1-physics-llm-one/) | [Physics of Language Models: Part 1](https://arxiv.org/abs/2305.13673) -- Allen-Zhu & Li, ICML 2024 | 40-slide deck (light+dark PDF), blog post, A0 poster | 12 tasks, 15 edges |
+
+### Paper Reviews
+
+| # | Paper | Deliverables | DAG |
+|---|-------|-------------|-----|
+| [1](paper-reviews/1-gba-sparse-autoencoder/) | Geometry-Based Activation for Sparse Autoencoders | LaTeX review report with scoring dashboard + PDF | 11 tasks, 16 edges |
 
 ## Structure
 
 ```
 academic-presentations/
   1-physics-llm-one/
-    plan/              # Astro planning DAG (.astro.json)
-    deliverables/      # Final outputs
-      slides/          # Individual HTML slides + combined PDF
-      blog/            # Markdown post + figures/
-      poster/          # HTML + A0 PDF + figures/
-utils/                 # Tools for visualizing plans and deliverables
+    plan/                  # DAG visualization + detailed task docs
+      dag.svg              # Visual DAG diagram
+      plan-detail.md       # Full task descriptions and prompts
+      plan.astro.json      # Raw Astro export
+    deliverables/          # Final outputs (self-contained)
+      slides/              # 40 HTML slides + combined PDFs
+      blog/                # Markdown post + figures/
+      poster/              # HTML + A0 PDF + figures/
+
+paper-reviews/
+  1-gba-sparse-autoencoder/
+    plan/                  # DAG visualization + detailed task docs
+    deliverables/          # Review report (LaTeX + PDF)
+
+utils/                     # Tools for generating visualizations from .astro.json
+  render-plan.js           # DAG SVG + plan documentation generator
 ```
 
 ## Utils
 
-The `utils/` directory contains tools for inspecting and visualizing Astro planning DAGs:
+Generate plan visualizations from any `.astro.json` export:
 
-- **Plan DAG viewer** -- Render the planning graph as a visual DAG
-- **Prompt printer** -- Pretty-print task descriptions and prompts from the plan
+```bash
+node utils/render-plan.js path/to/plan.astro.json path/to/output-dir/
+```
 
-> These tools are under development. See `utils/README.md` for usage.
+Produces:
+- `dag.svg` -- Visual DAG diagram (consistent style across all projects)
+- `plan-detail.md` -- Per-task descriptions, dependencies, and prompts
+- `plan-summary.md` -- Compact table for README embedding
 
 ## About Astro
 
