@@ -439,7 +439,7 @@ function renderSummary(plan) {
 
   let md = `## Planning DAG\n\n`;
   md += `**${nodes.length} tasks** &bull; **${edges.length} dependencies**\n\n`;
-  md += `![Planning DAG](plan/dag.svg)\n\n`;
+  md += `![Planning DAG](dag.svg)\n\n`;
 
   md += `| # | Task | Depends on |\n`;
   md += `|:---:|------|------------|\n`;
@@ -453,7 +453,7 @@ function renderSummary(plan) {
   md += `\n`;
   md += `> ◆ = milestone\n`;
   md += `>\n`;
-  md += `> **[View full task descriptions and prompts →](plan/plan-detail.md)**\n`;
+  md += `> **[View full task descriptions and prompts →](plan-detail.md)**\n`;
 
   return md;
 }

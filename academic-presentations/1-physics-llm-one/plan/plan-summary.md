@@ -2,7 +2,7 @@
 
 **12 tasks** &bull; **15 dependencies**
 
-![Planning DAG](plan/dag.svg)
+![Planning DAG](dag.svg)
 
 | # | Task | Depends on |
 |:---:|------|------------|
@@ -21,4 +21,4 @@
 
 > ◆ = milestone
 >
-> **[View full task descriptions and prompts →](plan/plan-detail.md)**
+> **[View full task descriptions and prompts →](plan-detail.md)**
