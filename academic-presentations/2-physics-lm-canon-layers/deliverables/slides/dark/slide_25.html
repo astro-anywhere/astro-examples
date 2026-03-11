@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #2A2A2E;
+    color: #E8E4E0;
+    padding: 50px 60px;
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #E8E4E0;
+  }
+  .content {
+    display: flex;
+    gap: 36px;
+    height: calc(100% - 80px);
+  }
+  .left {
+    flex: 0 0 56%;
+    font-size: 18px;
+    line-height: 1.55;
+  }
+  .right {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .right img {
+    max-width: 100%;
+    max-height: 440px;
+    border-radius: 6px;
+    border: 1px solid rgba(159,184,200,0.2);
+  }
+  .caption {
+    font-size: 13px;
+    color: #B8C8B0;
+    margin-top: 6px;
+    text-align: center;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 12px;
+    padding-left: 22px;
+    position: relative;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #9FB8C8;
+  }
+  .highlight { color: #D4B892; font-weight: 600; }
+  .group-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #9FB8C8;
+    margin-bottom: 6px;
+    margin-top: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .box-blue {
+    background: rgba(159, 184, 200, 0.1);
+    border-left: 3px solid #9FB8C8;
+    padding: 10px 14px;
+    margin-top: 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #B8C8B0;
+  }
+</style>
+</head>
+<body>
+  <h2>Part 4.2 Experimental Setup: Controlled at Scale</h2>
+  <div class="content">
+    <div class="left">
+      <div class="group-label">Transformers (16 models)</div>
+      <ul>
+        <li>Llama vs LlamaCanon at <span class="highlight">1B, 3B, 8B</span> parameters</li>
+        <li>Trained on <span class="highlight">1T&ndash;2T tokens</span> from Nemotron-CC</li>
+        <li>2 learning rates each &mdash; no cherry-picking</li>
+      </ul>
+      <div class="group-label">Linear Models (48 models)</div>
+      <ul>
+        <li>GLA5, GDN2, Mamba2 &plusmn; Canon at <span class="highlight">1B, 3B, 8B</span></li>
+        <li>2&ndash;3 learning rates per model, all reported</li>
+        <li>Recurrent memory: 256d (+ Conv1D) across all variants</li>
+      </ul>
+      <div class="box-blue">
+        <strong>Controlled:</strong> Same data, same hyperparameters, same training infrastructure. Strongest possible apples-to-apples comparison.
+      </div>
+    </div>
+    <div class="right">
+      <img src="../../figures/table-params-transformer.png" alt="Model configurations table showing 16 Llama/LlamaCanon model specifications">
+      <span class="caption">16 Transformer model configurations (Llama / LlamaCanon)</span>
+      <img src="../../figures/table-params-linear.png" alt="48 linear model configurations summary" style="margin-top: 10px; max-height: 180px;">
+      <span class="caption">48 linear model configurations (GLA / GDN / Mamba2 &plusmn; Canon)</span>
+    </div>
+  </div>
+  <span class="source-tag">[4.2]</span>
+</body>
+</html>

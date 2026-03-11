@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #2A2A2E;
+    color: #E8E4E0;
+    padding: 44px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: #E8E4E0;
+  }
+  .result-badge {
+    display: inline-block;
+    background: rgba(212, 184, 146, 0.18);
+    color: #D4B892;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .top-zone {
+    display: flex;
+    gap: 24px;
+    flex: 0 0 64%;
+  }
+  .top-left {
+    flex: 0 0 50%;
+    font-size: 16.5px;
+    line-height: 1.5;
+  }
+  .top-right {
+    flex: 0 0 47%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .top-right img {
+    max-width: 100%;
+    max-height: 360px;
+    border-radius: 6px;
+    border: 1px solid rgba(159,184,200,0.15);
+  }
+  .caption {
+    font-size: 12px;
+    color: #B8C8B0;
+    margin-top: 6px;
+    text-align: center;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 10px;
+    padding-left: 18px;
+    position: relative;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .b-blue::before { background: #9FB8C8; }
+  .b-sand::before { background: #D4B892; }
+  .b-sage::before { background: #B8C8B0; }
+  .highlight { color: #D4B892; font-weight: 600; }
+  .fail-stat {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .fail-card {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  .fail-card .big {
+    font-size: 20px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .fc-red {
+    background: rgba(212,184,146,0.1);
+    border: 1px solid rgba(212,184,146,0.25);
+  }
+  .fc-red .big { color: #D4B892; }
+  .fc-blue {
+    background: rgba(159,184,200,0.08);
+    border: 1px solid rgba(159,184,200,0.2);
+  }
+  .fc-blue .big { color: #9FB8C8; }
+  .bottom-zone {
+    flex: 1;
+    margin-top: 12px;
+    padding: 12px 20px;
+    background: rgba(143, 184, 176, 0.06);
+    border-radius: 6px;
+    border-top: 2px solid #9FB8C8;
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+  .bottom-zone .label {
+    font-weight: 600;
+    color: #9FB8C8;
+    margin-right: 12px;
+    white-space: nowrap;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #B8C8B0;
+  }
+</style>
+</head>
+<body>
+  <h2><span class="result-badge">4.2 Validation</span> In-Context Retrieval Failures at Scale</h2>
+  <div class="top-zone">
+    <div class="top-left">
+      <ul>
+        <li class="b-sand"><strong>ALL</strong> linear models struggle with in-context retrieval even for <span class="highlight">short contexts (~100 tokens)</span></li>
+        <li class="b-sand">Even <span class="highlight">8B models with 1T tokens</span> fail 2-hop reasoning at ALL context lengths &mdash; the simplest multi-hop task defeats all architectures</li>
+        <li class="b-blue">1-hop separates architectures: Transformers > linear even at context length 0</li>
+        <li class="b-sage">Babilong tests too hard (most results indistinguishable); NIAH-S too easy to reveal differences</li>
+      </ul>
+      <div class="fail-stat">
+        <div class="fail-card fc-red">
+          <span class="big">~30%</span>
+          2-hop accuracy<br>(random = 30&ndash;36%)
+        </div>
+        <div class="fail-card fc-blue">
+          <span class="big">~95%</span>
+          1-hop accuracy<br>(Transformer+Canon)
+        </div>
+        <div class="fail-card fc-red">
+          <span class="big">0/48</span>
+          linear models pass<br>2-hop at any L
+        </div>
+      </div>
+    </div>
+    <div class="top-right">
+      <img src="../../figures/linear-model-best-0.png" alt="Full linear model results showing lm_eval, JRT, and multi-hop columns for 1-8B models">
+      <span class="caption">Linear model results: lm_eval (left), JRT (middle), multi-hop (right) &mdash; multi-hop columns show universal failure</span>
+    </div>
+  </div>
+  <div class="bottom-zone">
+    <span class="label">Explains:</span>
+    <span>The emergence of hybrid architectures: <strong>Qwen3-Next</strong> (Transformer+GDN), <strong>Falcon-H1</strong> (Transformer+Mamba2) &mdash; combining Transformer&rsquo;s deep reasoning with linear model&rsquo;s long-context efficiency.</span>
+  </div>
+  <span class="source-tag">[4.2, validates 4.1 Result 11]</span>
+</body>
+</html>

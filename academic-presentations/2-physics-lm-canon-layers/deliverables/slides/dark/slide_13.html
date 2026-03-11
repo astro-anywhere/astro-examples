@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});">
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #2A2A2E;
+    color: #E8E4E0;
+    padding: 50px 60px;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #E8E4E0;
+  }
+  .content {
+    display: flex;
+    gap: 40px;
+    height: calc(100% - 80px);
+  }
+  .left {
+    flex: 0 0 58%;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  .right {
+    flex: 0 0 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .right img {
+    max-width: 100%;
+    max-height: 480px;
+    border-radius: 6px;
+  }
+  .caption {
+    font-size: 14px;
+    color: #B8C8B0;
+    margin-top: 8px;
+    text-align: center;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 14px;
+    padding-left: 22px;
+    position: relative;
+    font-size: 19px;
+    line-height: 1.55;
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #9FB8C8;
+  }
+  .highlight { color: #D4B892; font-weight: 600; }
+  .recall-box {
+    font-family: 'Fira Code', 'Source Code Pro', 'Courier New', monospace;
+    font-size: 17px;
+    background: rgba(159, 184, 200, 0.08);
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 10px 0 14px 0;
+    line-height: 1.5;
+    color: #E8E4E0;
+  }
+  .recall-box .tok-a { color: #D4B892; font-weight: 700; }
+  .recall-box .tok-b { color: #9FB8C8; font-weight: 700; }
+  .box-pink {
+    background: rgba(212, 184, 146, 0.12);
+    border-left: 3px solid #D4B892;
+    padding: 10px 14px;
+    margin-top: 12px;
+    border-radius: 4px;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #B8C8B0;
+  }
+</style>
+</head>
+<body>
+  <h2>Why Canon? The Associative Recall Problem</h2>
+  <div class="content">
+    <div class="left">
+      <p style="font-size:18px; margin-bottom:10px; color:#9FB8C8; font-style:italic;">The folklore: associative recall needs 2 attention layers</p>
+      <div class="recall-box">
+        <span class="tok-a">[A]</span> <span class="tok-b">[B]</span> &hellip; <span class="tok-a">[A]</span> <span style="color:#B8C8B0;">[?]</span> &rarr; predict <span class="tok-b">[B]</span>
+      </div>
+      <ul>
+        <li>Causal masking prevents first <span class="highlight">[A]</span> from attending forward to <span class="highlight">[B]</span></li>
+        <li><strong>Layer 1</strong>: copies A&rsquo;s info into B&rsquo;s representation &mdash; B now &ldquo;knows&rdquo; its key is A</li>
+        <li><strong>Layer 2</strong>: second [A] queries, retrieves B via enriched key-value store</li>
+        <li>Using global $O(n^2)$ attention just to pass info between <span class="highlight">neighbors</span> = &ldquo;shooting a bird with a cannon&rdquo;</li>
+      </ul>
+      <div class="box-pink">
+        <strong>Core problem:</strong> Most architectures lack an explicit mechanism for <em>local</em> token-to-token information flow. Attention is global overkill for nearest-neighbor mixing.
+      </div>
+    </div>
+    <div class="right">
+      <img src="../../figures/associative-recall.png" alt="Associative recall folklore diagram from plots.pdf page 5">
+      <span class="caption">Two-layer attention mechanism for associative recall (plots.pdf p.5)</span>
+    </div>
+  </div>
+  <span class="source-tag">[4.1]</span>
+</body>
+</html>

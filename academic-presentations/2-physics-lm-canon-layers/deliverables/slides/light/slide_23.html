@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #FAF8F5;
+    color: #3A3A3A;
+    padding: 44px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: #3A3A3A;
+  }
+  .result-badge {
+    display: inline-block;
+    background: rgba(196, 168, 130, 0.2);
+    color: #C4A882;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .top-zone {
+    display: flex;
+    gap: 24px;
+    flex: 0 0 62%;
+  }
+  .top-left {
+    flex: 0 0 50%;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .top-right {
+    flex: 0 0 47%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 8px;
+    padding-left: 18px;
+    position: relative;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .b-blue::before { background: #8FA8B8; }
+  .b-sand::before { background: #C4A882; }
+  .b-sage::before { background: #A8B8A0; }
+  .b-teal::before { background: #8FA8B8; }
+  .highlight { color: #C4A882; font-weight: 600; }
+  .sub-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #8FA8B8;
+    margin-top: 10px;
+    margin-bottom: 4px;
+  }
+  .rank-item {
+    font-size: 15px;
+    line-height: 1.45;
+    margin-bottom: 3px;
+    padding-left: 14px;
+  }
+  .bottom-zone {
+    flex: 1;
+    margin-top: 12px;
+    padding: 12px 20px;
+    background: rgba(196, 168, 130, 0.1);
+    border-radius: 6px;
+    border-top: 2px solid #C4A882;
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+  .bottom-zone .label {
+    font-weight: 600;
+    color: #C4A882;
+    margin-right: 12px;
+    white-space: nowrap;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #A8B8A0;
+  }
+</style>
+</head>
+<body>
+  <h2><span class="result-badge">Results 9&ndash;10</span> Final Controlled Architecture Ranking</h2>
+  <div class="top-zone">
+    <div class="top-left">
+      <ul>
+        <li class="b-sand"><strong>Result 9</strong>: GLA+Canon-AbCD matches most linear models &rarr; <span class="highlight">current architecture direction may warrant re-evaluation</span></li>
+        <li class="b-blue"><strong>Result 10</strong>: With Canon equalizing horizontal mixing, the &ldquo;fair&rdquo; ranking across all 5 tasks reveals true architectural strengths</li>
+      </ul>
+      <div class="sub-label">Reasoning Depth (Depo):</div>
+      <div class="rank-item">RoPE &asymp; NoPE <strong>&gt;&gt;</strong> Linear models <span style="color:#A8B8A0;">(4&times; deeper)</span></div>
+      <div class="sub-label">Knowledge Capacity (Capo):</div>
+      <div class="rank-item">Linear models <strong>&gt;&gt;</strong> Transformer <span style="color:#A8B8A0;">(1.4&times; capacity)</span></div>
+      <div class="sub-label">Reasoning Breadth (Brevo):</div>
+      <div class="rank-item">GDN &ge; RoPE &asymp; NoPE &asymp; GLA &gt; Mamba2</div>
+      <div class="sub-label">Knowledge Manipulation (Mano):</div>
+      <div class="rank-item">Linear models &asymp; Transformer</div>
+      <div class="sub-label">Hierarchical Structure (Lano):</div>
+      <div class="rank-item">RoPE &gt; NoPE &ge; GDN &ge; GLA &ge; Mamba2</div>
+    </div>
+    <div class="top-right">
+      <!-- SVG: Architecture ranking comparison table -->
+      <svg width="440" height="380" viewBox="0 0 440 380" xmlns="http://www.w3.org/2000/svg">
+        <text x="220" y="20" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="14" font-weight="600">Fair Ranking (All + Canon) Across 5 Tasks</text>
+        <!-- Column headers -->
+        <text x="130" y="52" text-anchor="middle" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="12" font-weight="600">Depth</text>
+        <text x="195" y="52" text-anchor="middle" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="12" font-weight="600">Breadth</text>
+        <text x="260" y="52" text-anchor="middle" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="12" font-weight="600">Capacity</text>
+        <text x="325" y="52" text-anchor="middle" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="12" font-weight="600">Manip.</text>
+        <text x="390" y="52" text-anchor="middle" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="12" font-weight="600">Structure</text>
+        <!-- Row labels -->
+        <text x="55" y="88" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13" font-weight="600">RoPE</text>
+        <text x="55" y="138" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13" font-weight="600">NoPE</text>
+        <text x="55" y="188" text-anchor="middle" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="13" font-weight="600">GLA+C</text>
+        <text x="55" y="238" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13" font-weight="600">Mamba2</text>
+        <text x="55" y="288" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13" font-weight="600">GDN</text>
+        <!-- Heatmap cells: dark = strong, light = weak -->
+        <!-- RoPE row -->
+        <rect x="100" y="68" width="60" height="36" rx="4" fill="rgba(143,168,184,0.5)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="130" y="91" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13" font-weight="700">★★★</text>
+        <rect x="165" y="68" width="60" height="36" rx="4" fill="rgba(143,168,184,0.35)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="195" y="91" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★★</text>
+        <rect x="230" y="68" width="60" height="36" rx="4" fill="rgba(196,168,130,0.2)" stroke="#C4A882" stroke-width="1"/>
+        <text x="260" y="91" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★</text>
+        <rect x="295" y="68" width="60" height="36" rx="4" fill="rgba(143,168,184,0.35)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="325" y="91" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★★</text>
+        <rect x="360" y="68" width="60" height="36" rx="4" fill="rgba(143,168,184,0.5)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="390" y="91" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13" font-weight="700">★★★</text>
+        <!-- NoPE row -->
+        <rect x="100" y="118" width="60" height="36" rx="4" fill="rgba(143,168,184,0.5)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="130" y="141" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13" font-weight="700">★★★</text>
+        <rect x="165" y="118" width="60" height="36" rx="4" fill="rgba(143,168,184,0.35)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="195" y="141" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★★</text>
+        <rect x="230" y="118" width="60" height="36" rx="4" fill="rgba(196,168,130,0.2)" stroke="#C4A882" stroke-width="1"/>
+        <text x="260" y="141" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★</text>
+        <rect x="295" y="118" width="60" height="36" rx="4" fill="rgba(143,168,184,0.35)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="325" y="141" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★★</text>
+        <rect x="360" y="118" width="60" height="36" rx="4" fill="rgba(143,168,184,0.35)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="390" y="141" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★★</text>
+        <!-- GLA+Canon row (highlighted) -->
+        <rect x="96" y="164" width="328" height="44" rx="6" fill="rgba(168,184,160,0.08)" stroke="none"/>
+        <rect x="100" y="168" width="60" height="36" rx="4" fill="rgba(196,168,130,0.2)" stroke="#C4A882" stroke-width="1"/>
+        <text x="130" y="191" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★</text>
+        <rect x="165" y="168" width="60" height="36" rx="4" fill="rgba(143,168,184,0.35)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="195" y="191" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★★</text>
+        <rect x="230" y="168" width="60" height="36" rx="4" fill="rgba(143,168,184,0.5)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="260" y="191" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13" font-weight="700">★★★</text>
+        <rect x="295" y="168" width="60" height="36" rx="4" fill="rgba(143,168,184,0.35)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="325" y="191" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★★</text>
+        <rect x="360" y="168" width="60" height="36" rx="4" fill="rgba(196,168,130,0.2)" stroke="#C4A882" stroke-width="1"/>
+        <text x="390" y="191" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★</text>
+        <!-- Mamba2 row -->
+        <rect x="100" y="218" width="60" height="36" rx="4" fill="rgba(196,168,130,0.15)" stroke="#C4A882" stroke-width="1"/>
+        <text x="130" y="241" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★</text>
+        <rect x="165" y="218" width="60" height="36" rx="4" fill="rgba(196,168,130,0.15)" stroke="#C4A882" stroke-width="1"/>
+        <text x="195" y="241" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★</text>
+        <rect x="230" y="218" width="60" height="36" rx="4" fill="rgba(143,168,184,0.5)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="260" y="241" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13" font-weight="700">★★★</text>
+        <rect x="295" y="218" width="60" height="36" rx="4" fill="rgba(143,168,184,0.35)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="325" y="241" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★★</text>
+        <rect x="360" y="218" width="60" height="36" rx="4" fill="rgba(196,168,130,0.15)" stroke="#C4A882" stroke-width="1"/>
+        <text x="390" y="241" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★</text>
+        <!-- GDN row -->
+        <rect x="100" y="268" width="60" height="36" rx="4" fill="rgba(196,168,130,0.15)" stroke="#C4A882" stroke-width="1"/>
+        <text x="130" y="291" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★</text>
+        <rect x="165" y="268" width="60" height="36" rx="4" fill="rgba(143,168,184,0.5)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="195" y="291" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13" font-weight="700">★★★</text>
+        <rect x="230" y="268" width="60" height="36" rx="4" fill="rgba(143,168,184,0.5)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="260" y="291" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13" font-weight="700">★★★</text>
+        <rect x="295" y="268" width="60" height="36" rx="4" fill="rgba(143,168,184,0.35)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="325" y="291" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★★</text>
+        <rect x="360" y="268" width="60" height="36" rx="4" fill="rgba(143,168,184,0.35)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="390" y="291" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">★★</text>
+        <!-- Legend -->
+        <rect x="110" y="320" width="24" height="16" rx="3" fill="rgba(143,168,184,0.5)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="142" y="333" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="11">Strong</text>
+        <rect x="190" y="320" width="24" height="16" rx="3" fill="rgba(143,168,184,0.35)" stroke="#8FA8B8" stroke-width="1"/>
+        <text x="222" y="333" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="11">Medium</text>
+        <rect x="280" y="320" width="24" height="16" rx="3" fill="rgba(196,168,130,0.2)" stroke="#C4A882" stroke-width="1"/>
+        <text x="312" y="333" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="11">Weak</text>
+        <!-- Arrow highlight on GLA+Canon row -->
+        <text x="55" y="345" text-anchor="middle" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="11" font-style="italic">GLA+Canon highlighted</text>
+      </svg>
+    </div>
+  </div>
+  <div class="bottom-zone">
+    <span class="label">Key Shift:</span>
+    <span>With Canon, the landscape changes drastically &mdash; simple GLA+Canon is <strong>surprisingly competitive</strong> with Mamba2 and GDN. Transformers dominate depth; linear models dominate capacity. The gap is <strong>complementary</strong>, motivating hybrid architectures.</span>
+  </div>
+  <span class="source-tag">[4.1, Results 9&ndash;10]</span>
+</body>
+</html>

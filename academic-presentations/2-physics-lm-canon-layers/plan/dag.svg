@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1861" height="766" viewBox="0 0 1861 766">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#8A8A8A" />
+  </marker>
+  <marker id="arr-branch" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#C4A882" />
+  </marker>
+  <filter id="shadow" x="-4%" y="-4%" width="108%" height="116%">
+    <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.06"/>
+  </filter>
+</defs>
+<rect width="1861" height="766" fill="#FAF8F5" rx="12"/>
+  <path d="M 930.5 116 C 930.5 142, 930.5 142, 930.5 168" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 930.5 116 C 930.5 196, 266 196, 266 276" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 930.5 116 C 930.5 196, 694.5 196, 694.5 276" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 930.5 116 C 930.5 196, 1123 196, 1123 276" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 930.5 116 C 930.5 196, 1485 196, 1485 276" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 930.5 116 C 930.5 196, 1721 196, 1721 276" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 930.5 224 C 930.5 250, 266 250, 266 276" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 930.5 224 C 930.5 250, 694.5 250, 694.5 276" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 930.5 224 C 930.5 250, 1123 250, 1123 276" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 930.5 224 C 930.5 250, 1485 250, 1485 276" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 930.5 224 C 930.5 250, 1721 250, 1721 276" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 266 332 C 266 358, 930.5 358, 930.5 384" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 694.5 332 C 694.5 358, 930.5 358, 930.5 384" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 1123 332 C 1123 358, 930.5 358, 930.5 384" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 1485 332 C 1485 358, 930.5 358, 930.5 384" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 1721 332 C 1721 358, 930.5 358, 930.5 384" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 930.5 440 C 930.5 466, 930.5 466, 930.5 492" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 930.5 548 C 930.5 574, 930.5 574, 930.5 600" fill="none" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <rect x="798" y="60" width="265" height="56" rx="10" fill="#FFFFFF" stroke="#6E8AA4" stroke-width="1.5" filter="url(#shadow)" />
+  <rect x="798" y="68" width="3" height="40" rx="1.5" fill="#6E8AA4" />
+  <circle cx="816" cy="88" r="11" fill="#6E8AA4" />
+  <text x="816" y="92" text-anchor="middle" font-family="'Palatino Linotype', serif" font-size="10" font-weight="700" fill="#FAFAFA">1</text>
+  <text x="832" y="92" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="12" fill="#3A3A3A" >Paper Analysis &amp; Narrative Outline</text>
+  <rect x="40" y="276" width="452" height="56" rx="10" fill="#FFFFFF" stroke="#6E8AA4" stroke-width="1.5" filter="url(#shadow)" />
+  <rect x="40" y="284" width="3" height="40" rx="1.5" fill="#6E8AA4" />
+  <circle cx="58" cy="304" r="11" fill="#6E8AA4" />
+  <text x="58" y="308" text-anchor="middle" font-family="'Palatino Linotype', serif" font-size="10" font-weight="700" fill="#FAFAFA">2</text>
+  <text x="74" y="308" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="12" fill="#3A3A3A" >Slides 1-11: Title, Motivation, Background, Synthetic Playground</text>
+  <rect x="528" y="276" width="333" height="56" rx="10" fill="#FFFFFF" stroke="#6E8AA4" stroke-width="1.5" filter="url(#shadow)" />
+  <rect x="528" y="284" width="3" height="40" rx="1.5" fill="#6E8AA4" />
+  <circle cx="546" cy="304" r="11" fill="#6E8AA4" />
+  <text x="546" y="308" text-anchor="middle" font-family="'Palatino Linotype', serif" font-size="10" font-weight="700" fill="#FAFAFA">3</text>
+  <text x="562" y="308" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="12" fill="#3A3A3A" >Slides 12-22: Canon Layers + Part 4.1 Results</text>
+  <rect x="897" y="276" width="452" height="56" rx="10" fill="#FFFFFF" stroke="#6E8AA4" stroke-width="1.5" filter="url(#shadow)" />
+  <rect x="897" y="284" width="3" height="40" rx="1.5" fill="#6E8AA4" />
+  <circle cx="915" cy="304" r="11" fill="#6E8AA4" />
+  <text x="915" y="308" text-anchor="middle" font-family="'Palatino Linotype', serif" font-size="10" font-weight="700" fill="#FAFAFA">4</text>
+  <text x="931" y="308" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="12" fill="#3A3A3A" >Slides 23-33: Part 4.2 Scale Results, Error Analysis, Conclusion</text>
+  <rect x="1385" y="276" width="200" height="56" rx="10" fill="#FFFFFF" stroke="#6E8AA4" stroke-width="1.5" filter="url(#shadow)" />
+  <rect x="1385" y="284" width="3" height="40" rx="1.5" fill="#6E8AA4" />
+  <circle cx="1403" cy="304" r="11" fill="#6E8AA4" />
+  <text x="1403" y="308" text-anchor="middle" font-family="'Palatino Linotype', serif" font-size="10" font-weight="700" fill="#FAFAFA">5</text>
+  <text x="1419" y="308" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="12" fill="#3A3A3A" >Blog Post Generation</text>
+  <rect x="1621" y="276" width="200" height="56" rx="10" fill="#FFFFFF" stroke="#6E8AA4" stroke-width="1.5" filter="url(#shadow)" />
+  <rect x="1621" y="284" width="3" height="40" rx="1.5" fill="#6E8AA4" />
+  <circle cx="1639" cy="304" r="11" fill="#6E8AA4" />
+  <text x="1639" y="308" text-anchor="middle" font-family="'Palatino Linotype', serif" font-size="10" font-weight="700" fill="#FAFAFA">6</text>
+  <text x="1655" y="308" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="12" fill="#3A3A3A" >Poster Generation</text>
+  <rect x="801.5" y="168" width="258" height="56" rx="10" fill="#FFFFFF" stroke="#6E8AA4" stroke-width="1.5" filter="url(#shadow)" />
+  <rect x="801.5" y="176" width="3" height="40" rx="1.5" fill="#6E8AA4" />
+  <circle cx="819.5" cy="196" r="11" fill="#6E8AA4" />
+  <text x="819.5" y="200" text-anchor="middle" font-family="'Palatino Linotype', serif" font-size="10" font-weight="700" fill="#FAFAFA">7</text>
+  <text x="835.5" y="200" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="12" fill="#3A3A3A" >Figure Extraction and Preparation</text>
+  <rect x="810.5" y="384" width="240" height="56" rx="10" fill="#FFFFFF" stroke="#6E8AA4" stroke-width="1.5" filter="url(#shadow)" />
+  <rect x="810.5" y="392" width="3" height="40" rx="1.5" fill="#6E8AA4" />
+  <circle cx="828.5" cy="412" r="11" fill="#6E8AA4" />
+  <text x="828.5" y="416" text-anchor="middle" font-family="'Palatino Linotype', serif" font-size="10" font-weight="700" fill="#FAFAFA">8</text>
+  <text x="844.5" y="416" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="12" fill="#3A3A3A" >PDF Assembly and Quality Check</text>
+  <rect x="795" y="492" width="271" height="56" rx="10" fill="#FFFFFF" stroke="#6E8AA4" stroke-width="1.5" filter="url(#shadow)" />
+  <rect x="795" y="500" width="3" height="40" rx="1.5" fill="#6E8AA4" />
+  <circle cx="813" cy="520" r="11" fill="#6E8AA4" />
+  <text x="813" y="524" text-anchor="middle" font-family="'Palatino Linotype', serif" font-size="10" font-weight="700" fill="#FAFAFA">9</text>
+  <text x="829" y="524" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="12" fill="#3A3A3A" >Content Review and Narrative Polish</text>
+  <rect x="826.5" y="600" width="208" height="56" rx="10" fill="rgba(93,128,87,0.06)" stroke="#6E8AA4" stroke-width="2" stroke-dasharray="6,3" filter="url(#shadow)" />
+  <rect x="826.5" y="608" width="3" height="40" rx="1.5" fill="#6E8AA4" />
+  <circle cx="844.5" cy="628" r="11" fill="#6E8AA4" />
+  <text x="844.5" y="632" text-anchor="middle" font-family="'Palatino Linotype', serif" font-size="10" font-weight="700" fill="#FAFAFA">10</text>
+  <text x="860.5" y="632" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="12" fill="#3A3A3A" font-style='italic'>All Deliverables Complete</text>
+  <polygon points="1018.5,622 1024.5,628 1018.5,634 1012.5,628" fill="#5D8057" opacity="0.6" />
+
+  <!-- Legend -->
+  <line x1="24" y1="716" x2="1837" y2="716" stroke="#E0DCD8" stroke-width="1" />
+  <rect x="24" y="726" width="60" height="22" rx="6" fill="#FFFFFF" stroke="#6E8AA4" stroke-width="1.5" />
+  <text x="92" y="741" font-family="'Palatino Linotype', serif" font-size="11" fill="#8A8A8A">Task</text>
+  <rect x="144" y="726" width="60" height="22" rx="6" fill="rgba(93,128,87,0.06)" stroke="#5D8057" stroke-width="2" stroke-dasharray="6,3" />
+  <text x="212" y="741" font-family="'Palatino Linotype', serif" font-size="11" fill="#8A8A8A">Milestone</text>
+  <line x1="294" y1="737" x2="334" y2="737" stroke="#8A8A8A" stroke-width="1.5" marker-end="url(#arr)" />
+  <text x="342" y="741" font-family="'Palatino Linotype', serif" font-size="11" fill="#8A8A8A">Dependency</text>
+  <line x1="424" y1="737" x2="464" y2="737" stroke="#C4A882" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-branch)" />
+  <text x="472" y="741" font-family="'Palatino Linotype', serif" font-size="11" fill="#8A8A8A">Parallel branch</text>
+</svg>

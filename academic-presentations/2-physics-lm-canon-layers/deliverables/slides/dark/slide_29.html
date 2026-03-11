@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #2A2A2E;
+    color: #E8E4E0;
+    padding: 50px 60px;
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #E8E4E0;
+  }
+  .content {
+    display: flex;
+    gap: 32px;
+    height: calc(100% - 80px);
+  }
+  .left {
+    flex: 0 0 48%;
+    font-size: 18px;
+    line-height: 1.55;
+  }
+  .right {
+    flex: 0 0 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .right img {
+    max-width: 100%;
+    max-height: 260px;
+    border-radius: 6px;
+    border: 1px solid rgba(159,184,200,0.15);
+  }
+  .caption {
+    font-size: 12px;
+    color: #B8C8B0;
+    margin-top: 5px;
+    text-align: center;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 14px;
+    padding-left: 22px;
+    position: relative;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #9FB8C8;
+  }
+  .highlight { color: #D4B892; font-weight: 600; }
+  .box-green {
+    background: rgba(184, 200, 176, 0.1);
+    border-left: 3px solid #B8C8B0;
+    padding: 10px 14px;
+    margin-top: 14px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #B8C8B0;
+  }
+</style>
+</head>
+<body>
+  <h2>Linear Model Training Curves: Canon Advantage Throughout</h2>
+  <div class="content">
+    <div class="left">
+      <ul>
+        <li>GLA+Canon MMLU curves rise <span class="highlight">faster and higher</span> than GLA-conv at all scales (1B/3B/8B)</li>
+        <li>GDN+Canon shows <span class="highlight">smaller but consistent</span> improvements over GDN-conv</li>
+        <li>At 1.3B: GLA5+Canon approaches GDN2-conv performance &mdash; a remarkable result for the simplest linear architecture</li>
+        <li>Relative rankings match synthetic predictions <span class="highlight">faithfully</span> at every checkpoint</li>
+      </ul>
+      <div class="box-green">
+        <strong>At 8B scale:</strong> GLA+Canon and GDN+Canon both reach ~67&ndash;68% on lm_eval average &mdash; within noise of each other. The architecture matters less than having Canon.
+      </div>
+    </div>
+    <div class="right">
+      <img src="../../figures/mmlu-gla.png" alt="MMLU training curves for GLA models with and without Canon at 1.3B">
+      <span class="caption">MMLU accuracy: GLA &plusmn; Canon (1.3B, best LR per model)</span>
+      <img src="../../figures/mmlu-gdn.png" alt="MMLU training curves for GDN models with and without Canon at 1.3B" style="margin-top: 10px;">
+      <span class="caption">MMLU accuracy: GDN &plusmn; Canon (1.3B, best LR per model)</span>
+    </div>
+  </div>
+  <span class="source-tag">[4.2, canon_linear_results]</span>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #2A2A2E;
+    color: #E8E4E0;
+    padding: 46px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    color: #E8E4E0;
+  }
+  .result-badge {
+    display: inline-block;
+    background: rgba(212, 184, 146, 0.18);
+    color: #D4B892;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .top-zone {
+    display: flex;
+    gap: 28px;
+    flex: 0 0 62%;
+  }
+  .top-left {
+    flex: 0 0 50%;
+    font-size: 19px;
+    line-height: 1.5;
+  }
+  .top-right {
+    flex: 0 0 47%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .top-right img {
+    max-width: 100%;
+    max-height: 190px;
+    border-radius: 4px;
+  }
+  .fig-pair {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .fig-pair img {
+    width: 48%;
+    border-radius: 4px;
+  }
+  .fig-label {
+    font-size: 12px;
+    color: #B8C8B0;
+    text-align: center;
+    margin-top: 2px;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #9FB8C8;
+  }
+  .highlight { color: #D4B892; font-weight: 600; }
+  .stat { color: #9FB8C8; font-weight: 600; }
+  .bottom-zone {
+    flex: 1;
+    margin-top: 14px;
+    padding: 12px 20px;
+    background: rgba(184, 200, 176, 0.08);
+    border-radius: 6px;
+    border-top: 2px solid #B8C8B0;
+    font-size: 17px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+  .bottom-zone .label {
+    font-weight: 600;
+    color: #B8C8B0;
+    margin-right: 12px;
+    white-space: nowrap;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #B8C8B0;
+  }
+</style>
+</head>
+<body>
+  <h2><span class="result-badge">Result 2</span> RoPE + Canon Dramatically Improves Reasoning</h2>
+  <div class="top-zone">
+    <div class="top-left">
+      <ul>
+        <li>Reasoning depth: <span class="highlight">200&ndash;400% improvement</span> &mdash; Depo1 jumps from near-zero at k=4 to &gt;50% at k=8</li>
+        <li>Depo2 (multi-token, K=16): RoPE completely fails; <span class="stat">RoPE+Canon near-perfect</span></li>
+        <li>Reasoning breadth (Brevo): <span class="highlight">+30%</span> improvement across DAG depths</li>
+        <li>Knowledge manipulation (Mano): <span class="highlight">+30%</span> longer expression chains</li>
+        <li>Mechanism: Canon accelerates <em>hierarchical learning</em> &mdash; master 1-hop &rarr; 2-hop &rarr; 3-hop faster</li>
+      </ul>
+    </div>
+    <div class="top-right">
+      <div class="fig-pair">
+        <div>
+          <img src="../../figures/depo-rope-original-perm.png" alt="RoPE original Depo results">
+          <p class="fig-label">RoPE (original)</p>
+        </div>
+        <div>
+          <img src="../../figures/depo-rope-canon.png" alt="RoPE + Canon Depo results">
+          <p class="fig-label">RoPE + Canon-ABCD</p>
+        </div>
+      </div>
+      <div class="fig-pair">
+        <div>
+          <img src="../../figures/depo-gpt2-original.png" alt="GPT2 original">
+          <p class="fig-label">GPT2 (original)</p>
+        </div>
+        <div>
+          <img src="../../figures/depo-gpt2-canon.png" alt="GPT2 + Canon">
+          <p class="fig-label">GPT2 + Canon</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-zone">
+    <span class="label">Also:</span>
+    <span>+10&ndash;15% knowledge capacity (Capo) &bull; Canon enables hierarchical learning dynamics with <strong>minimal computational overhead</strong></span>
+  </div>
+  <span class="source-tag">[4.1, Result 2]</span>
+</body>
+</html>

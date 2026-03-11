@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #FAF8F5;
+    color: #3A3A3A;
+    padding: 44px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #3A3A3A;
+  }
+  .result-badge {
+    display: inline-block;
+    background: rgba(196, 168, 130, 0.2);
+    color: #C4A882;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .top-zone {
+    display: flex;
+    gap: 24px;
+    flex: 0 0 58%;
+  }
+  .top-left {
+    flex: 0 0 52%;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .top-right {
+    flex: 0 0 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .result-card {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .card-gla {
+    background: rgba(168, 184, 160, 0.12);
+    border-left: 3px solid #A8B8A0;
+  }
+  .card-mamba {
+    background: rgba(196, 168, 130, 0.12);
+    border-left: 3px solid #C4A882;
+  }
+  .card-gdn {
+    background: rgba(127, 168, 160, 0.12);
+    border-left: 3px solid #8FA8B8;
+  }
+  .card-title {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .card-gla .card-title { color: #A8B8A0; }
+  .card-mamba .card-title { color: #C4A882; }
+  .card-gdn .card-title { color: #8FA8B8; }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 8px;
+    padding-left: 18px;
+    position: relative;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .b-sage::before { background: #A8B8A0; }
+  .b-sand::before { background: #C4A882; }
+  .b-teal::before { background: #8FA8B8; }
+  .b-blue::before { background: #8FA8B8; }
+  .highlight { color: #C4A882; font-weight: 600; }
+  .bottom-zone {
+    flex: 1;
+    margin-top: 12px;
+    padding: 12px 20px;
+    background: rgba(196, 168, 130, 0.1);
+    border-radius: 6px;
+    border-top: 2px solid #C4A882;
+    font-size: 17px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+  .bottom-zone .label {
+    font-weight: 600;
+    color: #C4A882;
+    margin-right: 12px;
+    white-space: nowrap;
+  }
+  .fig-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .fig-row img {
+    width: 48%;
+    border-radius: 4px;
+  }
+  .fig-label {
+    font-size: 11px;
+    color: #A8B8A0;
+    text-align: center;
+    margin-top: 2px;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #A8B8A0;
+  }
+</style>
+</head>
+<body>
+  <h2><span class="result-badge">Results 6&ndash;8</span> Universal Boost for Linear Models</h2>
+  <div class="top-zone">
+    <div class="top-left">
+      <ul>
+        <li class="b-sage"><strong>GLA + Canon</strong> (Result 6): reasoning depth <span class="highlight">1&rarr;4 hop</span> (4x!), doubles breadth, doubles manipulation length</li>
+        <li class="b-sand"><strong>Mamba2&rsquo;s secret</strong> (Result 7): its built-in conv1d &asymp; Canon-B. <span class="highlight">Removing conv1d drops Mamba2 to GLA-level</span>. The SSM itself contributes less than the conv1d!</li>
+        <li class="b-teal"><strong>GDN benefits least</strong> (Result 8): its gated delta-rule already captures Canon-like behavior</li>
+        <li class="b-blue"><strong>Key conclusion</strong>: GLA+Canon matches Mamba2/GDN &mdash; modern innovations may largely replicate Canon-like mixing</li>
+      </ul>
+      <div class="fig-row">
+        <div>
+          <img src="../../figures/depo-gla-original.png" alt="GLA original Depo">
+          <p class="fig-label">GLA (original)</p>
+        </div>
+        <div>
+          <img src="../../figures/depo-gla-canon-abbcd.png" alt="GLA + Canon Depo">
+          <p class="fig-label">GLA + Canon</p>
+        </div>
+      </div>
+    </div>
+    <div class="top-right">
+      <div class="result-card card-gla">
+        <div class="card-title">Result 6: GLA + Canon</div>
+        Depth: 1&rarr;4 hop &bull; Breadth: 2x &bull; Surpasses Mamba2 on Brevo
+      </div>
+      <div class="result-card card-mamba">
+        <div class="card-title">Result 7: Mamba2 = conv1d + SSM</div>
+        Remove conv1d &rarr; drops to GLA level. Canon-AbCD improves further.
+      </div>
+      <div class="result-card card-gdn">
+        <div class="card-title">Result 8: GDN &asymp; already has Canon</div>
+        Gating captures horizontal mixing. Canon-AbCD yields only marginal gains.
+      </div>
+      <div class="fig-row">
+        <div>
+          <img src="../../figures/depo-mamba2-noconv1d.png" alt="Mamba2 without conv1d">
+          <p class="fig-label">Mamba2 no conv1d</p>
+        </div>
+        <div>
+          <img src="../../figures/depo-mamba2-original.png" alt="Mamba2 original">
+          <p class="fig-label">Mamba2 (original)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-zone">
+    <span class="label">Implication:</span>
+    <span>Canon-ACD alone matches internal conv1d &rarr; horizontal mixing is useful across <strong>ALL</strong> sublayers, not just recurrent/SSM. Current direction of linear-model architecture design may warrant re-evaluation.</span>
+  </div>
+  <span class="source-tag">[4.1, Results 6&ndash;8]</span>
+</body>
+</html>

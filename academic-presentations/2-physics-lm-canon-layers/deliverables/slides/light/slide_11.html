@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #FAF8F5;
+    color: #3A3A3A;
+    padding: 50px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #3A3A3A;
+  }
+  .top-zone {
+    display: flex;
+    gap: 30px;
+    flex: 0 0 65%;
+  }
+  .top-left {
+    flex: 0 0 55%;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  .top-right {
+    flex: 0 0 42%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 12px;
+    padding-left: 22px;
+    position: relative;
+    font-size: 19px;
+    line-height: 1.5;
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+  .bullet-blue::before { background: #8FA8B8; }
+  .bullet-sand::before { background: #C4A882; }
+  .bullet-teal::before { background: #8FA8B8; }
+  .bullet-sage::before { background: #A8B8A0; }
+  .arch-name {
+    font-weight: 600;
+  }
+  .arch-gla { color: #A8B8A0; }
+  .arch-mamba { color: #C4A882; }
+  .arch-gdn { color: #8FA8B8; }
+  .arch-rope { color: #8FA8B8; }
+  .bottom-zone {
+    flex: 1;
+    margin-top: 16px;
+    padding: 14px 20px;
+    background: rgba(196, 168, 130, 0.1);
+    border-radius: 6px;
+    border-top: 2px solid #C4A882;
+    font-size: 18px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+  .bottom-zone .label {
+    font-weight: 600;
+    color: #C4A882;
+    margin-right: 12px;
+    white-space: nowrap;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #A8B8A0;
+  }
+</style>
+</head>
+<body>
+  <h2>Result 0: Initial Comparison Reveals Clear Signatures</h2>
+  <div class="top-zone">
+    <div class="top-left">
+      <ul>
+        <li class="bullet-sage"><span class="arch-name arch-gla">GLA</span> performs weakest overall &mdash; limited on all five tasks, especially reasoning depth</li>
+        <li class="bullet-sand"><span class="arch-name arch-mamba">Mamba2</span> excels at knowledge (Capo, Mano) but lags behind in multi-hop reasoning</li>
+        <li class="bullet-teal"><span class="arch-name arch-gdn">GDN</span> improves reasoning vs Mamba2, occasionally surpasses Transformer</li>
+        <li class="bullet-blue"><span class="arch-name arch-rope">RoPE</span> dominates Depo (depth) and Lano (structure) &mdash; strongest reasoner</li>
+      </ul>
+    </div>
+    <div class="top-right">
+      <!-- SVG summary bar chart of initial results -->
+      <svg width="440" height="340" viewBox="0 0 440 340" xmlns="http://www.w3.org/2000/svg">
+        <!-- Title -->
+        <text x="220" y="20" text-anchor="middle" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="14" font-weight="600">Initial Architecture Rankings by Task</text>
+
+        <!-- Task labels (y-axis) -->
+        <text x="70" y="66" text-anchor="end" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">Depo (depth)</text>
+        <text x="70" y="118" text-anchor="end" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">Brevo (breadth)</text>
+        <text x="70" y="170" text-anchor="end" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">Capo (capacity)</text>
+        <text x="70" y="222" text-anchor="end" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">Mano (manip.)</text>
+        <text x="70" y="274" text-anchor="end" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="13">Lano (structure)</text>
+
+        <!-- Depo row -->
+        <rect x="80" y="50" width="280" height="20" rx="3" fill="rgba(143,168,184,0.25)" stroke="none"/>
+        <text x="82" y="64" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">RoPE ████████████████████</text>
+        <rect x="80" y="50" width="70" height="20" rx="3" fill="rgba(143,168,184,0.4)" stroke="none"/>
+        <rect x="80" y="50" width="40" height="20" rx="3" fill="rgba(196,168,130,0.4)" stroke="none"/>
+        <rect x="80" y="50" width="15" height="20" rx="3" fill="rgba(168,184,160,0.5)" stroke="none"/>
+        <!-- Labels on bars -->
+        <text x="365" y="64" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="11" font-weight="600">RoPE</text>
+
+        <!-- Brevo row -->
+        <rect x="80" y="102" width="240" height="20" rx="3" fill="rgba(143,168,184,0.25)" stroke="none"/>
+        <rect x="80" y="102" width="200" height="20" rx="3" fill="rgba(143,168,184,0.35)" stroke="none"/>
+        <rect x="80" y="102" width="100" height="20" rx="3" fill="rgba(196,168,130,0.35)" stroke="none"/>
+        <rect x="80" y="102" width="50" height="20" rx="3" fill="rgba(168,184,160,0.5)" stroke="none"/>
+        <text x="325" y="116" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="11" font-weight="600">RoPE &asymp; GDN</text>
+
+        <!-- Capo row -->
+        <rect x="80" y="154" width="280" height="20" rx="3" fill="rgba(196,168,130,0.35)" stroke="none"/>
+        <rect x="80" y="154" width="220" height="20" rx="3" fill="rgba(143,168,184,0.35)" stroke="none"/>
+        <rect x="80" y="154" width="180" height="20" rx="3" fill="rgba(143,168,184,0.25)" stroke="none"/>
+        <rect x="80" y="154" width="120" height="20" rx="3" fill="rgba(168,184,160,0.5)" stroke="none"/>
+        <text x="365" y="168" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="11" font-weight="600">Mamba2</text>
+
+        <!-- Mano row -->
+        <rect x="80" y="206" width="260" height="20" rx="3" fill="rgba(196,168,130,0.35)" stroke="none"/>
+        <rect x="80" y="206" width="210" height="20" rx="3" fill="rgba(143,168,184,0.35)" stroke="none"/>
+        <rect x="80" y="206" width="160" height="20" rx="3" fill="rgba(143,168,184,0.25)" stroke="none"/>
+        <rect x="80" y="206" width="80" height="20" rx="3" fill="rgba(168,184,160,0.5)" stroke="none"/>
+        <text x="345" y="220" fill="#C4A882" font-family="Palatino Linotype, serif" font-size="11" font-weight="600">Mamba2</text>
+
+        <!-- Lano row -->
+        <rect x="80" y="258" width="280" height="20" rx="3" fill="rgba(143,168,184,0.3)" stroke="none"/>
+        <rect x="80" y="258" width="170" height="20" rx="3" fill="rgba(143,168,184,0.35)" stroke="none"/>
+        <rect x="80" y="258" width="130" height="20" rx="3" fill="rgba(196,168,130,0.35)" stroke="none"/>
+        <rect x="80" y="258" width="60" height="20" rx="3" fill="rgba(168,184,160,0.5)" stroke="none"/>
+        <text x="365" y="272" fill="#8FA8B8" font-family="Palatino Linotype, serif" font-size="11" font-weight="600">RoPE</text>
+
+        <!-- Legend -->
+        <rect x="80" y="300" width="14" height="14" rx="2" fill="rgba(168,184,160,0.6)"/>
+        <text x="98" y="312" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">GLA</text>
+        <rect x="135" y="300" width="14" height="14" rx="2" fill="rgba(196,168,130,0.5)"/>
+        <text x="153" y="312" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">Mamba2</text>
+        <rect x="210" y="300" width="14" height="14" rx="2" fill="rgba(143,168,184,0.5)"/>
+        <text x="228" y="312" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">GDN</text>
+        <rect x="270" y="300" width="14" height="14" rx="2" fill="rgba(143,168,184,0.4)"/>
+        <text x="288" y="312" fill="#3A3A3A" font-family="Palatino Linotype, serif" font-size="11">RoPE</text>
+        <text x="340" y="312" fill="#A8B8A0" font-family="Palatino Linotype, serif" font-size="10" font-style="italic">(relative ranking)</text>
+      </svg>
+    </div>
+  </div>
+  <div class="bottom-zone">
+    <span class="label">Caveat:</span>
+    <span>This comparison is <strong>incomplete and partially unfair</strong> &mdash; Mamba2 and GDN include a built-in conv1d (horizontal mixing) that GLA and Transformer lack. The real question: what happens when we add this missing ingredient?</span>
+  </div>
+  <span class="source-tag">[4.1]</span>
+</body>
+</html>

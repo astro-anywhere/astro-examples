@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #2A2A2E;
+    color: #E8E4E0;
+    padding: 50px 60px;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 28px;
+    color: #E8E4E0;
+  }
+  .content {
+    display: flex;
+    gap: 40px;
+    height: calc(100% - 80px);
+  }
+  .left {
+    flex: 0 0 58%;
+    font-size: 22px;
+    line-height: 1.6;
+  }
+  .right {
+    flex: 0 0 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .right img {
+    max-width: 100%;
+    max-height: 480px;
+    border-radius: 6px;
+  }
+  .caption {
+    font-size: 14px;
+    color: #B8C8B0;
+    margin-top: 8px;
+    text-align: center;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 16px;
+    padding-left: 24px;
+    position: relative;
+    font-size: 21px;
+    line-height: 1.55;
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #9FB8C8;
+  }
+  .challenge-label {
+    color: #D4B892;
+    font-weight: 600;
+  }
+  .box-pink {
+    background: rgba(212, 184, 146, 0.12);
+    border-left: 3px solid #D4B892;
+    padding: 12px 16px;
+    margin: 18px 0 0 0;
+    border-radius: 4px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #B8C8B0;
+  }
+</style>
+</head>
+<body>
+  <h2>Real-Life Pretraining Is Noisy</h2>
+  <div class="content">
+    <div class="left">
+      <ul>
+        <li><span class="challenge-label">Pretraining loss is unreliable</span> &mdash; SSMs achieve low perplexity via memorization but fail at reasoning tasks</li>
+        <li><span class="challenge-label">Noise below emergence</span> &mdash; at 1.3B params / 100B tokens, random seeds cause 2&ndash;4% swings, masking 1&ndash;2% architectural differences</li>
+        <li><span class="challenge-label">Grokking &amp; data quality</span> &mdash; failures in complex reasoning stem from data, not architecture; RL post-training adds further confounds</li>
+      </ul>
+      <div class="box-pink">
+        <strong>Bottom line:</strong> Most published architecture comparisons at academic scale may be reporting noise, not signal.
+      </div>
+    </div>
+    <div class="right">
+      <img src="../../figures/noisy-comparison.png" alt="Noisy real-life benchmarks vs clean synthetic comparison">
+      <span class="caption">Fig 1: Real-life pretraining obscures architectural differences (left) while synthetic pretraining reveals them cleanly (right)</span>
+    </div>
+  </div>
+  <span class="source-tag">[4.1]</span>
+</body>
+</html>

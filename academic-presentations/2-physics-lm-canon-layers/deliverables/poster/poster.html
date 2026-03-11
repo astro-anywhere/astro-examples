@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics of Language Models Part 4 Poster</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<style>
+  :root {
+    --bg: #FAF8F5;
+    --text: #3A3A3A;
+    --emphasis: #C4A882;
+    --blue: #8FA8B8;
+    --sage: #A8B8A0;
+    --teal: #7FA8A0;
+    --gold: #C8B878;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    width: 841mm;
+    height: 1189mm;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 30mm;
+  }
+
+  .poster-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 20mm;
+    height: 100%;
+  }
+
+  .header {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding-bottom: 18mm;
+    border-bottom: 3px solid var(--emphasis);
+  }
+
+  .header h1 {
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 8mm;
+  }
+
+  .header .authors {
+    font-size: 32px;
+    color: var(--blue);
+    margin-bottom: 3mm;
+  }
+
+  .header .conference {
+    font-size: 28px;
+    color: var(--sage);
+  }
+
+  .header .accent-line {
+    width: 180mm;
+    height: 3px;
+    background: var(--emphasis);
+    margin: 7mm auto 0;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 5mm;
+  }
+
+  .section {
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 6mm;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    border-top: 2px solid rgba(143, 168, 184, 0.45);
+  }
+
+  .section h2 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 3mm;
+    color: var(--text);
+    border-bottom: 2px solid rgba(143, 168, 184, 0.5);
+    padding-bottom: 2mm;
+  }
+
+  .section p,
+  .section li {
+    font-size: 24px;
+    line-height: 1.35;
+  }
+
+  .section ul {
+    list-style: none;
+    margin-top: 2.5mm;
+  }
+
+  .section li {
+    margin-bottom: 1.8mm;
+    padding-left: 6mm;
+    position: relative;
+  }
+
+  .section li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 3.4mm;
+    height: 3.4mm;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+
+  .mini-caption,
+  figcaption {
+    font-size: 18px;
+    color: var(--sage);
+    line-height: 1.3;
+  }
+
+  figure {
+    margin-top: 2.5mm;
+  }
+
+  figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid rgba(143, 168, 184, 0.35);
+    background: #FFF;
+  }
+
+  .box-pink {
+    background: rgba(196, 168, 130, 0.15);
+    border-left: 4px solid var(--emphasis);
+    border-radius: 4px;
+    padding: 5mm;
+    font-size: 24px;
+    line-height: 1.35;
+  }
+
+  .box-blue {
+    background: rgba(143, 168, 184, 0.15);
+    border-left: 4px solid var(--blue);
+    border-radius: 4px;
+    padding: 5mm;
+    font-size: 24px;
+    line-height: 1.35;
+  }
+
+  .formula {
+    margin-top: 3.5mm;
+    padding: 4mm;
+    background: rgba(143, 168, 184, 0.1);
+    border-left: 3px solid var(--blue);
+    border-radius: 4px;
+  }
+
+  .taxonomy {
+    margin-top: 3mm;
+    padding: 2mm;
+    border-radius: 6px;
+    background: rgba(143, 168, 184, 0.08);
+  }
+
+  .taxonomy svg {
+    width: 100%;
+    height: 145px;
+    display: block;
+  }
+
+  .section.motivation { min-height: 220mm; }
+  .section.background { min-height: 175mm; }
+  .section.playground { min-height: 290mm; }
+  .section.takeaway { min-height: 115mm; }
+
+  .section.canon { min-height: 255mm; }
+  .section.insight { min-height: 120mm; border-top-color: rgba(196, 168, 130, 0.5); }
+  .section.results41 { min-height: 395mm; }
+
+  .section.scaling42 { min-height: 285mm; }
+  .section.error { min-height: 235mm; }
+  .section.conclusion { min-height: 130mm; }
+  .section.qr-citation { min-height: 145mm; }
+
+  /* Images span full column width; no max-height constraints */
+
+  .qr-wrap {
+    display: grid;
+    grid-template-columns: 125px 1fr;
+    gap: 4mm;
+    align-items: center;
+    margin-top: 3mm;
+  }
+
+  .qr-wrap img {
+    width: 125px;
+    height: 125px;
+    border: 1px solid rgba(58, 58, 58, 0.2);
+    border-radius: 4px;
+  }
+
+  .citation {
+    margin-top: 3mm;
+    font-size: 19px;
+    line-height: 1.35;
+  }
+
+  .muted {
+    color: var(--sage);
+  }
+
+  .accent {
+    color: var(--emphasis);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+  <div class="poster-grid">
+    <div class="header">
+      <h1>Physics of Language Models: Part 4 — Architecture Design and the Magic of Canon Layers</h1>
+      <p class="authors">Author: Zeyuan Allen-Zhu (FAIR at Meta)</p>
+      <p class="conference">Conference: NeurIPS 2025 (Part 4.1) + Code Release (Part 4.2)</p>
+      <div class="accent-line"></div>
+    </div>
+
+    <div class="column">
+      <section class="section motivation">
+        <h2>Motivation</h2>
+        <p>
+          Architecture comparison at academic scale is noisy enough to hide real signal. At 1.3B parameters and 100B tokens,
+          random seeds alone can move benchmark accuracy by 2-4 points, often the same size as the reported gain from a new
+          architecture. Pretraining loss is also a weak proxy for reasoning: several linear-state models optimize perplexity well
+          yet underperform on multi-hop tasks. Finally, data quality confounds comparisons because weak corpora suppress capability
+          emergence and blur architectural differences.
+        </p>
+        <ul>
+          <li>Challenge 1: loss quality does not equal capability quality.</li>
+          <li>Challenge 2: seed noise dominates architecture signal.</li>
+          <li>Challenge 3: data and optimization confounds mask causality.</li>
+        </ul>
+        <figure>
+          <img src="../figures/noisy-comparison.png" alt="Noisy versus clean architecture comparison">
+          <figcaption>Real-world low-resolution comparison versus clean synthetic resolution.</figcaption>
+        </figure>
+        <p class="mini-caption"><span class="accent">Physics analogy:</span> isolate atomic variables first, then test in reality.</p>
+      </section>
+
+      <section class="section background">
+        <h2>Background</h2>
+        <p>
+          The paper evaluates four architecture families under a shared synthetic setup: Transformer, GLA, Mamba2, and GDN.
+          Canon is introduced as a horizontal residual primitive that can be inserted across families.
+        </p>
+        <p>
+          Part 4.1 reproduces known qualitative rankings from real-world pretraining but in a cleaner regime:
+          Transformers and GDN generally lead reasoning depth, Mamba2 and GLA favor efficient memory-style behavior,
+          and Canon shifts this frontier by adding explicit local transport between adjacent token states.
+        </p>
+        <ul>
+          <li>Transformer: strong reasoning depth, expensive global mixing.</li>
+          <li>GLA/Mamba2/GDN: efficient long-context memory via linear-state updates.</li>
+          <li>Canon: shared local mixing primitive across both families.</li>
+        </ul>
+        <div class="taxonomy">
+          <svg viewBox="0 0 760 145" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture taxonomy">
+            <defs>
+              <marker id="arrow-tax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#3A3A3A" fill-opacity="0.6"/>
+              </marker>
+            </defs>
+            <rect x="20" y="42" width="170" height="62" rx="8" fill="rgba(143,168,184,0.15)" stroke="#8FA8B8" stroke-width="2"/>
+            <text x="105" y="80" text-anchor="middle" font-size="20" fill="#3A3A3A" font-family="Palatino Linotype, serif">Transformer</text>
+            <rect x="230" y="42" width="130" height="62" rx="8" fill="rgba(196,168,130,0.15)" stroke="#C4A882" stroke-width="2"/>
+            <text x="295" y="80" text-anchor="middle" font-size="20" fill="#3A3A3A" font-family="Palatino Linotype, serif">GLA</text>
+            <rect x="400" y="42" width="150" height="62" rx="8" fill="rgba(196,168,130,0.15)" stroke="#C4A882" stroke-width="2"/>
+            <text x="475" y="80" text-anchor="middle" font-size="20" fill="#3A3A3A" font-family="Palatino Linotype, serif">Mamba2</text>
+            <rect x="590" y="42" width="130" height="62" rx="8" fill="rgba(168,184,160,0.18)" stroke="#A8B8A0" stroke-width="2"/>
+            <text x="655" y="80" text-anchor="middle" font-size="20" fill="#3A3A3A" font-family="Palatino Linotype, serif">GDN</text>
+            <line x1="190" y1="73" x2="230" y2="73" stroke="#3A3A3A" stroke-opacity="0.6" stroke-width="2" marker-end="url(#arrow-tax)"/>
+            <line x1="360" y1="73" x2="400" y2="73" stroke="#3A3A3A" stroke-opacity="0.6" stroke-width="2" marker-end="url(#arrow-tax)"/>
+            <line x1="550" y1="73" x2="590" y2="73" stroke="#3A3A3A" stroke-opacity="0.6" stroke-width="2" marker-end="url(#arrow-tax)"/>
+          </svg>
+        </div>
+      </section>
+
+      <section class="section playground">
+        <h2>Synthetic Playground</h2>
+        <p>
+          Five pretraining tasks decompose language intelligence into atomic skills:
+          Depo (depth), Brevo (breadth), Capo (capacity), Mano (manipulation), and Lano (hierarchical structure).
+          This removes real-data confounds and enables low-cost architecture science.
+        </p>
+        <ul>
+          <li><strong>Depo:</strong> multi-hop graph reasoning with controllable hop count.</li>
+          <li><strong>Brevo:</strong> DAG topological ordering with high branching.</li>
+          <li><strong>Capo:</strong> biological knowledge extraction from synthetic genomes.</li>
+          <li><strong>Mano:</strong> arithmetic chain manipulation and composition.</li>
+          <li><strong>Lano:</strong> context-free grammar understanding and generation.</li>
+        </ul>
+        <figure>
+          <img src="../figures/five-tasks.png" alt="Five synthetic tasks overview">
+          <figcaption>Five-task design used to isolate architecture behavior.</figcaption>
+        </figure>
+        <figure>
+          <img src="../figures/five-tasks-detail.png" alt="Task details and capability axes">
+          <figcaption>Task-specific probes for depth, breadth, knowledge, and structure.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section takeaway">
+        <h2>Key Takeaway</h2>
+        <div class="box-blue">
+          Synthetic tasks isolate atomic skills, enabling clean architectural comparisons at low cost.
+        </div>
+        <ul>
+          <li>Low compute budget, high measurement fidelity.</li>
+          <li>Controlled depth and breadth reveal causal design effects.</li>
+          <li>Findings transfer to trillion-token pretraining.</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="column">
+      <section class="section canon">
+        <h2>Canon Layers</h2>
+        <p>
+          Canon layers inject local token-to-token mixing through horizontal residual links. The same mechanism can be inserted at
+          four Transformer integration points (A/B/C/D) and adapted to linear-state models. The paper's musical analogy is direct:
+          motifs repeat with short delays, and hidden states similarly benefit from short-range delayed reuse.
+        </p>
+        <ul>
+          <li>Canon-A/C: before attention and before MLP normalization paths.</li>
+          <li>Canon-B/D: inside attention and MLP channels for richer mixing.</li>
+        </ul>
+        <div class="formula">
+          $$h'_t = h_t + \text{causal\_conv1d}_w([h_t, h_{t-1}, h_{t-2}, h_{t-3}])$$
+        </div>
+        <p class="mini-caption">
+          Canon-ABCD adds less than 0.5% parameters but unlocks major capability gains.
+        </p>
+        <figure>
+          <img src="../figures/canon-illustration.png" alt="Canon layer illustration">
+          <figcaption>Canon as a universal horizontal residual primitive.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section insight">
+        <h2>Key Insight</h2>
+        <div class="box-pink">
+          Canon layers add horizontal residual links, like residual connections but across neighboring tokens.
+          Even random-weight Canon notably enhances performance.
+        </div>
+        <p class="mini-caption">The pathway matters first; learned weights refine it later.</p>
+      </section>
+
+      <section class="section results41">
+        <h2>Part 4.1 Results</h2>
+        <p>
+          In synthetic pretraining, Transformer + Canon reaches 2-4x deeper reasoning and about 30% better breadth.
+          For linear models, Canon strongly upgrades GLA and closes much of the gap to Mamba2 and GDN.
+        </p>
+        <ul>
+          <li>RoPE + Canon learns deeper multi-hop reasoning trajectories.</li>
+          <li>NoPE + Canon revives position-free Transformers.</li>
+          <li>GLA + Canon can match or exceed stronger linear baselines.</li>
+        </ul>
+        <figure>
+          <img src="../figures/linear-model-best-0.png" alt="Part 4.1 key comparison for linear models">
+          <figcaption>Summary comparison: Canon reshapes linear-model ranking.</figcaption>
+        </figure>
+        <figure>
+          <img src="../figures/depo-rope-canon.png" alt="Transformer depth gains with Canon">
+          <figcaption>Depth benchmark: Transformer + Canon extends multi-hop reasoning.</figcaption>
+        </figure>
+      </section>
+    </div>
+
+    <div class="column">
+      <section class="section scaling42">
+        <h2>Scaling to Reality [4.2]</h2>
+        <p>
+          Part 4.2 validates synthetic predictions at industrial scale. The release contains 16 Llama/LlamaCanon models and
+          48 linear models (GLA, GDN, Mamba2 variants) at 1B, 3B, and 8B parameters trained on up to 2T tokens.
+          Across all 8 controlled Transformer settings, LlamaCanon beats Llama by roughly 2 MMLU points on average.
+          For linear families, GLA + Canon reaches GDN-level performance and frequently exceeds Mamba2.
+        </p>
+        <p>
+          The scaling study also reports compute-normalized tradeoffs: LlamaCanon tends to move upward on the quality frontier
+          without requiring a larger model class. In linear-model sweeps, Canon improves average lm_eval and long-context retrieval
+          behavior most strongly for GLA, moderately for GDN, and least for Mamba2, mirroring the synthetic prediction that
+          Mamba2 already contains partial Canon-like mixing through conv1d-style pathways.
+        </p>
+        <figure>
+          <img src="../figures/table-performance-illustration.png" alt="Part 4.2 performance illustration">
+          <figcaption>Part 4.2 headline: synthetic rankings transfer to large-scale pretraining.</figcaption>
+        </figure>
+        <figure>
+          <img src="../figures/model-training-time.png" alt="Performance versus training time">
+          <figcaption>Compute frontier: LlamaCanon improves quality at similar training cost.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section error">
+        <h2>Error Analysis</h2>
+        <p>
+          The limiting factor for linear-state models is not raw memory size but memory dynamics: repeated compression and retrieval
+          introduce compounding error. This appears in short-context retrieval and especially in 2-hop reasoning, where models still
+          fail even at 8B and 1T tokens. Canon helps but does not fully remove this bottleneck.
+        </p>
+        <p>
+          Intuitively, each step can preserve most of the needed signal, but multi-step chains multiply small distortions.
+          This is why 1-hop probes may look acceptable while 2-hop and deeper tasks collapse. The paper argues this is a dynamics
+          problem rather than a capacity ceiling, and motivates hybrid stacks where selective attention handles deeper reasoning while
+          linear-state modules provide efficient long-context processing.
+        </p>
+        <div class="box-blue">
+          2-hop failure persists at scale: the bottleneck is error propagation, not parameter count.
+        </div>
+        <figure>
+          <img src="../figures/curve-mmlu.png" alt="Llama and LlamaCanon training curves">
+          <figcaption>Training curves: Canon advantage appears early and persists.</figcaption>
+        </figure>
+        <figure>
+          <img src="../figures/mmlu-gla.png" alt="GLA with and without Canon curves">
+          <figcaption>GLA curves: Canon improves both learning speed and final quality.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section conclusion">
+        <h2>Conclusion &amp; Future</h2>
+        <p>
+          Canon is a lightweight architectural primitive that improves Transformers and linear models alike.
+          Future work: dynamic Canon kernels, hybrid attention-linear stacks, and richer synthetic probes for memory dynamics.
+        </p>
+        <p>
+          The broader claim is methodological: low-noise synthetic pretraining can act as a fast architecture laboratory,
+          then large-scale training can validate transfer. This pipeline reduces wasted compute and improves confidence in
+          architecture decisions before expensive deployment-scale runs.
+        </p>
+        <ul>
+          <li>Canonical local mixing should be treated as a default design component.</li>
+          <li>Hybrid architectures can combine deep reasoning and long-context efficiency.</li>
+          <li>Mechanistic diagnostics should track retrieval error accumulation over hops.</li>
+        </ul>
+      </section>
+
+      <section class="section qr-citation">
+        <h2>QR Code + Citation</h2>
+        <div class="qr-wrap">
+          <img src="../figures/physicslm4-qr.png" alt="QR to Physics of Language Models">
+          <p class="mini-caption">
+            Scan for project page:<br>
+            <strong>physics.allen-zhu.com</strong><br>
+            <span class="muted">Code release and supplementary artifacts.</span>
+          </p>
+        </div>
+        <p class="citation">
+          Allen-Zhu, Z. (2025). <em>Physics of Language Models, Part 4: Architecture Design and the Magic of Canon Layers</em>.
+          NeurIPS 2025. URL: https://physics.allen-zhu.com/
+        </p>
+        <p class="citation">
+          Code and model artifacts: https://github.com/meta-llama/PhysicsLM
+        </p>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

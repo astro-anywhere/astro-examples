@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #2A2A2E;
+    color: #E8E4E0;
+    padding: 44px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: #E8E4E0;
+  }
+  .result-badge {
+    display: inline-block;
+    background: rgba(184, 200, 176, 0.15);
+    color: #B8C8B0;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .top-zone {
+    display: flex;
+    gap: 24px;
+    flex: 0 0 62%;
+  }
+  .top-left {
+    flex: 0 0 46%;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .top-right {
+    flex: 0 0 51%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .top-right img {
+    max-width: 100%;
+    max-height: 370px;
+    border-radius: 6px;
+    border: 1px solid rgba(159,184,200,0.15);
+  }
+  .caption {
+    font-size: 12px;
+    color: #B8C8B0;
+    margin-top: 6px;
+    text-align: center;
+  }
+  .finding {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .finding-num {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .f1 { background: rgba(184,200,176,0.08); }
+  .f1 .finding-num { background: #B8C8B0; color: #2A2A2E; }
+  .f2 { background: rgba(159,184,200,0.08); }
+  .f2 .finding-num { background: #9FB8C8; color: #2A2A2E; }
+  .f3 { background: rgba(212,184,146,0.08); }
+  .f3 .finding-num { background: #D4B892; color: #2A2A2E; }
+  .highlight { color: #D4B892; font-weight: 600; }
+  .bottom-zone {
+    flex: 1;
+    margin-top: 12px;
+    padding: 12px 20px;
+    background: rgba(212, 184, 146, 0.06);
+    border-radius: 6px;
+    border-top: 2px solid #D4B892;
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+  .bottom-zone .label {
+    font-weight: 600;
+    color: #D4B892;
+    margin-right: 12px;
+    white-space: nowrap;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #B8C8B0;
+  }
+</style>
+</head>
+<body>
+  <h2><span class="result-badge">4.2 Linear</span> Linear Models at Scale: Key Findings</h2>
+  <div class="top-zone">
+    <div class="top-left">
+      <div class="finding f1">
+        <span class="finding-num">1</span>
+        <strong>Canon yields significant gains for GLA</strong> &mdash; even when base model includes Conv1D. Validates Result 6 from Part 4.1.
+      </div>
+      <div class="finding f2">
+        <span class="finding-num">2</span>
+        <strong>GLA+Canon &ge; GDN</strong> across 1B/3B/8B benchmarks. <span class="highlight">Outperforms Mamba2</span> consistently on lm_eval. Validates Result 9.
+      </div>
+      <div class="finding f3">
+        <span class="finding-num">3</span>
+        <strong>GDN + Canon yields marginal gains</strong> &mdash; consistent with Result 8: its gating already captures Canon-like mixing.
+      </div>
+      <div class="finding" style="background: rgba(159,184,200,0.07); margin-top: 4px;">
+        <span class="finding-num" style="background: #9FB8C8; color: #2A2A2E;">4</span>
+        Rankings align closely with <strong>synthetic Result 10</strong> &mdash; strong transferability of playground predictions.
+      </div>
+    </div>
+    <div class="top-right">
+      <img src="../../figures/table-performance-linear.png" alt="Annotated summary of linear model findings at 1-8B scale">
+      <span class="caption">Summary of linear model findings (Part 4.2) &mdash; Results 6&ndash;11 validated</span>
+    </div>
+  </div>
+  <div class="bottom-zone">
+    <span class="label">Implication:</span>
+    <span>Much of GDN/Mamba2&rsquo;s advantage <strong>vanishes</strong> once Canon is added &rarr; suggests these architectures largely replicate Canon-like horizontal mixing. Simple GLA+Canon is the cost-effective choice.</span>
+  </div>
+  <span class="source-tag">[4.2, validates 4.1 Results 6&ndash;9]</span>
+</body>
+</html>

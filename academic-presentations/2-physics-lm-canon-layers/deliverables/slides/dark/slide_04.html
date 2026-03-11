@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #2A2A2E;
+    color: #E8E4E0;
+    padding: 50px 80px;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 32px;
+    color: #E8E4E0;
+  }
+  .cards {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .card {
+    flex: 1;
+    padding: 20px 18px;
+    border-radius: 8px;
+    border: 2px solid;
+  }
+  .card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .card p {
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  .card-transformer {
+    border-color: #9FB8C8;
+    background: rgba(159, 184, 200, 0.1);
+  }
+  .card-transformer h3 { color: #9FB8C8; }
+  .card-gla {
+    border-color: #B8C8B0;
+    background: rgba(184, 200, 176, 0.1);
+  }
+  .card-gla h3 { color: #B8C8B0; }
+  .card-mamba {
+    border-color: #D4B892;
+    background: rgba(212, 184, 146, 0.1);
+  }
+  .card-mamba h3 { color: #D4B892; }
+  .card-gdn {
+    border-color: #9FB8C8;
+    background: rgba(143, 184, 176, 0.1);
+  }
+  .card-gdn h3 { color: #9FB8C8; }
+  .svg-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  .box-blue {
+    background: rgba(159, 184, 200, 0.12);
+    border-left: 3px solid #9FB8C8;
+    padding: 12px 16px;
+    margin: 8px 0;
+    border-radius: 4px;
+    font-size: 18px;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #B8C8B0;
+  }
+</style>
+</head>
+<body>
+  <h2>Architecture Landscape: Four Families Under Test</h2>
+  <div class="cards">
+    <div class="card card-transformer">
+      <h3>Transformer</h3>
+      <p>Llama (RoPE), GPT2 (APE), NoPE &mdash; global attention, O(n&sup2;) per layer</p>
+    </div>
+    <div class="card card-gla">
+      <h3>GLA</h3>
+      <p>Gated Linear Attention &mdash; linear recurrence, O(n) per layer, no built-in conv1d</p>
+    </div>
+    <div class="card card-mamba">
+      <h3>Mamba2</h3>
+      <p>State-Space Model &mdash; linear recurrence with built-in conv1d, SiLU activation</p>
+    </div>
+    <div class="card card-gdn">
+      <h3>GDN</h3>
+      <p>Gated DeltaNet &mdash; delta-rule update with gating, built-in conv1d</p>
+    </div>
+  </div>
+
+  <div class="svg-container">
+    <svg width="1100" height="200" viewBox="0 0 1100 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#E8E4E0" fill-opacity="0.5"/>
+        </marker>
+      </defs>
+      <!-- Timeline base line -->
+      <line x1="40" y1="100" x2="1060" y2="100" stroke="#E8E4E0" stroke-opacity="0.15" stroke-width="2"/>
+      <!-- Transformer node -->
+      <rect x="40" y="70" width="180" height="56" rx="8" fill="rgba(159,184,200,0.12)" stroke="#9FB8C8" stroke-width="2"/>
+      <text x="130" y="103" text-anchor="middle" fill="#E8E4E0" font-family="Palatino Linotype, serif" font-size="16" font-weight="600">Transformer</text>
+      <!-- Arrow -->
+      <line x1="220" y1="98" x2="300" y2="98" stroke="#E8E4E0" stroke-opacity="0.4" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="260" y="82" text-anchor="middle" fill="#B8C8B0" font-family="Palatino Linotype, serif" font-size="12">linearize</text>
+      <!-- GLA node -->
+      <rect x="300" y="70" width="180" height="56" rx="8" fill="rgba(184,200,176,0.12)" stroke="#B8C8B0" stroke-width="2"/>
+      <text x="390" y="103" text-anchor="middle" fill="#E8E4E0" font-family="Palatino Linotype, serif" font-size="16" font-weight="600">GLA</text>
+      <!-- Arrow -->
+      <line x1="480" y1="98" x2="560" y2="98" stroke="#E8E4E0" stroke-opacity="0.4" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="520" y="82" text-anchor="middle" fill="#B8C8B0" font-family="Palatino Linotype, serif" font-size="12">+ SSM</text>
+      <!-- Mamba2 node -->
+      <rect x="560" y="70" width="180" height="56" rx="8" fill="rgba(212,184,146,0.12)" stroke="#D4B892" stroke-width="2"/>
+      <text x="650" y="103" text-anchor="middle" fill="#E8E4E0" font-family="Palatino Linotype, serif" font-size="16" font-weight="600">Mamba2</text>
+      <!-- Arrow -->
+      <line x1="740" y1="98" x2="820" y2="98" stroke="#E8E4E0" stroke-opacity="0.4" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="780" y="82" text-anchor="middle" fill="#B8C8B0" font-family="Palatino Linotype, serif" font-size="12">+ delta</text>
+      <!-- GDN node -->
+      <rect x="820" y="70" width="180" height="56" rx="8" fill="rgba(159,184,200,0.12)" stroke="#9FB8C8" stroke-width="2"/>
+      <text x="910" y="103" text-anchor="middle" fill="#E8E4E0" font-family="Palatino Linotype, serif" font-size="16" font-weight="600">GDN</text>
+      <!-- Common thread label -->
+      <text x="550" y="170" text-anchor="middle" fill="#D4B892" font-family="Palatino Linotype, serif" font-size="15" font-style="italic">Common thread: Mamba2 &amp; GDN include conv1d (horizontal mixing), Transformer &amp; GLA do not</text>
+      <!-- Param standardization note -->
+      <text x="550" y="28" text-anchor="middle" fill="#9FB8C8" font-family="Palatino Linotype, serif" font-size="14">All models standardized to equal parameter count for fair comparison</text>
+    </svg>
+  </div>
+
+  <span class="source-tag">[4.1]</span>
+</body>
+</html>

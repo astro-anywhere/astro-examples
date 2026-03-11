@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #FAF8F5;
+    color: #3A3A3A;
+    padding: 50px 60px;
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #3A3A3A;
+  }
+  .content {
+    display: flex;
+    gap: 36px;
+    height: calc(100% - 80px);
+  }
+  .left {
+    flex: 0 0 50%;
+    font-size: 18px;
+    line-height: 1.55;
+  }
+  .right {
+    flex: 0 0 46%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .right img {
+    max-width: 100%;
+    border-radius: 6px;
+    border: 1px solid rgba(143,168,184,0.15);
+  }
+  .caption {
+    font-size: 13px;
+    color: #A8B8A0;
+    margin-top: 6px;
+    text-align: center;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 14px;
+    padding-left: 22px;
+    position: relative;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #8FA8B8;
+  }
+  .highlight { color: #C4A882; font-weight: 600; }
+  .box-green {
+    background: rgba(168, 184, 160, 0.15);
+    border-left: 3px solid #A8B8A0;
+    padding: 10px 14px;
+    margin-top: 14px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #A8B8A0;
+  }
+</style>
+</head>
+<body>
+  <h2>LlamaCanon Pushes the Pareto Frontier</h2>
+  <div class="content">
+    <div class="left">
+      <ul>
+        <li>MMLU training curves show LlamaCanon <span class="highlight">consistently above Llama</span> throughout training &mdash; not just at convergence</li>
+        <li>Canon advantage <span class="highlight">emerges early</span> (&lt;0.2T tokens) and persists through the entire training run</li>
+        <li>Performance scales with model size as expected: 8B &gt; 3B &gt; 1B for both Llama and LlamaCanon</li>
+        <li>On the performance-vs-compute scatter plot, LlamaCanon models dominate the <span class="highlight">Pareto frontier</span> against open-source models</li>
+      </ul>
+      <div class="box-green">
+        <strong>Practical impact:</strong> LlamaCanon-3B achieves comparable MMLU to several open-source 3B models trained on 2&ndash;4&times; more data. Canon is <em>free performance</em>.
+      </div>
+    </div>
+    <div class="right">
+      <img src="../../figures/model-training-time.png" alt="Performance vs compute Pareto frontier scatter plot showing LlamaCanon models" style="max-height: 270px;">
+      <span class="caption">Performance vs. compute: LlamaCanon (filled circles) vs. open models</span>
+      <img src="../../figures/curve-mmlu.png" alt="MMLU training curves for all Llama and LlamaCanon models" style="margin-top: 12px; max-height: 250px;">
+      <span class="caption">MMLU accuracy over training tokens (all 16 models)</span>
+    </div>
+  </div>
+  <span class="source-tag">[4.2, canon_llama_results]</span>
+</body>
+</html>

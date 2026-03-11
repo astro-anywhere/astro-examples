@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #FAF8F5;
+    color: #3A3A3A;
+    padding: 46px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    color: #3A3A3A;
+  }
+  .result-badge {
+    display: inline-block;
+    background: rgba(196, 168, 130, 0.2);
+    color: #C4A882;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .top-zone {
+    display: flex;
+    gap: 28px;
+    flex: 0 0 62%;
+  }
+  .top-left {
+    flex: 0 0 50%;
+    font-size: 19px;
+    line-height: 1.5;
+  }
+  .top-right {
+    flex: 0 0 47%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .fig-pair {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .fig-pair img {
+    width: 48%;
+    border-radius: 4px;
+  }
+  .fig-label {
+    font-size: 12px;
+    color: #A8B8A0;
+    text-align: center;
+    margin-top: 2px;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #8FA8B8;
+  }
+  .highlight { color: #C4A882; font-weight: 600; }
+  .zero { color: #C4A882; opacity: 0.7; }
+  .hero { color: #A8B8A0; font-weight: 600; }
+  .bottom-zone {
+    flex: 1;
+    margin-top: 14px;
+    padding: 12px 20px;
+    background: rgba(168, 184, 160, 0.12);
+    border-radius: 6px;
+    border-top: 2px solid #A8B8A0;
+    font-size: 17px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+  .bottom-zone .label {
+    font-weight: 600;
+    color: #A8B8A0;
+    margin-right: 12px;
+    white-space: nowrap;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #A8B8A0;
+  }
+</style>
+</head>
+<body>
+  <h2><span class="result-badge">Result 3</span> NoPE + Canon = Strong Performer</h2>
+  <div class="top-zone">
+    <div class="top-left">
+      <ul>
+        <li><strong>Without Canon:</strong> NoPE (no positional embeddings) achieves <span class="zero">essentially zero</span> on all reasoning tasks</li>
+        <li><strong>With Canon:</strong> NoPE <span class="hero">matches or surpasses RoPE</span> &mdash; even exceeds RoPE+Canon on Depo!</li>
+        <li>NoPE+Canon dominates existing fixes (ALiBi, H-ALiBi) by wide margins</li>
+        <li><span class="highlight">RoPE(&frac14;)+Canon</span> is the best overall: RoPE on only &frac14; of dimensions + Canon outperforms full RoPE+Canon</li>
+        <li>Implication: RoPE usage can be <em>greatly reduced</em> for better <strong>length generalization</strong></li>
+      </ul>
+    </div>
+    <div class="top-right">
+      <div class="fig-pair">
+        <div>
+          <img src="../../figures/depo-nope-original.png" alt="NoPE original results">
+          <p class="fig-label">NoPE (original)</p>
+        </div>
+        <div>
+          <img src="../../figures/depo-nope-canon.png" alt="NoPE + Canon results">
+          <p class="fig-label">NoPE + Canon</p>
+        </div>
+      </div>
+      <div class="fig-pair">
+        <div>
+          <img src="../../figures/biocap-nope-original.png" alt="NoPE Capo original">
+          <p class="fig-label">NoPE Capo (orig.)</p>
+        </div>
+        <div>
+          <img src="../../figures/biocap-nope-canon.png" alt="NoPE Capo + Canon">
+          <p class="fig-label">NoPE Capo + Canon</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-zone">
+    <span class="label">Key insight:</span>
+    <span>Partial RoPE (&frac14; dimensions) + Canon <strong>outperforms both full RoPE and full NoPE</strong> &mdash; reduces RoPE dependency for better length generalization while maintaining strong performance</span>
+  </div>
+  <span class="source-tag">[4.1, Result 3]</span>
+</body>
+</html>

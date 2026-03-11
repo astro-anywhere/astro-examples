@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #2A2A2E;
+    color: #E8E4E0;
+    padding: 50px 60px;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 28px;
+    color: #E8E4E0;
+  }
+  .content {
+    display: flex;
+    gap: 36px;
+    height: calc(100% - 80px);
+  }
+  .left {
+    flex: 0 0 56%;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  .right {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .right img {
+    max-width: 100%;
+    max-height: 480px;
+    border-radius: 6px;
+  }
+  .caption {
+    font-size: 14px;
+    color: #B8C8B0;
+    margin-top: 8px;
+    text-align: center;
+  }
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    gap: 12px;
+  }
+  .task-badge {
+    flex-shrink: 0;
+    width: 72px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    margin-top: 2px;
+  }
+  .badge-depo { background: #9FB8C8; }
+  .badge-brevo { background: #B8C8B0; }
+  .badge-capo { background: #D4B892; }
+  .badge-mano { background: #9FB8C8; }
+  .badge-lano { background: #B8C8B0; }
+  .task-desc {
+    font-size: 19px;
+    line-height: 1.5;
+  }
+  .task-skill {
+    font-size: 15px;
+    color: #9FB8C8;
+    margin-top: 2px;
+  }
+  .box-blue {
+    background: rgba(159, 184, 200, 0.12);
+    border-left: 3px solid #9FB8C8;
+    padding: 10px 14px;
+    margin: 10px 0 0 0;
+    border-radius: 4px;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #B8C8B0;
+  }
+</style>
+</head>
+<body>
+  <h2>Five Synthetic Tasks Isolating Atomic Skills</h2>
+  <div class="content">
+    <div class="left">
+      <div class="task-item">
+        <span class="task-badge badge-depo">DEPO</span>
+        <div>
+          <div class="task-desc"><strong>Reasoning depth</strong> &mdash; k-hop traversal over directed permutations (K up to 16)</div>
+          <div class="task-skill">How deep can the model reason in one forward pass?</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <span class="task-badge badge-brevo">BREVO</span>
+        <div>
+          <div class="task-desc"><strong>Reasoning breadth</strong> &mdash; recursive DAG traversal, topological sort</div>
+          <div class="task-skill">How many dependencies can be tracked simultaneously?</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <span class="task-badge badge-capo">CAPO</span>
+        <div>
+          <div class="task-desc"><strong>Knowledge capacity</strong> &mdash; bits-per-parameter storage of biographical facts</div>
+          <div class="task-skill">How much can the model memorize per parameter?</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <span class="task-badge badge-mano">MANO</span>
+        <div>
+          <div class="task-desc"><strong>Knowledge manipulation</strong> &mdash; arithmetic on retrieved knowledge (mod 23)</div>
+          <div class="task-skill">Can the model compute over what it has memorized?</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <span class="task-badge badge-lano">LANO</span>
+        <div>
+          <div class="task-desc"><strong>Hierarchical structure</strong> &mdash; CFG parsing via dynamic programming</div>
+          <div class="task-skill">Can the model learn to parse language-like structures?</div>
+        </div>
+      </div>
+      <div class="box-blue">
+        <strong>Key:</strong> Each task targets a <em>distinct</em> dimension of intelligence. Controlled via 3 data scales &times; 4 model scales &rarr; &ldquo;mini scaling laws.&rdquo;
+      </div>
+    </div>
+    <div class="right">
+      <img src="../../figures/five-tasks-detail.png" alt="Five synthetic tasks overview diagram">
+      <span class="caption">Five tasks decomposing intelligence into atomic, measurable capabilities</span>
+    </div>
+  </div>
+  <span class="source-tag">[4.1]</span>
+</body>
+</html>

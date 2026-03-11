@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #2A2A2E;
+    color: #E8E4E0;
+    padding: 50px 60px;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 28px;
+    color: #E8E4E0;
+  }
+  .content {
+    display: flex;
+    gap: 40px;
+    height: calc(100% - 80px);
+  }
+  .left {
+    flex: 0 0 58%;
+    font-size: 22px;
+    line-height: 1.6;
+  }
+  .right {
+    flex: 0 0 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .right img {
+    max-width: 100%;
+    max-height: 440px;
+    border-radius: 6px;
+  }
+  .caption {
+    font-size: 14px;
+    color: #B8C8B0;
+    margin-top: 8px;
+    text-align: center;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 14px;
+    padding-left: 24px;
+    position: relative;
+    font-size: 21px;
+    line-height: 1.55;
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #9FB8C8;
+  }
+  .stat {
+    color: #D4B892;
+    font-weight: 600;
+  }
+  .box-pink {
+    background: rgba(212, 184, 146, 0.12);
+    border-left: 3px solid #D4B892;
+    padding: 12px 16px;
+    margin: 14px 0 0 0;
+    border-radius: 4px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #B8C8B0;
+  }
+</style>
+</head>
+<body>
+  <h2>Academic Scale: Where Differences Drown in Noise</h2>
+  <div class="content">
+    <div class="left">
+      <ul>
+        <li>Typical academic setup: <span class="stat">1.3B</span> params, <span class="stat">100B</span> tokens</li>
+        <li>Random seed variation: <span class="stat">2&ndash;4%</span> accuracy swings on standard benchmarks</li>
+        <li>Architectural differences: only <span class="stat">1&ndash;2%</span> &mdash; smaller than seed noise</li>
+        <li>Even simplest <span class="stat">2-hop reasoning</span> fails at this scale (all models guess randomly)</li>
+        <li>Beyond this scale: controlled study &asymp; computationally infeasible</li>
+      </ul>
+      <div class="box-pink">
+        <strong>The physicist&rsquo;s solution:</strong> Instead of scaling up, scale <em>down</em> to a clean, synthetic environment where skills emerge reliably at GPT2-small size.
+      </div>
+    </div>
+    <div class="right">
+      <img src="../../figures/motivation-overview.png" alt="Motivation: noise in real-world vs clean synthetic comparison">
+      <span class="caption">Real-world pretraining obscures architecture differences; synthetic pretraining enables clear, reproducible signal</span>
+    </div>
+  </div>
+  <span class="source-tag">[4.1]</span>
+</body>
+</html>

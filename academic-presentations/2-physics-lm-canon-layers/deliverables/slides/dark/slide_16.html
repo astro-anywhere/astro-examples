@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #2A2A2E;
+    color: #E8E4E0;
+    padding: 46px 70px;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #E8E4E0;
+  }
+  .code-block {
+    font-family: 'Fira Code', 'Source Code Pro', 'Courier New', monospace;
+    font-size: 15px;
+    line-height: 1.55;
+    background: rgba(159, 184, 200, 0.06);
+    border: 1px solid rgba(159, 184, 200, 0.15);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    white-space: pre;
+  }
+  .code-block .comment { color: #B8C8B0; font-style: italic; }
+  .code-block .keyword { color: #9FB8C8; font-weight: 600; }
+  .code-block .func { color: #D4B892; }
+  .code-block .string { color: #9FB8C8; }
+  .code-block .highlight-line {
+    background: rgba(212, 184, 146, 0.12);
+    display: inline-block;
+    width: calc(100% + 44px);
+    margin-left: -22px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .insight-row {
+    display: flex;
+    gap: 20px;
+    margin-top: 14px;
+  }
+  .insight-box {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  .box-blue {
+    background: rgba(159, 184, 200, 0.1);
+    border-left: 3px solid #9FB8C8;
+  }
+  .box-pink {
+    background: rgba(212, 184, 146, 0.1);
+    border-left: 3px solid #D4B892;
+  }
+  .code-label {
+    font-size: 14px;
+    color: #9FB8C8;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #B8C8B0;
+  }
+</style>
+</head>
+<body>
+  <h2>Canon Implementation: Just a Few Lines</h2>
+
+  <div class="code-label">create_canon() &mdash; creating a Canon layer</div>
+  <div class="code-block"><span class="keyword">def</span> <span class="func">create_canon</span>(dim, config):
+    canon = <span class="func">ShortConvolution</span>(
+        hidden_size=dim,
+        kernel_size=config.canon_kernel,  <span class="comment"># default: 4</span>
+        activation=<span class="string">'silu'</span> <span class="keyword">if</span> config.canon_activation <span class="keyword">else</span> <span class="keyword">None</span>,
+    )
+    canon._zeyuan_residual = config.canon_residual
+    <span class="keyword">return</span> canon</div>
+
+  <div class="code-label">apply_canon() &mdash; the core forward pass</div>
+  <div class="code-block"><span class="keyword">def</span> <span class="func">apply_canon</span>(store_name, canon, hidden_states, cache, layer_idx, mask):
+    hidden_states2, conv_state = canon(x=hidden_states, mask=conv_mask,
+                                        cache=conv_state, ...)
+<span class="highlight-line">    <span class="keyword">if</span> canon._zeyuan_residual: <span class="keyword">return</span> hidden_states + hidden_states2</span>
+    <span class="keyword">else</span>: <span class="keyword">return</span> hidden_states2</div>
+
+  <div class="insight-row">
+    <div class="insight-box box-blue">
+      <strong>ShortConvolution</strong> wraps <code style="font-family: 'Fira Code', monospace; font-size: 15px;">nn.Conv1d</code> with causal padding and optional <code style="font-family: 'Fira Code', monospace; font-size: 15px;">causal_conv1d</code> CUDA kernel for speed.
+    </div>
+    <div class="insight-box box-pink">
+      <strong>Key line:</strong> The residual connection <code style="font-family: 'Fira Code', monospace; font-size: 15px;">h + conv1d(h)</code> is what makes Canon work &mdash; preserving vertical gradient flow while adding horizontal mixing.
+    </div>
+  </div>
+  <span class="source-tag">[4.1 + 4.2 code]</span>
+</body>
+</html>

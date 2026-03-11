@@ -11,6 +11,7 @@ Each example includes the **planning DAG** (exported as `.astro.json`), a **visu
 | # | Paper | Deliverables | DAG |
 |---|-------|-------------|-----|
 | [1](academic-presentations/1-physics-llm-one/) | [Physics of Language Models: Part 1](https://arxiv.org/abs/2305.13673) -- Allen-Zhu & Li, ICML 2024 | 40-slide deck (light+dark PDF), blog post, A0 poster | 12 tasks, 15 edges |
+| [2](academic-presentations/2-physics-lm-canon-layers/) | Physics of Language Models: Parts 4.1 & 4.2 -- Canon Layers & Scaling | 33-slide deck (light+dark PDF), blog post, A0 poster | 10 tasks, 18 edges |
 
 ### Paper Reviews
 

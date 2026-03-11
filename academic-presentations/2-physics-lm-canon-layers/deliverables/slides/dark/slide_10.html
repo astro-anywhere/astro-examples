@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #2A2A2E;
+    color: #E8E4E0;
+    padding: 48px 80px;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #E8E4E0;
+  }
+  .three-tasks {
+    display: flex;
+    gap: 28px;
+  }
+  .task-col {
+    flex: 1;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1.5px solid;
+  }
+  .task-capo {
+    border-color: #D4B892;
+    background: rgba(212, 184, 146, 0.06);
+  }
+  .task-mano {
+    border-color: #9FB8C8;
+    background: rgba(143, 184, 176, 0.06);
+  }
+  .task-lano {
+    border-color: #B8C8B0;
+    background: rgba(155, 143, 191, 0.06);
+  }
+  .task-col h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .task-capo h3 { color: #D4B892; }
+  .task-mano h3 { color: #9FB8C8; }
+  .task-lano h3 { color: #B8C8B0; }
+  .task-col p {
+    font-size: 17px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .task-col .skill {
+    font-size: 15px;
+    font-style: italic;
+    color: #9FB8C8;
+    margin-bottom: 8px;
+  }
+  .svg-container {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+  }
+  .example-box {
+    font-family: 'Fira Code', 'Source Code Pro', 'Courier New', monospace;
+    font-size: 13px;
+    background: rgba(159, 184, 200, 0.08);
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+  .box-pink {
+    background: rgba(212, 184, 146, 0.12);
+    border-left: 3px solid #D4B892;
+    padding: 10px 14px;
+    margin-top: 16px;
+    border-radius: 4px;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #B8C8B0;
+  }
+</style>
+</head>
+<body>
+  <h2>Task Details: Capo, Mano &amp; Lano</h2>
+  <div class="three-tasks">
+    <div class="task-col task-capo">
+      <h3>CAPO &mdash; Knowledge Capacity</h3>
+      <p class="skill">How many bits per parameter can the model store?</p>
+      <p>Synthetic biographies: &ldquo;<em>[name]</em> was born in <em>[year]</em>, hometown is <em>[city]</em>, works for <em>[company]</em>&hellip;&rdquo;</p>
+      <p>Measures raw <strong>memorization capacity</strong> independent of reasoning.</p>
+      <div class="example-box">
+        Alice born 1985, city Paris,<br>
+        works Google &hellip;<br>
+        Q: Alice city? A: Paris
+      </div>
+    </div>
+    <div class="task-col task-mano">
+      <h3>MANO &mdash; Knowledge Manipulation</h3>
+      <p class="skill">Can the model compute over memorized knowledge?</p>
+      <p>Arithmetic on retrieved knowledge: lookup values then evaluate nested expressions mod 23.</p>
+      <div class="svg-container">
+        <svg width="280" height="160" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#9FB8C8"/>
+            </marker>
+          </defs>
+          <circle cx="140" cy="24" r="18" fill="rgba(159,184,200,0.12)" stroke="#9FB8C8" stroke-width="2"/>
+          <text x="140" y="30" text-anchor="middle" fill="#E8E4E0" font-family="Palatino Linotype, serif" font-size="18" font-weight="700">&times;</text>
+          <line x1="126" y1="40" x2="85" y2="62" stroke="#9FB8C8" stroke-width="1.5"/>
+          <circle cx="72" cy="72" r="18" fill="rgba(159,184,200,0.12)" stroke="#9FB8C8" stroke-width="2"/>
+          <text x="72" y="78" text-anchor="middle" fill="#E8E4E0" font-family="Palatino Linotype, serif" font-size="18" font-weight="700">+</text>
+          <line x1="154" y1="40" x2="195" y2="62" stroke="#9FB8C8" stroke-width="1.5"/>
+          <circle cx="208" cy="72" r="18" fill="rgba(212,184,146,0.1)" stroke="#D4B892" stroke-width="1.5"/>
+          <text x="208" y="78" text-anchor="middle" fill="#E8E4E0" font-family="Palatino Linotype, serif" font-size="15">15</text>
+          <line x1="58" y1="88" x2="35" y2="110" stroke="#9FB8C8" stroke-width="1.5"/>
+          <circle cx="26" cy="120" r="18" fill="rgba(212,184,146,0.1)" stroke="#D4B892" stroke-width="1.5"/>
+          <text x="26" y="126" text-anchor="middle" fill="#E8E4E0" font-family="Palatino Linotype, serif" font-size="15">13</text>
+          <line x1="86" y1="88" x2="109" y2="110" stroke="#9FB8C8" stroke-width="1.5"/>
+          <circle cx="118" cy="120" r="18" fill="rgba(212,184,146,0.1)" stroke="#D4B892" stroke-width="1.5"/>
+          <text x="118" y="126" text-anchor="middle" fill="#E8E4E0" font-family="Palatino Linotype, serif" font-size="15">20</text>
+          <text x="140" y="155" text-anchor="middle" fill="#9FB8C8" font-family="Palatino Linotype, serif" font-size="12">(13+20)&times;15 mod 23 = 2</text>
+        </svg>
+      </div>
+    </div>
+    <div class="task-col task-lano">
+      <h3>LANO &mdash; Hierarchical Structure</h3>
+      <p class="skill">Can the model parse language-like structure?</p>
+      <p>Context-free grammar parsing via dynamic programming. Resolves ambiguity in synthetic languages.</p>
+      <div class="svg-container">
+        <svg width="280" height="140" viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="140" cy="18" r="16" fill="rgba(184,200,176,0.12)" stroke="#B8C8B0" stroke-width="2"/>
+          <text x="140" y="23" text-anchor="middle" fill="#E8E4E0" font-family="Palatino Linotype, serif" font-size="13" font-weight="600">S</text>
+          <line x1="128" y1="32" x2="80" y2="50" stroke="#B8C8B0" stroke-width="1.5"/>
+          <circle cx="70" cy="58" r="16" fill="rgba(184,200,176,0.12)" stroke="#B8C8B0" stroke-width="1.5"/>
+          <text x="70" y="63" text-anchor="middle" fill="#E8E4E0" font-family="Palatino Linotype, serif" font-size="12">NP</text>
+          <line x1="152" y1="32" x2="200" y2="50" stroke="#B8C8B0" stroke-width="1.5"/>
+          <circle cx="210" cy="58" r="16" fill="rgba(184,200,176,0.12)" stroke="#B8C8B0" stroke-width="1.5"/>
+          <text x="210" y="63" text-anchor="middle" fill="#E8E4E0" font-family="Palatino Linotype, serif" font-size="12">VP</text>
+          <line x1="58" y1="72" x2="35" y2="88" stroke="#B8C8B0" stroke-width="1"/>
+          <text x="30" y="104" text-anchor="middle" fill="#B8C8B0" font-family="Palatino Linotype, serif" font-size="11">1</text>
+          <line x1="82" y1="72" x2="105" y2="88" stroke="#B8C8B0" stroke-width="1"/>
+          <text x="108" y="104" text-anchor="middle" fill="#B8C8B0" font-family="Palatino Linotype, serif" font-size="11">2</text>
+          <line x1="198" y1="72" x2="170" y2="88" stroke="#B8C8B0" stroke-width="1"/>
+          <text x="165" y="104" text-anchor="middle" fill="#B8C8B0" font-family="Palatino Linotype, serif" font-size="11">3</text>
+          <line x1="222" y1="72" x2="245" y2="88" stroke="#B8C8B0" stroke-width="1"/>
+          <text x="248" y="104" text-anchor="middle" fill="#B8C8B0" font-family="Palatino Linotype, serif" font-size="11">1</text>
+          <text x="140" y="135" text-anchor="middle" fill="#E8E4E0" font-family="Fira Code, monospace" font-size="12">tokens: 1 2 3 1 2 1 &hellip;</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="box-pink">
+    <strong>Together:</strong> These five tasks span the space of reasoning depth, breadth, knowledge capacity, manipulation, and structural understanding &mdash; a complete &ldquo;cognitive battery&rdquo; for architectures.
+  </div>
+  <span class="source-tag">[4.1]</span>
+</body>
+</html>

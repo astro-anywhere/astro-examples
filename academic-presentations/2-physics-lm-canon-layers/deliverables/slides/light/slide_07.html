@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    background: #FAF8F5;
+    color: #3A3A3A;
+    padding: 50px 60px;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 28px;
+    color: #3A3A3A;
+  }
+  .content {
+    display: flex;
+    gap: 40px;
+    height: calc(100% - 80px);
+  }
+  .left {
+    flex: 0 0 58%;
+    font-size: 22px;
+    line-height: 1.6;
+  }
+  .right {
+    flex: 0 0 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .right img {
+    max-width: 100%;
+    max-height: 480px;
+    border-radius: 6px;
+  }
+  .caption {
+    font-size: 14px;
+    color: #A8B8A0;
+    margin-top: 8px;
+    text-align: center;
+  }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    margin-bottom: 16px;
+    padding-left: 24px;
+    position: relative;
+    font-size: 21px;
+    line-height: 1.5;
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #8FA8B8;
+  }
+  .criterion-label {
+    color: #C4A882;
+    font-weight: 600;
+  }
+  .source-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 13px;
+    color: #A8B8A0;
+  }
+</style>
+</head>
+<body>
+  <h2>Four Design Criteria for Meaningful Synthetic Tasks</h2>
+  <div class="content">
+    <div class="left">
+      <ul>
+        <li><span class="criterion-label">Challenge depth</span> &mdash; avoid shallow associative recall; require hierarchical, multi-layer reasoning</li>
+        <li><span class="criterion-label">Mental reasoning</span> &mdash; test System-1 thinking without Chain-of-Thought; mental depth 4&times;8 = 32 steps</li>
+        <li><span class="criterion-label">Short context focus</span> &mdash; fixed 4096-token dense contexts; avoid unstable length generalization</li>
+        <li><span class="criterion-label">Real-world relevance</span> &mdash; target broadly applicable skills (reasoning, knowledge); avoid tool-delegatable tasks</li>
+      </ul>
+    </div>
+    <div class="right">
+      <img src="../../figures/design-criteria.png" alt="Design criteria for synthetic pretrain tasks">
+      <span class="caption">Four criteria ensuring synthetic tasks isolate meaningful architectural differences</span>
+    </div>
+  </div>
+  <span class="source-tag">[4.1]</span>
+</body>
+</html>
