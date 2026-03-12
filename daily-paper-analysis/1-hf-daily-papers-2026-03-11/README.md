@@ -32,6 +32,7 @@
 |--------|------|-------------|
 | HTML | [`daily-digest-2026-03-11.html`](deliverables/daily-digest-2026-03-11.html) | Styled digest grouped by research area with summaries, key contributions, and links |
 | Markdown | [`daily-digest-2026-03-11.md`](deliverables/daily-digest-2026-03-11.md) | Obsidian-compatible version with YAML frontmatter and callouts |
+| PDF | [`daily-digest-2026-03-11.pdf`](deliverables/daily-digest-2026-03-11.pdf) | Print-ready PDF rendering of the digest |
 
 ### Compiled Report (top 10 in-depth)
 
@@ -39,6 +40,7 @@
 |--------|------|-------------|
 | HTML | [`daily-papers-2026-03-11.html`](deliverables/daily-papers-2026-03-11.html) | Full compiled report: cover + TOC + digest + all 10 in-depth analyses |
 | Markdown | [`daily-papers-2026-03-11.md`](deliverables/daily-papers-2026-03-11.md) | Single compiled Markdown with all content |
+| PDF | [`daily-papers-2026-03-11.pdf`](deliverables/daily-papers-2026-03-11.pdf) | Print-ready PDF of the full compiled report |
 
 ### Per-Paper Analyses (top 10)
 

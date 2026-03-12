@@ -37,7 +37,7 @@ Automated daily research digest pipeline -- fetches the day's papers from Huggin
 
 | # | Date | Papers | Deliverables | DAG |
 |---|------|--------|-------------|-----|
-| [1](daily-paper-analysis/1-hf-daily-papers-2026-03-11/) | 2026-03-11 | 30 total, 10 in-depth | HTML+MD digest, compiled report, 10 per-paper analyses, 10 SVG architecture figures | 7 tasks, 8 edges |
+| [1](daily-paper-analysis/1-hf-daily-papers-2026-03-11/) | 2026-03-11 | 30 total, 10 in-depth | HTML+MD+PDF digest, compiled report, 10 per-paper analyses, 10 SVG architecture figures | 7 tasks, 8 edges |
 
 ## Structure
 
