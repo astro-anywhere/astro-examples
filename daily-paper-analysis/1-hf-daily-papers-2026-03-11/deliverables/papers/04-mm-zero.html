@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MM-Zero: Self-Evolving Multi-Model Vision Language Models From Zero Data</title>
+  <style>
+:root {
+  --bg: #FAF8F5;
+  --text: #3A3A3A;
+  --text-secondary: #6A6A6A;
+  --emph: #C4A882;
+  --blue: #8FA8B8;
+  --green: #A8B8A0;
+  --teal: #7FA8A0;
+  --gold: #C8B878;
+  --lavender: #9B8FBF;
+  --red: #A86464;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 32px;
+}
+h1 { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+h2 { font-size: 24px; font-weight: 600; margin-top: 36px; margin-bottom: 12px; }
+h3 { font-size: 20px; font-weight: 600; margin-top: 24px; margin-bottom: 10px; }
+a { color: #5A7A8A; text-decoration: none; border-bottom: 1px dotted rgba(90,122,138,.4); }
+a:hover { border-bottom-style: solid; }
+p { margin: 10px 0; }
+ul { margin: 8px 0 12px 20px; }
+li { margin: 6px 0; }
+.muted { color: var(--text-secondary); }
+.meta { margin: 14px 0 16px 0; }
+.figure-wrap { margin: 16px 0 22px 0; }
+.figure-wrap img { width: 100%; max-width: 800px; border: 1px solid rgba(106,106,106,.2); border-radius: 6px; background: #fff; }
+.box-blue { background: rgba(143, 168, 184, 0.12); border-left: 4px solid #8FA8B8; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.box-green { background: rgba(168, 184, 160, 0.12); border-left: 4px solid #A8B8A0; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.box-pink { background: rgba(196, 168, 130, 0.12); border-left: 4px solid #C4A882; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.box-gold { background: rgba(200, 184, 120, 0.12); border-left: 4px solid #C8B878; padding: 12px 16px; margin: 14px 0; border-radius: 4px; }
+.box-lavender { background: rgba(155, 143, 191, 0.12); border-left: 4px solid #9B8FBF; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.box-red { background: rgba(168, 100, 100, 0.10); border-left: 4px solid #A86464; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 13px; font-weight: 600; margin-right: 8px; }
+.badge-upvotes { background: rgba(200, 184, 120, 0.2); color: #8A7A40; }
+.badge-rank { background: rgba(143, 168, 184, 0.2); color: #5A7A8A; }
+.badge-daily { background: rgba(168, 184, 160, 0.2); color: #5A7A5A; }
+.badge-extra { background: rgba(155, 143, 191, 0.2); color: #6A5A8A; }
+code, pre { font-family: 'Fira Code', 'Source Code Pro', monospace; font-size: 15px; }
+</style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+</head>
+<body>
+  <header>
+    <h1>MM-Zero: Self-Evolving Multi-Model Vision Language Models From Zero Data</h1>
+    <div class="box-gold meta">
+      <span class="badge badge-rank">Rank #4</span>
+      <span class="badge badge-upvotes">36 upvotes</span>
+      <span class="badge badge-daily">Daily Paper</span>
+      <div><strong>Authors:</strong> Zongxia Li, Hongyang Du, Chengsong Huang, Xiyang Wu, Lantao Yu, Yicheng He, Jing Xie, Xiaomin Wu, Zhichao Liu, Jiarui Zhang, Fuxiao Liu</div>
+      <div><strong>arXiv:</strong> 2603.09206</div>
+      <div><strong>Date:</strong> 2026-03-11</div>
+      <div><strong>Tags:</strong> daily papers, comprehensive analysis, priority-topic</div>
+      <div class="muted">Generated: 2026-03-12 04:14:48.640 UTC</div>
+    </div>
+  </header>
+
+  <section>
+    <h2>1. Header</h2>
+    <p>MM-Zero is ranked #4 by upvotes in the HuggingFace daily list for 2026-03-11. This document follows the comprehensive-depth format and emphasizes technical mechanism, theoretical framing, and practical implications for post-training and multimodal system design.</p>
+    <div class="box-blue"><strong>Source Coverage:</strong> Primary analysis source: AlphaXiv overview available. AlphaXiv full-text markdown unavailable; analysis grounded in overview + arXiv abstract + HF metadata.</div>
+  </section>
+
+  <section>
+    <h2>2. TL;DR</h2>
+    <div class="box-pink">
+      <p>MM-Zero introduces the first zero-data self-evolution framework for vision-language reasoning using three cooperative RL-trained roles: Proposer, Coder, and Solver. Instead of requiring seed visual datasets, the system generates abstract concepts, compiles them into executable visual artifacts, and learns from the resulting multimodal tasks.</p>
+<p>The core contribution is training algorithmic structure: GRPO-based optimization with execution feedback, visual verification, and difficulty balancing. This turns synthetic task generation from a two-role loop into a scalable multi-model curriculum engine.</p>
+      <p><strong>Who should read this and why:</strong> This paper is high-value for teams building autonomous post-training pipelines for VLM reasoning, especially groups exploring data-scarce or privacy-constrained settings where manual annotation is expensive.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Background &amp; Prerequisites</h2>
+    <div class="box-blue">
+      <p>Self-evolution in LLMs has gained traction because models can generate tasks, attempt solutions, and improve through feedback without heavy human labels. Extending this to VLMs is harder because visual grounding usually requires image corpora and modality-specific supervision.</p>
+<p>Prior multimodal self-improvement approaches commonly use two roles: a proposer generates tasks, and a solver answers them. This setup can stagnate because generated tasks may not maintain quality/diversity, and there is no explicit mechanism for rendering controllable visual instances from abstract concepts.</p>
+<p>MM-Zero adds a third role, Coder, that translates abstract visual ideas into executable code (Python/SVG) to instantiate images. This design bridges conceptual generation and concrete visual evidence, enabling a closed loop from idea to render to reasoning target.</p>
+<p>A prerequisite concept is GRPO (Group Relative Policy Optimization), a relative-reward RL strategy that compares outputs within sampled groups, often improving stability over absolute scalar rewards. In MM-Zero, GRPO is used across roles to update behavior from execution and verification signals.</p>
+<p>Another prerequisite is reward engineering for multimodal loops. A useful signal must combine correctness, executability, visual validity, and curriculum difficulty. Over-optimizing one dimension can produce degenerate behaviors such as trivial tasks or brittle code snippets.</p>
+<p>The zero-data claim should be interpreted carefully: no external seed image dataset is required to bootstrap training, but the system still relies on base model priors and external execution/verification infrastructure.</p>
+<p>The paper fits the broader trend toward autonomous post-training pipelines where synthetic data quality is actively managed rather than treated as static augmentation. This aligns with advances in self-play and agentic training in text-only domains.</p>
+<p>For practitioners, MM-Zero’s relevance is strategic: if robust, such pipelines can reduce dependence on expensive annotation and speed adaptation to niche reasoning domains.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>4. Problem &amp; Motivation</h2>
+    <p>The first problem is bootstrap dependency. VLM improvement methods usually require some seed multimodal data, contradicting the goal of autonomous self-evolution from scratch.</p>
+<p>The second problem is role insufficiency in dual-agent setups. Without a dedicated rendering role, generated tasks can remain abstract or low-fidelity, weakening the supervision signal available to the reasoning model.</p>
+<p>The third problem is reward mismatch. In multimodal loops, textual plausibility is not enough; generated visuals must be executable, interpretable, and appropriately challenging. A naive reward can lead to easy tasks and superficial gains.</p>
+<p>MM-Zero addresses these by introducing role specialization and reward composition designed for end-to-end multimodal task synthesis and solving.</p>
+<p>Why now? VLMs are increasingly expected to reason, not only describe images. Scaling this capability with manual data alone is costly and slow, especially for rapidly changing domains.</p>
+<p>A further motivation is reproducibility and controllability. Code-generated visuals provide explicit generation traces, enabling easier auditing than opaque dataset scraping pipelines.</p>
+<p>The paper also tackles curriculum design implicitly: a self-evolving system must generate tasks that are neither trivial nor impossible. Difficulty balancing becomes part of the optimization target.</p>
+<p>In short, the problem is building a self-improving multimodal training loop that starts from zero external visual data, remains stable, and yields measurable reasoning gains.</p>
+  </section>
+
+  <section>
+    <h2>5. Method / Approach</h2>
+    <div class="figure-wrap">
+      <img src="../figures/04-mm-zero.svg" alt="MM-Zero architecture/workflow diagram">
+    </div>
+    <p>MM-Zero uses three roles initialized from one base model family. The Proposer invents abstract visual concepts and associated questions, the Coder turns concepts into executable rendering programs, and the Solver answers the generated multimodal questions.</p>
+<p>Execution feedback is fundamental: code outputs either render valid visuals or fail. This binary-plus-structured signal helps supervise both Proposer and Coder by favoring concepts that can be realized and tasks that remain semantically coherent.</p>
+<p>Visual verification adds another layer, scoring whether rendered outputs match intended concepts. This avoids a common failure mode where code executes but produces irrelevant visuals.</p>
+<p>Difficulty balancing ensures the curriculum remains productive. If tasks are too easy, learning plateaus; too hard, reward collapses. MM-Zero introduces reward terms to maintain a useful hardness band during self-evolution.</p>
+<p>A simplified optimization can be written as $$J(	heta)=mathbb{E}[r_{exec}+alpha r_{verify}+eta r_{solve}+gamma r_{diff}]$$ where $r_{diff}$ encourages informative difficulty. GRPO updates are then applied relative to sampled groups to stabilize policy improvement across roles.</p>
+<p>The multi-role loop can be viewed as synthetic environment construction: Proposer defines latent task state, Coder materializes environment observations, and Solver interacts through reasoning. Training improves all three components jointly.</p>
+<p>This decomposition is a key algorithmic contribution beyond prior two-role systems. It separates idea generation from rendering competence, enabling better specialization and reduced interference during optimization.</p>
+<p>Because all roles start from the same base model, improvement reflects role-conditioned post-training rather than heterogeneous pretrained agents. This may simplify deployment and parameter sharing strategies.</p>
+<p>The paper reports benchmark evaluation on multimodal reasoning tasks, showing that self-evolution produces gains beyond baseline models without zero-data loops.</p>
+<p>Methodologically, MM-Zero sits at the intersection of RL post-training, program synthesis, and multimodal curriculum learning. Its novelty is not one component alone but the closed-loop integration.</p>
+<p>Operationally, the approach requires robust sandboxed code execution and verification pipelines. Those infrastructure choices are as important as model updates for stable training.</p>
+<p>The framework suggests a broader principle: autonomous data engines for multimodal AI may need explicit rendering/program roles rather than relying on natural-language-only self-play.</p>
+  </section>
+
+  <section>
+    <h2>6. Results &amp; Key Findings</h2>
+    <div class="box-green">
+      <p>The paper reports improved VLM reasoning performance across a broad set of multimodal benchmarks, indicating the zero-data self-evolution loop produces meaningful capability gains.</p>
+<p>A significant result is feasibility: introducing a Coder role allows the system to bootstrap visual supervision without external seed images, supporting the core zero-data claim in practical terms.</p>
+<p>The gains across benchmarks suggest the generated curriculum is not purely overfit to one synthetic pattern and can transfer to standard evaluation tasks.</p>
+<p>Role specialization appears effective; separating proposing, rendering, and solving responsibilities likely reduces optimization conflicts that plague dual-role frameworks.</p>
+<p>Execution and verification rewards provide strong grounding signals, helping avoid degenerate textual shortcuts where models answer without learning visual reasoning.</p>
+<p>The framework also demonstrates scalability potential: additional roles or tool integrations could be added as capabilities expand, making MM-Zero a platform-style training paradigm.</p>
+<p>For industry relevance, the approach offers a path to reduce annotation overhead while maintaining iterative improvement cycles in multimodal products.</p>
+<p>The reported results support a wider conclusion: training-algorithm innovation can deliver large capability gains even when base architecture remains mostly unchanged.</p>
+<p>Community interest in this paper reflects demand for exactly these properties: autonomy, data efficiency, and practical reasoning improvements in VLMs.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>7. Limitations &amp; Open Questions</h2>
+    <div class="box-pink">
+      <ul>
+  <li>AlphaXiv full text was unavailable here; some implementation specifics (hyperparameters/ablations) remain high-level.</li>
+  <li>Zero-data still depends on base-model priors and toolchain quality; it is not “zero prior knowledge.”</li>
+  <li>Code execution pipelines add operational risk, including security, determinism, and environment drift concerns.</li>
+  <li>Reward hacking remains a risk in multi-objective RL loops if verification signals are imperfect.</li>
+  <li>Synthetic curricula may miss real-world visual noise and distribution complexity without additional grounding.</li>
+  <li>Role coordination overhead can increase training complexity and debugging burden.</li>
+  <li>Benchmark gains need long-horizon validation for stability across model versions and domains.</li>
+  <li>Compute cost of iterative self-evolution may still be substantial despite reduced human labeling.</li>
+</ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>8. Connections &amp; Context</h2>
+    <div class="box-lavender">
+      <ul>
+  <li>MM-Zero complements [[02-thinking-to-recall|Thinking to Recall]] by treating trajectories as optimization objects; both papers move beyond final-answer-only supervision.</li>
+  <li>Relative to [[03-omni-diffusion|Omni-Diffusion]], MM-Zero emphasizes training loop innovation rather than replacing the multimodal backbone architecture.</li>
+  <li>With [[05-internvl-u|InternVL-U]], the shared focus is VLM capability expansion; MM-Zero contributes autonomous curriculum generation while InternVL-U contributes unified model modularization.</li>
+  <li>Compared with [[01-geometry-guided-rl-3d-editing|RL3DEdit]], both leverage RL signals derived from tractable evaluators instead of relying on scarce paired labels.</li>
+  <li>Across the priority-topic papers, MM-Zero reinforces the shift toward agentic, tool-augmented post-training as a primary engine of progress.</li>
+</ul>
+      <p>A practical rollout plan for MM-Zero-like systems should include strict sandboxing, deterministic rendering environments, and continuous reward-audit dashboards to detect drift or exploitation.</p>
+<p>Teams can start with domain-specific concept libraries so the Proposer explores meaningful regions early, then gradually relax constraints as the solver improves.</p>
+<p>An important extension is human-in-the-loop veto signals for unsafe or nonsensical generated tasks, balancing autonomy with governance.</p>
+<p>The framework also invites multi-turn reasoning tasks where solver outputs influence subsequent proposer/coder steps, creating richer interactive curricula.</p>
+<p>For low-resource domains, MM-Zero could be combined with sparse real data anchors to improve realism while preserving synthetic scalability.</p>
+<p>Theoretical analysis of convergence in multi-role GRPO settings remains open and could clarify stability conditions under reward noise.</p>
+<p>In product contexts, this approach can shorten adaptation cycles for new verticals by generating tailored training tasks on demand.</p>
+<p>Overall, MM-Zero demonstrates that multimodal self-evolution is moving from concept to implementable training infrastructure.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>9. Resources</h2>
+    <ul>
+      <li>Links: <a href="https://arxiv.org/abs/2603.09206" target="_blank" rel="noopener noreferrer">arXiv</a> · <a href="https://arxiv.org/pdf/2603.09206" target="_blank" rel="noopener noreferrer">PDF</a> · <a href="https://huggingface.co/papers/2603.09206" target="_blank" rel="noopener noreferrer">HuggingFace</a> · <a href="https://github.com/zli12321/MM-Zero" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li>Related top-5 analyses: [[01-geometry-guided-rl-3d-editing|RL3DEdit]], [[02-thinking-to-recall|Thinking to Recall]], [[03-omni-diffusion|Omni-Diffusion]], [[04-mm-zero|MM-Zero]], [[05-internvl-u|InternVL-U]]</li>
+    </ul>
+  </section>
+</body>
+</html>

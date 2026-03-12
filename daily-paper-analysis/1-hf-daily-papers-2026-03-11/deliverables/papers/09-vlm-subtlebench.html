@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VLM-SubtleBench: How Far Are VLMs from Human-Level Subtle Comparative Reasoning?</title>
+  <style>
+:root {
+  --bg: #FAF8F5;
+  --text: #3A3A3A;
+  --text-secondary: #6A6A6A;
+  --emph: #C4A882;
+  --blue: #8FA8B8;
+  --green: #A8B8A0;
+  --teal: #7FA8A0;
+  --gold: #C8B878;
+  --lavender: #9B8FBF;
+  --red: #A86464;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 32px;
+}
+h1 { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+h2 { font-size: 24px; font-weight: 600; margin-top: 36px; margin-bottom: 12px; }
+h3 { font-size: 20px; font-weight: 600; margin-top: 24px; margin-bottom: 10px; }
+a { color: #5A7A8A; text-decoration: none; border-bottom: 1px dotted rgba(90,122,138,.4); }
+a:hover { border-bottom-style: solid; }
+p { margin: 10px 0; }
+ul { margin: 8px 0 12px 20px; }
+li { margin: 6px 0; }
+.muted { color: var(--text-secondary); }
+.meta { margin: 14px 0 16px 0; }
+.figure-wrap { margin: 16px 0 22px 0; }
+.figure-wrap img { width: 100%; max-width: 800px; border: 1px solid rgba(106,106,106,.2); border-radius: 6px; background: #fff; }
+.box-blue { background: rgba(143, 168, 184, 0.12); border-left: 4px solid #8FA8B8; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.box-green { background: rgba(168, 184, 160, 0.12); border-left: 4px solid #A8B8A0; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.box-pink { background: rgba(196, 168, 130, 0.12); border-left: 4px solid #C4A882; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.box-gold { background: rgba(200, 184, 120, 0.12); border-left: 4px solid #C8B878; padding: 12px 16px; margin: 14px 0; border-radius: 4px; }
+.box-lavender { background: rgba(155, 143, 191, 0.12); border-left: 4px solid #9B8FBF; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 13px; font-weight: 600; margin-right: 8px; }
+.badge-upvotes { background: rgba(200, 184, 120, 0.2); color: #8A7A40; }
+.badge-rank { background: rgba(143, 168, 184, 0.2); color: #5A7A8A; }
+.badge-daily { background: rgba(168, 184, 160, 0.2); color: #5A7A5A; }
+.badge-extra { background: rgba(155, 143, 191, 0.2); color: #6A5A8A; }
+code, pre { font-family: 'Fira Code', 'Source Code Pro', monospace; font-size: 15px; }
+</style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+</head>
+<body>
+  <header>
+    <h1>VLM-SubtleBench: How Far Are VLMs from Human-Level Subtle Comparative Reasoning?</h1>
+    <div class="box-gold meta">
+      <span class="badge badge-rank">Rank #9</span>
+      <span class="badge badge-upvotes">9 upvotes</span>
+      <span class="badge badge-daily">Daily Paper</span>
+      <div><strong>Authors:</strong> Minkyu Kim, Sangheon Lee, Dongmin Park</div>
+      <div><strong>arXiv:</strong> 2603.07888</div>
+      <div><strong>Date:</strong> 2026-03-11</div>
+      <div><strong>Tags:</strong> daily papers, standard-depth analysis</div>
+      <div class="muted">Generated: 2026-03-12 04:04:07.752 UTC</div>
+    </div>
+  </header>
+
+  <section>
+    <h2>1. Header</h2>
+    <p>VLM-SubtleBench is ranked #9 by upvotes in the HuggingFace daily list. This document follows the standard-depth format for papers 6-10 and emphasizes method detail, benchmark interpretation, and deployment implications.</p>
+    <div class="box-blue"><strong>Source Coverage:</strong> AlphaXiv overview unavailable; analysis based on arXiv abstract, HF metadata, and benchmark design context. AlphaXiv full-text markdown unavailable.</div>
+  </section>
+
+  <section>
+    <h2>2. TL;DR</h2>
+    <div class="box-pink">
+      <p>VLM-SubtleBench targets a blind spot in current multimodal evaluation: models may succeed when differences are large, yet fail when two images differ only in subtle, semantically important ways.</p>
+<p>By covering ten difference types across industrial, aerial, medical, and natural-image contexts, the benchmark exposes systematic model-human gaps and provides a cleaner target for advancing fine-grained comparative reasoning.</p>
+      <p><strong>Who should read this and why:</strong> This paper is particularly relevant for teams in quality inspection, medical support, remote sensing, and any workflow where “small visual change” implies major downstream decisions.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Background &amp; Prerequisites</h2>
+    <div class="box-blue">
+      <p>Comparative reasoning is central to human perception: we do not only recognize objects, we detect differences that matter under task constraints. In AI evaluation, however, many VLM benchmarks are dominated by obvious changes and broad semantics, so they under-measure this capability.</p>
+<p>A key prerequisite concept is difference taxonomy. SubtleBench explicitly factors ten categories (Attribute, State, Emotion, Temporal, Spatial, Existence, Quantity, Quality, Viewpoint, Action), enabling per-type diagnosis rather than one aggregate score.</p>
+<p>Another prerequisite is domain transfer. A subtle difference in medical imaging is very different from a subtle difference in street photography, yet both require robust visual grounding. By spanning multiple domains, the benchmark tests whether models learn general comparison primitives or memorize dataset-specific cues.</p>
+<p>This perspective aligns with [[06-stepping-vlms-court|CourtSI]] and [[07-reading-not-thinking|Reading, Not Thinking]]: capability claims are only as strong as the stress tests used to measure them.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>4. Problem &amp; Motivation</h2>
+    <p>The main problem is that current VLM progress can look stronger than it is when benchmarks emphasize salient differences. In real settings, the critical signal is often tiny: a slight defect, a faint lesion boundary, or a small spatial displacement.</p>
+<p>This gap matters now because VLMs are being considered for decision-support roles where subtle misses can be costly. Without targeted evaluation, teams may deploy models that are impressive on demos but brittle on edge cases.</p>
+  </section>
+
+  <section>
+    <h2>5. Method / Approach</h2>
+    <div class="figure-wrap">
+      <img src="../figures/09-vlm-subtlebench.svg" alt="VLM-SubtleBench architecture/workflow diagram">
+    </div>
+    <p>The benchmark constructs paired image-question sets where answers hinge on nuanced visual distinctions. Unlike open-ended caption tasks, the setup forces grounded comparison between two similar alternatives.</p>
+<p>The ten-category taxonomy encourages structured reporting. A model that performs well on quantity differences but poorly on temporal/state differences can be debugged with targeted training rather than generic scaling.</p>
+<p>Evaluation includes both proprietary and open-source VLMs and compares them against human references, producing an explicit model-human gap estimate. This is critical because “best model among peers” is not the same as “good enough for deployment.”</p>
+<p>A simple formal view is pairwise decision under small perturbations: $$\hat{y}=\arg\max_{y\in\mathcal{Y}}\;s_\theta(I_1,I_2,q,y)$$ where robust models require high score margins even when $I_1$ and $I_2$ differ minimally along task-relevant axes.</p>
+  </section>
+
+  <section>
+    <h2>6. Results &amp; Key Findings</h2>
+    <div class="box-green">
+      <p>The principal finding is systematic underperformance versus humans across difference types and domains, confirming that subtle comparison remains an unsolved capability frontier for current VLMs.</p>
+<p>Controlled analyses identify specific deterioration points rather than uniform weakness, supporting the claim that “subtle reasoning” is a composite skill with uneven sub-capabilities.</p>
+<p>Because the benchmark spans industrial, aerial, and medical imagery, the results challenge assumptions that improvements on natural-image benchmarks alone will transfer to safety-critical domains.</p>
+<p>The paper’s contribution is therefore less about a single SOTA number and more about measurement quality: it creates the evaluation lens needed to drive the next iteration of model development.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>7. Limitations &amp; Open Questions</h2>
+    <div class="box-pink">
+      <ul>
+  <li>Without AlphaXiv intermediate report data in this run, fine-grained implementation details (annotation workflow, inter-rater stats, prompt protocol) should be verified from the full paper before reproduction.</li>
+  <li>Benchmark curation can inadvertently introduce shortcut signals, especially in paired tasks. Continued adversarial auditing is required to ensure models cannot exploit trivial artifacts.</li>
+  <li>Human-level comparison depends on evaluator expertise; domain-specific subsets (for example medical) may require expert annotators for truly meaningful upper bounds.</li>
+  <li>SubtleBench diagnoses the problem but does not itself provide a training recipe, so downstream teams still need targeted data and objective design to improve model behavior.</li>
+</ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>8. Connections &amp; Context</h2>
+    <div class="box-lavender">
+      <ul>
+  <li>[[06-stepping-vlms-court|CourtSI]] and SubtleBench together map two complementary failure regimes: dynamic metric reasoning and static subtle discrimination.</li>
+  <li>[[07-reading-not-thinking|Reading, Not Thinking]] suggests one route for improvement: identify the specific bottleneck and perform targeted modality-aware distillation. A similar strategy may work for subtle visual comparison.</li>
+  <li>For this day’s collection, SubtleBench reinforces a broad trend: benchmark sophistication is becoming a first-class contribution, not only model size or architecture changes.</li>
+</ul>
+      <p>A useful next step is curriculum-based training from salient to subtle differences, with category-balanced sampling to prevent overfitting to easy difference types.</p>
+<p>Another high-value extension is uncertainty-aware scoring. For subtle tasks, calibrated abstention may be preferable to forced guesses in safety-critical pipelines.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>9. Resources</h2>
+    <ul>
+      <li><a href="https://arxiv.org/abs/2603.07888" target="_blank" rel="noopener noreferrer">arXiv</a> · <a href="https://arxiv.org/pdf/2603.07888" target="_blank" rel="noopener noreferrer">PDF</a> · <a href="https://huggingface.co/papers/2603.07888" target="_blank" rel="noopener noreferrer">HuggingFace</a> · <a href="https://github.com/krafton-ai/VLM-SubtleBench" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li>Related papers in this batch: 06 CourtSI, 07 Modality Gap, 08 Fish Audio S2, 09 VLM-SubtleBench, 10 Audio-Specialist Heads.</li>
+    </ul>
+  </section>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; fill: #3A3A3A; }
+    .label { font-size: 14px; }
+    .label-small { font-size: 12px; fill: #6A6A6A; }
+    .label-bold { font-size: 14px; font-weight: 600; }
+    .node-blue { fill: rgba(143, 168, 184, 0.15); stroke: #8FA8B8; stroke-width: 1.5; rx: 8; }
+    .node-green { fill: rgba(168, 184, 160, 0.15); stroke: #A8B8A0; stroke-width: 1.5; rx: 8; }
+    .node-pink { fill: rgba(196, 168, 130, 0.15); stroke: #C4A882; stroke-width: 1.5; rx: 8; }
+    .node-teal { fill: rgba(127, 168, 160, 0.15); stroke: #7FA8A0; stroke-width: 1.5; rx: 8; }
+    .arrow { stroke: #8FA8B8; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8FA8B8"/>
+    </marker>
+  </defs>
+
+  <rect class="node-blue" x="25" y="35" width="250" height="100"/>
+  <text class="label-bold" x="40" y="66">Understanding Backbone (MLLM)</text>
+  <text class="label-small" x="40" y="88">InternVL-style reasoning core</text>
+  <text class="label-small" x="40" y="106">Semantic comprehension + planning</text>
+
+  <rect class="node-green" x="525" y="35" width="250" height="100"/>
+  <text class="label-bold" x="540" y="66">MMDiT Generation Head</text>
+  <text class="label-small" x="540" y="88">Image generation + editing</text>
+  <text class="label-small" x="540" y="106">Visual fidelity and control</text>
+
+  <rect class="node-pink" x="300" y="150" width="200" height="90"/>
+  <text class="label-bold" x="315" y="182">Context Bridge</text>
+  <text class="label-small" x="315" y="204">Decoupled visual reps</text>
+  <text class="label-small" x="315" y="222">Reasoning-to-generation transfer</text>
+
+  <rect class="node-teal" x="120" y="260" width="560" height="95"/>
+  <text class="label-bold" x="135" y="290">Reasoning-centric Data Synthesis</text>
+  <text class="label-small" x="135" y="312">High-semantic-density tasks: text rendering, scientific reasoning visuals</text>
+  <text class="label-small" x="135" y="330">Joint objective balances understanding, generation, editing, alignment</text>
+
+  <path class="arrow" d="M275 85 L300 185"/>
+  <path class="arrow" d="M525 85 L500 185"/>
+  <path class="arrow" d="M400 240 L400 260"/>
+  <path class="arrow" d="M220 260 L150 135"/>
+  <path class="arrow" d="M580 260 L650 135"/>
+  <text class="label-small" x="425" y="252">training signals</text>
+</svg>

@@ -1,0 +1,50 @@
+<svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; fill: #3A3A3A; }
+    .label { font-size: 14px; }
+    .label-small { font-size: 12px; fill: #6A6A6A; }
+    .label-bold { font-size: 14px; font-weight: 600; }
+    .node-blue { fill: rgba(143, 168, 184, 0.15); stroke: #8FA8B8; stroke-width: 1.5; rx: 8; }
+    .node-green { fill: rgba(168, 184, 160, 0.15); stroke: #A8B8A0; stroke-width: 1.5; rx: 8; }
+    .node-pink { fill: rgba(196, 168, 130, 0.15); stroke: #C4A882; stroke-width: 1.5; rx: 8; }
+    .node-teal { fill: rgba(127, 168, 160, 0.15); stroke: #7FA8A0; stroke-width: 1.5; rx: 8; }
+    .arrow { stroke: #8FA8B8; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8FA8B8"/>
+    </marker>
+  </defs>
+
+  <rect class="node-blue" x="20" y="40" width="180" height="80"/>
+  <text class="label-bold" x="34" y="70">Single-hop Question</text>
+  <text class="label-small" x="34" y="92">Direct recall target</text>
+
+  <rect class="node-green" x="240" y="30" width="230" height="100"/>
+  <text class="label-bold" x="255" y="62">Reasoning Trajectory</text>
+  <text class="label-small" x="255" y="84">Computational buffer</text>
+  <text class="label-small" x="255" y="102">+ factual priming tokens</text>
+
+  <rect class="node-pink" x="510" y="30" width="270" height="100"/>
+  <text class="label-bold" x="525" y="62">Intermediate Fact Check</text>
+  <text class="label-small" x="525" y="84">Hallucination detector</text>
+  <text class="label-small" x="525" y="102">Trajectory scoring</text>
+
+  <rect class="node-teal" x="240" y="190" width="230" height="110"/>
+  <text class="label-bold" x="255" y="220">Selection Policy</text>
+  <text class="label-small" x="255" y="242">Maximize correct recall</text>
+  <text class="label-small" x="255" y="260">Penalize false intermediates</text>
+  <text class="label-small" x="255" y="278">Adaptive reasoning depth</text>
+
+  <rect class="node-green" x="510" y="205" width="270" height="85"/>
+  <text class="label-bold" x="525" y="235">Final Answer</text>
+  <text class="label-small" x="525" y="257">Expanded capability boundary</text>
+  <text class="label-small" x="525" y="275">Lower hallucination rate</text>
+
+  <path class="arrow" d="M200 80 L240 80"/>
+  <path class="arrow" d="M470 80 L510 80"/>
+  <path class="arrow" d="M645 130 L645 205"/>
+  <path class="arrow" d="M510 247 L470 247"/>
+  <path class="arrow" d="M470 247 L510 247"/>
+  <text class="label-small" x="662" y="168">filtered traces</text>
+</svg>

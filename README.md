@@ -8,6 +8,8 @@ Each example includes the **planning DAG** (exported as `.astro.json`), a **visu
 
 ### Academic Presentations
 
+Transform research papers into multi-format presentation materials -- slide decks (light & dark themes), long-form blog posts, and conference posters. Astro decomposes the paper into key concepts, generates visuals, and produces publication-ready outputs in parallel.
+
 | # | Paper | Deliverables | DAG |
 |---|-------|-------------|-----|
 | [1](academic-presentations/1-physics-llm-one/) | [Physics of Language Models: Part 1](https://arxiv.org/abs/2305.13673) -- Allen-Zhu & Li, ICML 2024 | 40-slide deck (light+dark PDF), blog post, A0 poster | 12 tasks, 15 edges |
@@ -15,15 +17,27 @@ Each example includes the **planning DAG** (exported as `.astro.json`), a **visu
 
 ### Moat Analysis
 
+Deep-dive competitive analysis reports for public companies -- evaluating economic moats, competitive advantages, financial metrics (ROIC vs WACC), and scenario modeling. Produces a full investment-grade report with interactive SVG charts.
+
 | # | Company | Deliverables | DAG |
 |---|---------|-------------|-----|
 | [1](moat-analysis/1-crwv-moat-fragility/) | [CRWV](https://finance.yahoo.com/quote/CRWV/) -- CuriosityStream Moat & Fragility | HTML+PDF report, CA radar, moat heatmap, ROIC vs WACC, scenario chart (5 SVGs) | 13 tasks, 18 edges |
 
 ### Paper Reviews
 
+Automated peer-review-style analysis of research papers -- structured evaluation with scoring rubrics, methodology assessment, and reproducibility checks. Outputs a LaTeX-formatted review report with a visual scoring dashboard.
+
 | # | Paper | Deliverables | DAG |
 |---|-------|-------------|-----|
 | [1](paper-reviews/1-gba-sparse-autoencoder/) | Geometry-Based Activation for Sparse Autoencoders | LaTeX review report with scoring dashboard + PDF | 11 tasks, 16 edges |
+
+### Daily Paper Analysis
+
+Automated daily research digest pipeline -- fetches the day's papers from HuggingFace, ranks by community upvotes, generates a digest of all papers, then produces in-depth analyses with architecture diagrams for the top-ranked papers. Tasks run in parallel after data retrieval.
+
+| # | Date | Papers | Deliverables | DAG |
+|---|------|--------|-------------|-----|
+| [1](daily-paper-analysis/1-hf-daily-papers-2026-03-11/) | 2026-03-11 | 30 total, 10 in-depth | HTML+MD digest, compiled report, 10 per-paper analyses, 10 SVG architecture figures | 7 tasks, 8 edges |
 
 ## Structure
 
@@ -49,6 +63,14 @@ paper-reviews/
   1-gba-sparse-autoencoder/
     plan/                  # DAG visualization + detailed task docs
     deliverables/          # Review report (LaTeX + PDF)
+
+daily-paper-analysis/
+  1-hf-daily-papers-2026-03-11/
+    plan/                  # DAG visualization + detailed task docs
+    deliverables/          # Digest + compiled report + per-paper analyses
+      papers/              # 10 individual HTML+MD analyses
+      figures/             # 10 SVG architecture diagrams
+      data/                # JSON metadata + ranked paper lists
 
 utils/                     # Tools for generating visualizations from .astro.json
   render-plan.js           # DAG SVG + plan documentation generator

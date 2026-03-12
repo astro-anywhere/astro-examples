@@ -1,0 +1,51 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; fill: #3A3A3A; }
+    .label { font-size: 14px; }
+    .label-small { font-size: 12px; fill: #6A6A6A; }
+    .label-bold { font-size: 14px; font-weight: 600; }
+    .node-blue { fill: rgba(143, 168, 184, 0.15); stroke: #8FA8B8; stroke-width: 1.5; rx: 8; }
+    .node-green { fill: rgba(168, 184, 160, 0.15); stroke: #A8B8A0; stroke-width: 1.5; rx: 8; }
+    .node-pink { fill: rgba(196, 168, 130, 0.15); stroke: #C4A882; stroke-width: 1.5; rx: 8; }
+    .node-teal { fill: rgba(127, 168, 160, 0.15); stroke: #7FA8A0; stroke-width: 1.5; rx: 8; }
+    .arrow { stroke: #8FA8B8; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8FA8B8"/>
+    </marker>
+  </defs>
+  <rect class="node-blue" x="20" y="40" width="190" height="80"/>
+  <text class="label-bold" x="35" y="70">Input Multi-view Scene</text>
+  <text class="label-small" x="35" y="92">Source views + edit prompt</text>
+
+  <rect class="node-green" x="250" y="32" width="220" height="96"/>
+  <text class="label-bold" x="265" y="64">Diffusion Edit Policy</text>
+  <text class="label-small" x="265" y="86">Single-pass edited views</text>
+  <text class="label-small" x="265" y="104">Policy $pi_	heta$</text>
+
+  <rect class="node-pink" x="510" y="32" width="270" height="96"/>
+  <text class="label-bold" x="525" y="64">VGGT Geometry Verifier</text>
+  <text class="label-small" x="525" y="86">Confidence maps + pose error</text>
+  <text class="label-small" x="525" y="104">Reward signal extraction</text>
+
+  <rect class="node-teal" x="250" y="190" width="220" height="110"/>
+  <text class="label-bold" x="265" y="222">RL Optimization Loop</text>
+  <text class="label-small" x="265" y="244">$r_{total}=w_1r_{conf}+w_2r_{pose}+w_3r_{sem}$</text>
+  <text class="label-small" x="265" y="262">KL regularization to base policy</text>
+  <text class="label-small" x="265" y="280">Update toward 3D-consistent edits</text>
+
+  <rect class="node-green" x="510" y="205" width="270" height="90"/>
+  <text class="label-bold" x="525" y="236">Output: Consistent 3D Edits</text>
+  <text class="label-small" x="525" y="258">Higher cross-view coherence</text>
+  <text class="label-small" x="525" y="276">Retained semantic edit quality</text>
+
+  <path class="arrow" d="M210 80 L250 80"/>
+  <path class="arrow" d="M470 80 L510 80"/>
+  <path class="arrow" d="M645 128 L645 205"/>
+  <path class="arrow" d="M510 245 L470 245"/>
+  <path class="arrow" d="M360 190 L360 128"/>
+  <path class="arrow" d="M470 245 L510 245"/>
+  <text class="label-small" x="662" y="168">rewards</text>
+  <text class="label-small" x="383" y="170">policy gradient</text>
+</svg>

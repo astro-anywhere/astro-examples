@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Are Audio-Language Models Listening? Audio-Specialist Heads for Adaptive Audio Steering</title>
+  <style>
+:root {
+  --bg: #FAF8F5;
+  --text: #3A3A3A;
+  --text-secondary: #6A6A6A;
+  --emph: #C4A882;
+  --blue: #8FA8B8;
+  --green: #A8B8A0;
+  --teal: #7FA8A0;
+  --gold: #C8B878;
+  --lavender: #9B8FBF;
+  --red: #A86464;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 32px;
+}
+h1 { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+h2 { font-size: 24px; font-weight: 600; margin-top: 36px; margin-bottom: 12px; }
+h3 { font-size: 20px; font-weight: 600; margin-top: 24px; margin-bottom: 10px; }
+a { color: #5A7A8A; text-decoration: none; border-bottom: 1px dotted rgba(90,122,138,.4); }
+a:hover { border-bottom-style: solid; }
+p { margin: 10px 0; }
+ul { margin: 8px 0 12px 20px; }
+li { margin: 6px 0; }
+.muted { color: var(--text-secondary); }
+.meta { margin: 14px 0 16px 0; }
+.figure-wrap { margin: 16px 0 22px 0; }
+.figure-wrap img { width: 100%; max-width: 800px; border: 1px solid rgba(106,106,106,.2); border-radius: 6px; background: #fff; }
+.box-blue { background: rgba(143, 168, 184, 0.12); border-left: 4px solid #8FA8B8; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.box-green { background: rgba(168, 184, 160, 0.12); border-left: 4px solid #A8B8A0; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.box-pink { background: rgba(196, 168, 130, 0.12); border-left: 4px solid #C4A882; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.box-gold { background: rgba(200, 184, 120, 0.12); border-left: 4px solid #C8B878; padding: 12px 16px; margin: 14px 0; border-radius: 4px; }
+.box-lavender { background: rgba(155, 143, 191, 0.12); border-left: 4px solid #9B8FBF; padding: 16px 20px; margin: 18px 0; border-radius: 4px; }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 13px; font-weight: 600; margin-right: 8px; }
+.badge-upvotes { background: rgba(200, 184, 120, 0.2); color: #8A7A40; }
+.badge-rank { background: rgba(143, 168, 184, 0.2); color: #5A7A8A; }
+.badge-daily { background: rgba(168, 184, 160, 0.2); color: #5A7A5A; }
+.badge-extra { background: rgba(155, 143, 191, 0.2); color: #6A5A8A; }
+code, pre { font-family: 'Fira Code', 'Source Code Pro', monospace; font-size: 15px; }
+</style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+</head>
+<body>
+  <header>
+    <h1>Are Audio-Language Models Listening? Audio-Specialist Heads for Adaptive Audio Steering</h1>
+    <div class="box-gold meta">
+      <span class="badge badge-rank">Rank #10</span>
+      <span class="badge badge-upvotes">9 upvotes</span>
+      <span class="badge badge-daily">Daily Paper</span>
+      <div><strong>Authors:</strong> Neta Glazer, Lenny Aharon, Ethan Fetaya</div>
+      <div><strong>arXiv:</strong> 2603.06854</div>
+      <div><strong>Date:</strong> 2026-03-11</div>
+      <div><strong>Tags:</strong> daily papers, standard-depth analysis</div>
+      <div class="muted">Generated: 2026-03-12 04:04:07.752 UTC</div>
+    </div>
+  </header>
+
+  <section>
+    <h2>1. Header</h2>
+    <p>Audio-Specialist Heads is ranked #10 by upvotes in the HuggingFace daily list. This document follows the standard-depth format for papers 6-10 and emphasizes method detail, benchmark interpretation, and deployment implications.</p>
+    <div class="box-blue"><strong>Source Coverage:</strong> AlphaXiv overview unavailable; analysis based on arXiv abstract, HF metadata, and mechanistic-interpretability methodology patterns. AlphaXiv full-text markdown unavailable.</div>
+  </section>
+
+  <section>
+    <h2>2. TL;DR</h2>
+    <div class="box-pink">
+      <p>The paper identifies a small set of audio-specialist attention heads in large audio-language models and uses them to build an interpretable “listening signal” that tracks when audio evidence actually influences predictions.</p>
+<p>Using this localization, the authors construct an audio-vs-silence steering direction and apply inference-time activation intervention, reporting up to +8.0 points on MMAU for two Qwen-based models without parameter updates. This is a strong mechanistic-interpretability result with immediate practical implications.</p>
+      <p><strong>Who should read this and why:</strong> Researchers in mechanistic interpretability, multimodal reliability, and model steering should read this paper; it gives a concrete, auditable intervention path for reducing text-dominance failures in audio-language models.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Background &amp; Prerequisites</h2>
+    <div class="box-blue">
+      <p>Large multimodal models often exhibit modality imbalance: one channel dominates because it is easier to exploit statistically. In audio-language systems, text priors can overpower weak or noisy acoustic evidence, leading to fluent but poorly grounded outputs. Detecting and correcting this failure mode is difficult when interventions happen only at prompt level.</p>
+<p>Mechanistic interpretability offers a different strategy: localize circuits that mediate a specific behavior and intervene directly in internal activations. In transformer models, attention heads are natural units for this analysis because they can specialize in token routing patterns tied to specific modalities or tasks.</p>
+<p>A prerequisite concept is activation steering. Instead of retraining, one can add a direction vector to hidden states at inference time to push the model toward or away from behaviors. If that direction is derived from interpretable differences (for example, audio-present minus audio-absent), steering can be both effective and auditable.</p>
+<p>This work is one of the clearest mechanistic contributions in this daily batch, and it pairs naturally with [[08-fish-audio-s2|Fish Audio S2]]: one optimizes generation behavior through training, the other improves evidence utilization through targeted internal control.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>4. Problem &amp; Motivation</h2>
+    <p>The paper tackles text dominance in LALMs: models can answer based on linguistic priors even when decisive information exists in audio. This failure is dangerous because outputs remain coherent, so users may not notice that the model ignored the evidence channel.</p>
+<p>The core challenge is to build interventions that are both useful and interpretable. End-to-end fine-tuning can improve metrics but rarely explains where grounding happens inside the network. The authors aim for a method that diagnoses internal engagement and improves it without weight updates.</p>
+  </section>
+
+  <section>
+    <h2>5. Method / Approach</h2>
+    <div class="figure-wrap">
+      <img src="../figures/10-audio-specialist-heads.svg" alt="Audio-Specialist Heads architecture/workflow diagram">
+    </div>
+    <p>Step 1 is head-level localization. The authors identify attention heads whose audio attention pattern correlates with audio-dependent behavior, defining them as audio-specialist heads. Rather than treating the full model as a black box, they isolate a sparse mechanism set.</p>
+<p>Step 2 is signal construction. They derive a listening signal from these heads and verify that it rises when audio evidence affects the final answer under normal prompting. This transforms a qualitative concern (“is it listening?”) into a measurable quantity.</p>
+<p>Step 3 is steering direction estimation. By contrasting activation states under audio-present and audio-silence conditions, they construct an audio-silence direction in representation space. The intervention adds this direction at inference time to the final representation, amplifying audio influence.</p>
+<p>Step 4 is evaluation on MMAU with Qwen-based LALMs. The abstract reports up to +8.0 percentage point improvement without parameter updates, indicating the intervention shifts behavior materially while preserving deployment simplicity.</p>
+<p>A compact formalization is: $$h^{\prime}=h+\gamma\,d_{audio-silence}$$ where $h$ is the base hidden state, $d_{audio-silence}$ is the steering vector derived from specialist-head analysis, and $\gamma$ controls intervention strength. The interpretability value comes from grounding $d$ in a localized mechanism rather than arbitrary latent directions.</p>
+<p>Methodologically, this sits between probing and full editing. Probing alone is diagnostic but not corrective; full finetuning is corrective but opaque. Head-localized steering gives both diagnosis and intervention in a single loop, which is why this paper stands out for practical mech-interp.</p>
+  </section>
+
+  <section>
+    <h2>6. Results &amp; Key Findings</h2>
+    <div class="box-green">
+      <p>The key quantitative claim is up to +8.0 points on MMAU across two Qwen-based audio-language models, achieved with inference-time intervention only.</p>
+<p>The key qualitative claim is even more important for interpretability: the listening signal increases when audio evidence is causally relevant to outputs. This suggests the identified heads are not merely correlated markers but useful handles on model behavior.</p>
+<p>Because no parameter updates are required, the approach can be tested rapidly in production-like environments. Teams can evaluate gains, regressions, and sensitivity by tuning one steering coefficient rather than launching expensive retraining.</p>
+<p>The paper also advances a broader thesis: modality grounding can be improved through sparse, mechanistically informed controls. That opens a practical path for reliability interventions in other modalities (vision, sensor fusion) where dominance imbalance appears.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>7. Limitations &amp; Open Questions</h2>
+    <div class="box-pink">
+      <ul>
+  <li>AlphaXiv detailed report was unavailable in this run, so architecture-layer specifics and ablations should be verified from the full manuscript before precise replication.</li>
+  <li>Steering gains may vary with prompt distribution and task mix. A direction that helps evidence-heavy QA might hurt free-form generation or conversational style if over-applied.</li>
+  <li>Head specialization can shift across model versions. The identified specialist set may not transfer directly to different checkpoints or architectures.</li>
+  <li>Interpretability does not automatically imply safety; stronger audio influence could amplify spurious audio artifacts if the input channel is noisy or adversarial.</li>
+  <li>Intervention strength calibration remains nontrivial. Too low yields no effect, too high may distort unrelated capabilities. Operational deployment needs guardrails and per-task tuning.</li>
+</ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>8. Connections &amp; Context</h2>
+    <div class="box-lavender">
+      <ul>
+  <li>[[07-reading-not-thinking|Reading, Not Thinking]] reports text dominance-like failures in visual text mode. This paper shows an analogous issue in audio and provides a mechanistic correction path.</li>
+  <li>[[08-fish-audio-s2|Fish Audio S2]] addresses controllable audio generation via training-time alignment, while this paper addresses understanding-time grounding via inference-time steering. Together they represent complementary levers for robust audio AI.</li>
+  <li>Across the daily top-10, this work is the clearest example of actionable mechanistic interpretability: localized circuit discovery tied directly to measurable behavioral improvement.</li>
+</ul>
+      <p>For practitioners, a strong next experiment is closed-loop adaptive steering where $gamma$ is set from a confidence estimate of audio relevance per query. That could improve robustness versus fixed-strength intervention.</p>
+<p>For research, the natural extension is causal mediation analysis across layers to quantify how much each specialist head contributes to final logits. That would turn the current intervention into a more complete causal map of audio grounding.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>9. Resources</h2>
+    <ul>
+      <li><a href="https://arxiv.org/abs/2603.06854" target="_blank" rel="noopener noreferrer">arXiv</a> · <a href="https://arxiv.org/pdf/2603.06854" target="_blank" rel="noopener noreferrer">PDF</a> · <a href="https://huggingface.co/papers/2603.06854" target="_blank" rel="noopener noreferrer">HuggingFace</a></li>
+      <li>Related papers in this batch: 06 CourtSI, 07 Modality Gap, 08 Fish Audio S2, 09 VLM-SubtleBench, 10 Audio-Specialist Heads.</li>
+    </ul>
+  </section>
+</body>
+</html>

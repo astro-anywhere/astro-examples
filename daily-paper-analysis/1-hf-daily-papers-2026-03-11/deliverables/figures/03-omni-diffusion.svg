@@ -1,0 +1,54 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; fill: #3A3A3A; }
+    .label { font-size: 14px; }
+    .label-small { font-size: 12px; fill: #6A6A6A; }
+    .label-bold { font-size: 14px; font-weight: 600; }
+    .node-blue { fill: rgba(143, 168, 184, 0.15); stroke: #8FA8B8; stroke-width: 1.5; rx: 8; }
+    .node-green { fill: rgba(168, 184, 160, 0.15); stroke: #A8B8A0; stroke-width: 1.5; rx: 8; }
+    .node-pink { fill: rgba(196, 168, 130, 0.15); stroke: #C4A882; stroke-width: 1.5; rx: 8; }
+    .node-teal { fill: rgba(127, 168, 160, 0.15); stroke: #7FA8A0; stroke-width: 1.5; rx: 8; }
+    .arrow { stroke: #8FA8B8; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8FA8B8"/>
+    </marker>
+  </defs>
+
+  <rect class="node-blue" x="20" y="40" width="170" height="85"/>
+  <text class="label-bold" x="34" y="70">Input Modalities</text>
+  <text class="label-small" x="34" y="92">Text / Speech / Image</text>
+  <text class="label-small" x="34" y="110">Any subset as condition</text>
+
+  <rect class="node-pink" x="220" y="25" width="290" height="115"/>
+  <text class="label-bold" x="235" y="57">Unified Discrete Token Space</text>
+  <text class="label-small" x="235" y="79">Modality-aware embeddings</text>
+  <text class="label-small" x="235" y="97">Mask/noise schedule $t=T...1$</text>
+  <text class="label-small" x="235" y="115">Joint multimodal representation</text>
+
+  <rect class="node-green" x="540" y="25" width="240" height="115"/>
+  <text class="label-bold" x="555" y="57">Masked Diffusion Backbone</text>
+  <text class="label-small" x="555" y="79">Parallel denoising updates</text>
+  <text class="label-small" x="555" y="97">Conditional token recovery</text>
+  <text class="label-small" x="555" y="115">Any-to-any modeling</text>
+
+  <rect class="node-teal" x="220" y="200" width="290" height="125"/>
+  <text class="label-bold" x="235" y="232">Iterative Refinement Loop</text>
+  <text class="label-small" x="235" y="254">$x^{(t-1)}=g_	heta(x^{(t)},c,t)$</text>
+  <text class="label-small" x="235" y="272">Coarse-to-fine multimodal updates</text>
+  <text class="label-small" x="235" y="290">Shared understanding + generation</text>
+  <text class="label-small" x="235" y="308">controllability through masks</text>
+
+  <rect class="node-green" x="540" y="210" width="240" height="105"/>
+  <text class="label-bold" x="555" y="242">Output Modalities</text>
+  <text class="label-small" x="555" y="264">Text generation/understanding</text>
+  <text class="label-small" x="555" y="282">Speech/image generation</text>
+  <text class="label-small" x="555" y="300">Cross-modal tasks</text>
+
+  <path class="arrow" d="M190 82 L220 82"/>
+  <path class="arrow" d="M510 82 L540 82"/>
+  <path class="arrow" d="M660 140 L660 210"/>
+  <path class="arrow" d="M540 262 L510 262"/>
+  <path class="arrow" d="M510 262 L540 262"/>
+</svg>

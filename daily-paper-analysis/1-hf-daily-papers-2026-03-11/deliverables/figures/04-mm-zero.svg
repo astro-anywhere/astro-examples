@@ -1,0 +1,48 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; fill: #3A3A3A; }
+    .label { font-size: 14px; }
+    .label-small { font-size: 12px; fill: #6A6A6A; }
+    .label-bold { font-size: 14px; font-weight: 600; }
+    .node-blue { fill: rgba(143, 168, 184, 0.15); stroke: #8FA8B8; stroke-width: 1.5; rx: 8; }
+    .node-green { fill: rgba(168, 184, 160, 0.15); stroke: #A8B8A0; stroke-width: 1.5; rx: 8; }
+    .node-pink { fill: rgba(196, 168, 130, 0.15); stroke: #C4A882; stroke-width: 1.5; rx: 8; }
+    .node-teal { fill: rgba(127, 168, 160, 0.15); stroke: #7FA8A0; stroke-width: 1.5; rx: 8; }
+    .arrow { stroke: #8FA8B8; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8FA8B8"/>
+    </marker>
+  </defs>
+
+  <rect class="node-pink" x="30" y="40" width="210" height="90"/>
+  <text class="label-bold" x="45" y="72">Proposer</text>
+  <text class="label-small" x="45" y="94">Abstract concept + question</text>
+  <text class="label-small" x="45" y="112">Difficulty-controlled prompts</text>
+
+  <rect class="node-blue" x="290" y="40" width="220" height="90"/>
+  <text class="label-bold" x="305" y="72">Coder</text>
+  <text class="label-small" x="305" y="94">Python/SVG rendering code</text>
+  <text class="label-small" x="305" y="112">Executable visual artifacts</text>
+
+  <rect class="node-green" x="560" y="40" width="210" height="90"/>
+  <text class="label-bold" x="575" y="72">Solver</text>
+  <text class="label-small" x="575" y="94">Multimodal reasoning answer</text>
+  <text class="label-small" x="575" y="112">Performance feedback</text>
+
+  <rect class="node-teal" x="200" y="210" width="400" height="120"/>
+  <text class="label-bold" x="215" y="240">GRPO Multi-role Optimization</text>
+  <text class="label-small" x="215" y="262">$J=r_{exec}+alpha r_{verify}+eta r_{solve}+gamma r_{diff}$</text>
+  <text class="label-small" x="215" y="280">Execution feedback + visual verification + curriculum balancing</text>
+  <text class="label-small" x="215" y="298">Role-specialized policy updates from shared base model</text>
+
+  <path class="arrow" d="M240 86 L290 86"/>
+  <path class="arrow" d="M510 86 L560 86"/>
+  <path class="arrow" d="M665 130 L665 210"/>
+  <path class="arrow" d="M395 210 L395 130"/>
+  <path class="arrow" d="M395 130 L130 130"/>
+  <path class="arrow" d="M130 130 L130 210"/>
+  <text class="label-small" x="675" y="172">solve reward</text>
+  <text class="label-small" x="46" y="198">policy updates to all roles</text>
+</svg>
