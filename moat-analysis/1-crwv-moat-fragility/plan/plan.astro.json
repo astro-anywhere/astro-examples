@@ -1,0 +1,662 @@
+{
+  "$schema": "astro-export",
+  "version": "1.0",
+  "type": "project",
+  "exportedAt": "2026-03-12T02:12:26.772Z",
+  "astroVersion": "0.1.0",
+  "name": "CRWV Moat Fragility Pipeline",
+  "description": "<p>You are a Senior Equity Analyst designing a comprehensive competitive advantage analysis pipeline.</p><h2>Company Specification</h2><ul><li><p>Working Directory: /Users/zhuoran_cisco/Documents/astro-outputs/Molt/crwv</p></li><li><p>Ticker Symbol: CRWV</p></li><li><p>Comparison Tickers: {{comparisonTickers}}</p></li><li><p>Supplementary Documents: {{supplementaryDocs}}</p></li><li><p>Custom Requirements: I use official data sources, such as Yahoo Finance data and the official earnings reports. Include figures from trustworthy sources and also draw figures on your own. Make the report comprehensive, so you need to think about what aspects we should include and try to include all of them well. Be comprehensive, but do not sacrifice the depth.</p></li><li><p>Analysis Depth: comprehensive</p></li><li><p>Time Horizon: 5 years</p></li><li><p>Sector Context: auto</p></li><li><p>Report Style: professional</p></li></ul><h2>Skill Reference</h2><p>This project uses the <code>moat-fragility</code> skill. The skill's SKILL.md contains:</p><ul><li><p>The complete CA Scoring methodology (4 pillars, 1-5 scale, 25% each)</p></li><li><p>The 7 Powers qualitative moat framework</p></li><li><p>The Anti-Fragility resilience test (Taleb-inspired)</p></li><li><p>Financial data retrieval guidelines</p></li><li><p>Report template with chart specifications</p></li><li><p>Scoring tables and interpretation guides</p></li></ul><p><strong>The SKILL.md is the single source of truth for scoring logic and report structure.</strong></p><h2>Planning Guidelines</h2><p>Decompose this analysis into a DAG of tasks following the 3-phase framework:</p><h3>Phase 1: Data Retrieval &amp; Quantitative Scoring (CA Score)</h3><ul><li><p>Retrieve financial data for CRWV (and comparison tickers if provided) from:</p><ul><li><p><strong>SEC EDGAR</strong>: 10-K filings for revenue, margins, ROIC, balance sheet data</p></li><li><p><strong>Earnings reports/transcripts</strong>: Recent quarterly earnings for forward guidance and segment detail</p></li><li><p><strong>Yahoo Finance API</strong>: Historical prices, key statistics (<code>curl</code> commands)</p></li><li><p><strong>Company investor relations</strong>: Annual reports, earnings presentations</p></li><li><p><strong>Industry reports</strong>: Market sizing data from Gartner, IDC, Statista</p></li></ul></li><li><p>Data to collect:</p><ul><li><p>Revenue (last N years based on time horizon)</p></li><li><p>Market share / addressable market estimates</p></li><li><p>ARPU and pricing trends (CAGR)</p></li><li><p>ROIC vs. WACC (historical and projected)</p></li><li><p>Balance sheet: debt/equity, cash, FCF</p></li><li><p>Insider ownership from DEF 14A proxy</p></li></ul></li><li><p>If supplementary documents provided, parse them using appropriate tools:</p><ul><li><p>PDF files → use the PDF skill (Read tool on .pdf files)</p></li><li><p>Other formats → read directly</p></li></ul></li><li><p>Score each of the 4 CA pillars (1-5):</p><ol><li><p>Market Position</p></li><li><p>Position Trend</p></li><li><p>Pricing Power (ARPU/CAGR)</p></li><li><p>Future ROIC</p></li></ol></li><li><p>Calculate weighted CA Score (average of 4 pillars)</p></li></ul><h3>Phase 2: Qualitative Moat Analysis (7 Powers)</h3><ul><li><p>Analyze each of the 7 Powers:</p><ol><li><p>Scale Economies — does unit cost decline with volume?</p></li><li><p>Network Effects — does value increase with users?</p></li><li><p>Counter-Positioning — is the incumbent unable to copy?</p></li><li><p>Switching Costs — how costly is it to switch?</p></li><li><p>Branding — does the brand command premium pricing?</p></li><li><p>Cornered Resource — any exclusive access to key assets?</p></li><li><p>Process Power — any proprietary operational excellence?</p></li></ol></li><li><p>For each Power: provide 2-3 specific examples from 10-K, earnings calls, or public data</p></li><li><p>Rate moat strength: None / Narrow / Wide / Very Wide</p></li><li><p>Identify the primary moat source (top 1-2 powers)</p></li></ul><h3>Phase 3: Anti-Fragility Resilience Test</h3><ul><li><p>Skin in the Game: founder/insider ownership %, recent transactions</p></li><li><p>Financial Health: debt-to-equity, current ratio, cash reserves, free cash flow</p></li><li><p>Optionality: pivot potential, adjacent market opportunities, R&amp;D optionality</p></li><li><p>Black Swan exposure: regulatory risk, key-person risk, concentration risk</p></li><li><p>Rate anti-fragility: Fragile / Robust / Anti-Fragile</p></li></ul><h3>Phase 4: Report Generation</h3><ul><li><p>Compile all analysis into structured report</p></li><li><p>Generate charts:</p><ul><li><p>Revenue &amp; market share trend (line chart)</p></li><li><p>ROIC vs. WACC (bar chart)</p></li><li><p>CA Score radar chart (4 pillars)</p></li><li><p>Moat strength heatmap</p></li></ul></li><li><p>Write Executive Summary with overall assessment</p></li><li><p>Generate final PDF (Markdown/HTML → PDF via Playwright)</p></li></ul><h3>Parallelism</h3><ul><li><p>Phase 1 data retrieval must complete first</p></li><li><p>Phase 1 scoring, Phase 2, and Phase 3 can partially overlap</p></li><li><p>Phase 4 depends on all prior phases</p></li></ul><h3>Labels</h3><ul><li><p>l5=Research (financial analysis, moat assessment)</p></li><li><p>l1=Frontend (report generation, charts)</p></li></ul><h3>Verification</h3><ul><li><p>\"auto\" for data retrieval and report generation</p></li><li><p>\"human\" for final analysis quality review</p></li></ul><p></p>",
+  "data": {
+    "project": {
+      "id": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+      "ownerId": "1694d677-84ac-4e9f-ad0a-fb56d760d059",
+      "number": null,
+      "name": "CRWV Moat Fragility Pipeline",
+      "description": "<p>You are a Senior Equity Analyst designing a comprehensive competitive advantage analysis pipeline.</p><h2>Company Specification</h2><ul><li><p>Working Directory: /Users/zhuoran_cisco/Documents/astro-outputs/Molt/crwv</p></li><li><p>Ticker Symbol: CRWV</p></li><li><p>Comparison Tickers: {{comparisonTickers}}</p></li><li><p>Supplementary Documents: {{supplementaryDocs}}</p></li><li><p>Custom Requirements: I use official data sources, such as Yahoo Finance data and the official earnings reports. Include figures from trustworthy sources and also draw figures on your own. Make the report comprehensive, so you need to think about what aspects we should include and try to include all of them well. Be comprehensive, but do not sacrifice the depth.</p></li><li><p>Analysis Depth: comprehensive</p></li><li><p>Time Horizon: 5 years</p></li><li><p>Sector Context: auto</p></li><li><p>Report Style: professional</p></li></ul><h2>Skill Reference</h2><p>This project uses the <code>moat-fragility</code> skill. The skill's SKILL.md contains:</p><ul><li><p>The complete CA Scoring methodology (4 pillars, 1-5 scale, 25% each)</p></li><li><p>The 7 Powers qualitative moat framework</p></li><li><p>The Anti-Fragility resilience test (Taleb-inspired)</p></li><li><p>Financial data retrieval guidelines</p></li><li><p>Report template with chart specifications</p></li><li><p>Scoring tables and interpretation guides</p></li></ul><p><strong>The SKILL.md is the single source of truth for scoring logic and report structure.</strong></p><h2>Planning Guidelines</h2><p>Decompose this analysis into a DAG of tasks following the 3-phase framework:</p><h3>Phase 1: Data Retrieval &amp; Quantitative Scoring (CA Score)</h3><ul><li><p>Retrieve financial data for CRWV (and comparison tickers if provided) from:</p><ul><li><p><strong>SEC EDGAR</strong>: 10-K filings for revenue, margins, ROIC, balance sheet data</p></li><li><p><strong>Earnings reports/transcripts</strong>: Recent quarterly earnings for forward guidance and segment detail</p></li><li><p><strong>Yahoo Finance API</strong>: Historical prices, key statistics (<code>curl</code> commands)</p></li><li><p><strong>Company investor relations</strong>: Annual reports, earnings presentations</p></li><li><p><strong>Industry reports</strong>: Market sizing data from Gartner, IDC, Statista</p></li></ul></li><li><p>Data to collect:</p><ul><li><p>Revenue (last N years based on time horizon)</p></li><li><p>Market share / addressable market estimates</p></li><li><p>ARPU and pricing trends (CAGR)</p></li><li><p>ROIC vs. WACC (historical and projected)</p></li><li><p>Balance sheet: debt/equity, cash, FCF</p></li><li><p>Insider ownership from DEF 14A proxy</p></li></ul></li><li><p>If supplementary documents provided, parse them using appropriate tools:</p><ul><li><p>PDF files → use the PDF skill (Read tool on .pdf files)</p></li><li><p>Other formats → read directly</p></li></ul></li><li><p>Score each of the 4 CA pillars (1-5):</p><ol><li><p>Market Position</p></li><li><p>Position Trend</p></li><li><p>Pricing Power (ARPU/CAGR)</p></li><li><p>Future ROIC</p></li></ol></li><li><p>Calculate weighted CA Score (average of 4 pillars)</p></li></ul><h3>Phase 2: Qualitative Moat Analysis (7 Powers)</h3><ul><li><p>Analyze each of the 7 Powers:</p><ol><li><p>Scale Economies — does unit cost decline with volume?</p></li><li><p>Network Effects — does value increase with users?</p></li><li><p>Counter-Positioning — is the incumbent unable to copy?</p></li><li><p>Switching Costs — how costly is it to switch?</p></li><li><p>Branding — does the brand command premium pricing?</p></li><li><p>Cornered Resource — any exclusive access to key assets?</p></li><li><p>Process Power — any proprietary operational excellence?</p></li></ol></li><li><p>For each Power: provide 2-3 specific examples from 10-K, earnings calls, or public data</p></li><li><p>Rate moat strength: None / Narrow / Wide / Very Wide</p></li><li><p>Identify the primary moat source (top 1-2 powers)</p></li></ul><h3>Phase 3: Anti-Fragility Resilience Test</h3><ul><li><p>Skin in the Game: founder/insider ownership %, recent transactions</p></li><li><p>Financial Health: debt-to-equity, current ratio, cash reserves, free cash flow</p></li><li><p>Optionality: pivot potential, adjacent market opportunities, R&amp;D optionality</p></li><li><p>Black Swan exposure: regulatory risk, key-person risk, concentration risk</p></li><li><p>Rate anti-fragility: Fragile / Robust / Anti-Fragile</p></li></ul><h3>Phase 4: Report Generation</h3><ul><li><p>Compile all analysis into structured report</p></li><li><p>Generate charts:</p><ul><li><p>Revenue &amp; market share trend (line chart)</p></li><li><p>ROIC vs. WACC (bar chart)</p></li><li><p>CA Score radar chart (4 pillars)</p></li><li><p>Moat strength heatmap</p></li></ul></li><li><p>Write Executive Summary with overall assessment</p></li><li><p>Generate final PDF (Markdown/HTML → PDF via Playwright)</p></li></ul><h3>Parallelism</h3><ul><li><p>Phase 1 data retrieval must complete first</p></li><li><p>Phase 1 scoring, Phase 2, and Phase 3 can partially overlap</p></li><li><p>Phase 4 depends on all prior phases</p></li></ul><h3>Labels</h3><ul><li><p>l5=Research (financial analysis, moat assessment)</p></li><li><p>l1=Frontend (report generation, charts)</p></li></ul><h3>Verification</h3><ul><li><p>\"auto\" for data retrieval and report generation</p></li><li><p>\"human\" for final analysis quality review</p></li></ul><p></p>",
+      "visionDoc": "---\nname: moat-fragility\nversion: \"2.0.0\"\ndescription: \"Evaluate a company's competitive advantage through quantitative CA scoring, qualitative moat analysis (7 Powers), and anti-fragility resilience testing\"\ncategory: workflows\ntags: [finance, investing, moat, competitive-advantage, equity, analysis, antifragile]\nallowedTools: [Read, Write, Edit, Glob, Grep, Bash]\n---\n\n# Moat & Fragility Competitive Advantage Analysis\n\nYou are a Senior Equity Analyst conducting a comprehensive competitive advantage evaluation. Your analysis follows a four-phase framework inspired by Warren Buffett's moat concept, Hamilton Helmer's \"7 Powers\", and Nassim Taleb's \"Antifragile\".\n\n---\n\n## 0. Workflow — Multi-Step Task Decomposition\n\n**CRITICAL**: A thorough moat analysis requires structured decomposition. Never attempt the entire analysis in a single task. Each phase is a separate Astro task with clear inputs, outputs, and dependencies.\n\n### Recommended Plan Structure\n\n```\nTask 1: Company Profile & Data Collection\n  → Output: data/company-profile.md, data/financials.md\n  → No dependencies\n  → Gather: 10-K data, market share, pricing, ROIC, competitor list\n\nTask 2: Quantitative CA Scoring (Phase 1)\n  → Output: analysis/ca-score.md, charts/ca-radar.svg\n  → Depends on: Task 1\n\nTask 3: Qualitative Moat Analysis — 7 Powers (Phase 2)\n  → Output: analysis/moat-analysis.md, charts/moat-heatmap.svg\n  → Depends on: Task 1 (can run in parallel with Task 2)\n\nTask 4: Anti-Fragility Resilience Test (Phase 3)\n  → Output: analysis/anti-fragility.md\n  → Depends on: Tasks 2, 3\n\nTask 5: Synthesis & Investment Thesis (Phase 4)\n  → Output: analysis/investment-thesis.md\n  → Depends on: Tasks 2, 3, 4\n\nTask 6: Report Assembly & PDF Generation\n  → Output: output/report/moat-analysis.pdf\n  → Depends on: Task 5\n\nMilestone: Analysis Complete\n  → Depends on: Task 6\n```\n\nFor **comparative analysis** (2+ companies), add parallel Task 2/3 branches per company, then a comparative Task 5 that synthesizes across all companies (8-12 tasks total).\n\n---\n\n## 1. Document Reading Tools\n\nWhen supplementary documents (10-K filings, earnings transcripts, research reports) are provided:\n\n### PDF Files\nUse the **PDF skill** (pre-loaded in your skill instructions) to read PDF documents. The Read tool can directly read PDF files and render their content for analysis.\n\n### Other Formats\nRead Markdown, HTML, and text files directly with the Read tool.\n\n### Data Retrieval\n\nWhen retrieving financial data, use these approaches in order of reliability:\n- **SEC EDGAR**: 10-K filings, proxy statements (DEF 14A), insider transactions (Form 4)\n- **Yahoo Finance API**: Historical prices, basic financials (use Bash + curl)\n- **Company investor relations**: Earnings presentations, annual reports\n- **Industry reports**: Market sizing, competitive landscape (Gartner, IDC, Statista)\n\n**Data validation rules**:\n- Cross-reference at least 2 sources for key metrics\n- Flag estimated vs. confirmed data points explicitly\n- Use trailing twelve months (TTM) for most recent data\n- Normalize for one-time items (restructuring charges, asset sales)\n- Always state the date range for all financial data\n\n---\n\n## 2. Phase 1: Quantitative CA Scoring\n\nThe CA Score evaluates four pillars, each weighted equally (25%), on a 1-5 scale.\n\n### Pillar 1: Market Position (25%)\n\n**What to measure**: Current revenue share, subscriber/user count, units sold relative to the addressable market.\n\n| Score | Criteria | Evidence Required |\n|-------|----------|-------------------|\n| 5 | Dominant: >40% share or undisputed #1 | Market research data, industry reports |\n| 4 | Strong: 20-40% share, top 3 | Revenue vs. competitors, analyst estimates |\n| 3 | Moderate: 10-20% share, notable player | Company filings, market sizing |\n| 2 | Weak: 5-10% share | Declining relevance indicators |\n| 1 | Marginal: <5% share | At risk of exit |\n\n**Data sources**: 10-K revenue, industry reports (Gartner, IDC, Statista), earnings call commentary.\n\n**Analysis depth**: Don't just state market share — explain *why* the company holds that position. What structural advantages maintain it? How has share trended over 3-5 years?\n\n### Pillar 2: Position Trend (25%)\n\n**What to measure**: Year-over-year change in market share or relative revenue growth vs. peers.\n\n| Score | Criteria | Evidence Required |\n|-------|----------|-------------------|\n| 5 | Accelerating gains: share growing >5% YoY | Multi-year revenue + market data |\n| 4 | Steady gains: share growing 2-5% YoY | Consistent outperformance vs. industry |\n| 3 | Stable: share ±2% YoY | In-line with market growth |\n| 2 | Declining: share shrinking 2-5% YoY | Losing to specific competitors |\n| 1 | Rapid decline: share shrinking >5% YoY | Existential competitive threat |\n\n**Data sources**: Multi-year revenue CAGR, competitor growth rates, industry growth rate.\n\n**Analysis depth**: Identify the *drivers* of the trend. Is growth organic or acquisitive? Which segments/geographies are growing vs. shrinking? What would reverse the trend?\n\n### Pillar 3: Pricing Power (25%)\n\n**What to measure**: ARPU (Average Revenue Per User) trend and ability to raise prices without demand destruction.\n\n| Score | Criteria | Evidence Required |\n|-------|----------|-------------------|\n| 5 | Strong: ARPU CAGR >8%, prices raised freely | Pricing history, ARPU trend data |\n| 4 | Good: ARPU CAGR 4-8% | Steady price increases, low churn |\n| 3 | Neutral: ARPU flat (0-4% CAGR) | Pricing in line with inflation |\n| 2 | Weak: ARPU declining | Promotional activity, competitor pressure |\n| 1 | None: race to bottom, commoditized | Price wars, no differentiation |\n\n**Data sources**: Revenue per user/unit, pricing page history, gross margin trend, competitive pricing.\n\n**Analysis depth**: Distinguish between *actual* pricing power (raising prices without losing customers) and *apparent* pricing power (raising prices while simultaneously losing low-value customers). Check gross margin trajectory alongside ARPU.\n\n### Pillar 4: Future ROIC (25%)\n\n**What to measure**: Return on Invested Capital vs. Weighted Average Cost of Capital, historical and projected.\n\n| Score | Criteria | Evidence Required |\n|-------|----------|-------------------|\n| 5 | Exceptional: ROIC >25%, expanding, far exceeds WACC | 5-year ROIC trend, WACC estimate |\n| 4 | Strong: ROIC 15-25%, comfortably above WACC | Consistent value creation |\n| 3 | Adequate: ROIC 8-15%, near WACC | Marginal value creation |\n| 2 | Concerning: ROIC 3-8%, at or below WACC | Value destruction risk |\n| 1 | Destroying value: ROIC <3%, well below WACC | Sustained capital misallocation |\n\n**ROIC Calculation**:\n```\nROIC = NOPAT / Invested Capital\nNOPAT = Operating Income × (1 - Tax Rate)\nInvested Capital = Total Equity + Total Debt - Cash\n```\n\n**Analysis depth**: Decompose ROIC into its drivers (margin expansion vs. capital efficiency). Is high ROIC sustainable or driven by one-time factors? How does ROIC compare to the company's own cost of capital? Project 3-year ROIC trajectory with bull/base/bear scenarios.\n\n### CA Score Synthesis\n\n**CA Score** = (P1 + P2 + P3 + P4) / 4\n\n| CA Score | Interpretation |\n|----------|---------------|\n| 4.0-5.0 | Exceptional competitive advantage |\n| 3.0-3.9 | Solid competitive position |\n| 2.0-2.9 | Challenged position |\n| 1.0-1.9 | Weak, at risk |\n\nAfter calculating the score, write a **300-word narrative** explaining what the quantitative picture tells you. Which pillars are strongest? Which are weakest? What's the trajectory? This narrative bridges the quantitative and qualitative analysis.\n\n---\n\n## 3. Phase 2: Qualitative Moat Analysis (7 Powers)\n\nBased on Hamilton Helmer's \"7 Powers: The Foundations of Business Strategy\".\n\nFor each Power, evaluate along three axes:\n1. **Current strength**: None / Weak / Moderate / Strong\n2. **Trajectory**: Strengthening / Stable / Eroding\n3. **Durability**: How long until a well-funded competitor could replicate this? (<1yr / 1-3yr / 3-5yr / 5+yr)\n\n### Power 1: Scale Economies\n**Question**: Does unit cost decline meaningfully as volume increases?\n- **Evidence to gather**: Fixed cost structure, unit economics at different scale levels, marginal cost curve shape\n- **Examples**: AWS (server costs amortized), Costco (buying power), TSMC (fab utilization)\n- **Quantitative proxy**: Operating leverage ratio, fixed costs as % of revenue\n- **Erosion risk**: Technology changes that reduce minimum efficient scale, modular architectures that enable smaller competitors\n\n### Power 2: Network Effects\n**Question**: Does the product become more valuable as more people use it?\n- **Types**: Direct (phone network), Indirect (app marketplace), Data (ML models improve with usage), Social (identity/status)\n- **Evidence to gather**: User growth → engagement metrics, marketplace liquidity ratios, data flywheel evidence\n- **Examples**: Meta (social graph), Visa (merchant + cardholder), Google (search quality → usage → data → quality)\n- **Quantitative proxy**: User retention vs. network size, marketplace liquidity, engagement per user over time\n- **Erosion risk**: Multi-homing (users on multiple platforms), protocol-level interoperability, network collapse dynamics\n\n### Power 3: Counter-Positioning\n**Question**: Would a rational incumbent decline to copy this approach because it would damage their existing business?\n- **Evidence to gather**: Cannibalization risk for incumbent, business model conflict, organizational inertia\n- **Examples**: Netflix vs. Blockbuster, Tesla DTC vs. dealer networks, Amazon AWS vs. enterprise IT vendors\n- **Quantitative proxy**: Incumbent's revenue at risk from adoption, margin differential between old/new model\n- **Erosion risk**: Counter-positioning is *temporary* — it erodes as the old business model declines naturally. How much runway remains?\n\n### Power 4: Switching Costs\n**Question**: How costly (in time, money, or pain) is it for a customer to switch to a competitor?\n- **Types**: Financial (contracts, migration costs), Procedural (retraining, workflow disruption), Relational (trust, integration depth), Data (history, customization)\n- **Evidence to gather**: Retention rates, contract length, integration depth, data portability\n- **Examples**: Salesforce (CRM data lock-in), Epic Systems (hospital EHR), Adobe (workflow integration)\n- **Quantitative proxy**: Dollar retention rate, average contract length, churn rate by cohort\n- **Erosion risk**: API standardization, data portability regulations, abstraction layers\n\n### Power 5: Branding\n**Question**: Does the brand command a price premium or drive unprompted demand?\n- **Evidence to gather**: Price premium vs. generic, NPS scores, brand value rankings, unprompted recall\n- **Examples**: Apple (willingness to pay premium), Coca-Cola (brand = demand), Hermès (aspirational brand)\n- **Quantitative proxy**: Price premium percentage, NPS, brand value in Interbrand/BrandZ rankings\n- **Erosion risk**: Reputation events, generational preference shifts, commoditization of category\n\n### Power 6: Cornered Resource\n**Question**: Does the company have exclusive access to a valuable resource competitors cannot obtain?\n- **Types**: Patents, exclusive licenses, proprietary data, key talent, regulatory approvals, geographic rights\n- **Evidence to gather**: Patent portfolio, exclusive contracts, regulatory barriers, talent concentration\n- **Examples**: Qualcomm (essential patents), Disney (IP catalog), Novo Nordisk (GLP-1 manufacturing scale)\n- **Quantitative proxy**: Patent citation count, exclusive contract duration, regulatory approval timeline for competitors\n- **Erosion risk**: Patent expiry, regulatory changes, talent mobility, alternative technologies\n\n### Power 7: Process Power\n**Question**: Has the company developed proprietary operational excellence that is deeply embedded and not easily replicated?\n- **Evidence to gather**: Operational metrics vs. peers, institutional knowledge, culture, continuous improvement track record\n- **Examples**: Toyota (TPS/lean manufacturing), Danaher (DBS), Bridgewater (principles-based culture)\n- **Quantitative proxy**: Operational efficiency metrics vs. peers (defect rate, cycle time, throughput)\n- **Erosion risk**: Key person departures, cultural dilution through rapid hiring, process rigidity in changing markets\n\n### Moat Interaction Analysis\n\nAfter scoring each Power individually, analyze how they **reinforce each other**:\n- Do network effects strengthen switching costs? (e.g., Salesforce ecosystem)\n- Does scale enable branding investment? (e.g., Coca-Cola)\n- Does process power protect cornered resources? (e.g., TSMC)\n- Are there **flywheel dynamics** where one Power feeds another?\n\nMap the interaction in a brief paragraph: \"The primary moat is [X], reinforced by [Y] and [Z]. The flywheel works as follows: [mechanism].\"\n\n### Moat Width Rating\n| Rating | Criteria |\n|--------|----------|\n| **None** | No Power scores above Weak |\n| **Narrow** | 1 Power at Moderate+, others Weak or None |\n| **Wide** | 2-3 Powers at Moderate+, at least 1 Strong |\n| **Very Wide** | 3+ Powers at Strong, multiple reinforcing advantages with flywheel dynamics |\n\n---\n\n## 4. Phase 3: Anti-Fragility Resilience Test\n\nInspired by Nassim Taleb's \"Antifragile\" — evaluating whether the company merely survives stress or actually benefits from it.\n\n### Test 1: Skin in the Game\n\n| Metric | Score |\n|--------|-------|\n| Insider ownership >10% | Strong alignment |\n| Insider ownership 3-10% | Moderate alignment |\n| Insider ownership <3% | Weak alignment |\n\n**Also check**:\n- Recent insider transactions (Form 4 filings): net buying vs. selling over last 12 months\n- Founder still active in management? Founder-led companies often have stronger long-term alignment\n- Executive compensation structure: equity vs. cash heavy? Long-term vesting vs. short-term bonuses?\n- Share buyback history: signal of confidence vs. EPS manipulation (check if buybacks happen at high prices)\n- Board independence and tenure\n\n### Test 2: Financial Health (Balance Sheet Fortress)\n\n| Metric | Fortress | Healthy | Moderate | Risky |\n|--------|----------|---------|----------|-------|\n| Debt/Equity | <0.3 | 0.3-1.0 | 1.0-2.0 | >2.0 |\n| Current Ratio | >2.0 | 1.5-2.0 | 1.0-1.5 | <1.0 |\n| Interest Coverage | >10x | 5-10x | 2-5x | <2x |\n| FCF Margin | >20% | 10-20% | 5-10% | <5% |\n| Cash Runway | >24 months | 12-24 months | 6-12 months | <6 months |\n\n**Stress test**: What happens if revenue drops 30%? Can the company survive 18 months without external financing? This is the \"Taleb test\" — companies that can survive tail events have optionality that fragile companies don't.\n\n### Test 3: Optionality Assessment\n\nEvaluate the company's portfolio of real options — asymmetric bets where downside is capped but upside is open-ended:\n\n- **Adjacent market TAM**: Can they expand into nearby markets? What's the total opportunity? Quantify the TAM of each adjacent market.\n- **R&D intensity**: R&D/Revenue ratio and trend. Is R&D creating options (new products, platforms) or just maintaining the existing business?\n- **Platform extensibility**: Can new products/services be built on existing infrastructure? What's the marginal cost of a new product line?\n- **Geographic expansion**: Untapped markets, international revenue as % of total, regulatory barriers to entry\n- **M&A optionality**: Balance sheet capacity for strategic acquisitions. Track record of M&A value creation.\n- **Convexity assessment**: Does the company have more upside scenarios than downside? Map the probability distribution: is it positively skewed (many small losses, few large gains) or negatively skewed (many small gains, few large losses)?\n\n### Test 4: Black Swan Exposure\n\nFor each risk factor, assess severity and *correlation* with other risks (correlated risks are far more dangerous):\n\n| Risk Factor | Low | Medium | High |\n|-------------|-----|--------|------|\n| Regulatory | Multi-jurisdiction, stable framework | Some pending regulation | Single jurisdiction, active legislation |\n| Key-person | Deep bench, distributed leadership | Important leaders but succession planned | Founder-dependent, no succession plan |\n| Revenue concentration | Top customer <10% | Top customer 10-25% | Top customer >25% |\n| Technology disruption | Platform company, technology creator | Fast follower, adaptive | Legacy technology, slow to change |\n| Geopolitical | Diversified globally | Some geographic concentration | Single-market dependent |\n| Supply chain | Multiple suppliers, diversified | Some concentration | Single-source critical inputs |\n\n**Tail risk correlation**: Are multiple \"Medium\" risks correlated? (e.g., geopolitical + supply chain + regulatory in the same region = much worse than three independent Medium risks)\n\n### Test 5: Scenario Analysis\n\nConstruct three scenarios with explicit assumptions:\n\n**Bull Case** (20% probability):\n- What catalyst would unlock significant upside?\n- What's the potential revenue/earnings in 3 years?\n- Which moat powers would strengthen?\n\n**Base Case** (60% probability):\n- Continuation of current trends\n- Expected revenue/earnings trajectory\n- Moat stability assessment\n\n**Bear Case** (20% probability):\n- What specific threat could impair the business?\n- Revenue impact quantification\n- Could the company survive and recover, or is this terminal?\n\n**Expected value**: Weight the scenarios to derive an expected CA trajectory.\n\n### Anti-Fragility Rating\n\n| Rating | Criteria |\n|--------|----------|\n| **Fragile** | High leverage, concentrated risk, no optionality, weak alignment, multiple correlated high-risk exposures. Breaks under stress. |\n| **Robust** | Healthy balance sheet, diversified revenue, adequate alignment, manageable risks. Survives stress unchanged. |\n| **Anti-Fragile** | Fortress balance sheet, high optionality, strong alignment, convex payoff profile. *Benefits* from volatility — stress triggers growth. |\n\n---\n\n## 5. Phase 4: Synthesis & Investment Thesis\n\nThis phase brings everything together into a coherent narrative. It is NOT just a summary — it's a *synthesis* that identifies the key insight.\n\n### Structure\n\n1. **One-sentence thesis**: \"Company X has a [wide/narrow/no] moat driven by [primary power], with [anti-fragile/robust/fragile] financials, making it [attractive/neutral/unattractive] at current valuation.\"\n\n2. **Moat durability assessment**: How long will the moat last? What are the 2-3 biggest threats to the moat? When would you re-evaluate?\n\n3. **Key risks ranked**: List the top 3 risks with probability and impact estimates. For each, identify what *early warning signal* would indicate the risk is materializing.\n\n4. **Catalysts**: What events in the next 12-24 months could change the assessment? (Product launches, regulatory decisions, competitive entries, macro shifts)\n\n5. **Comparative positioning**: If comparison tickers were provided, rank them on overall CA strength and explain the key differentiators.\n\n---\n\n## 6. Report Template\n\n### HTML Report Structure\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"UTF-8\">\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body {\n    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;\n    max-width: 920px;\n    margin: 0 auto;\n    padding: 48px 40px;\n    color: #3A3A3A;\n    line-height: 1.7;\n    background: #FAF8F5;\n  }\n  h1 {\n    font-size: 32px;\n    font-weight: 700;\n    color: #3A3A3A;\n    margin-bottom: 8px;\n    letter-spacing: -0.5px;\n  }\n  h2 {\n    font-size: 22px;\n    font-weight: 600;\n    color: #3A3A3A;\n    margin-top: 40px;\n    margin-bottom: 16px;\n    padding-bottom: 8px;\n    border-bottom: 2px solid #B2986E;\n  }\n  h3 {\n    font-size: 18px;\n    font-weight: 600;\n    color: #6E8AA4;\n    margin-top: 24px;\n    margin-bottom: 10px;\n  }\n  .subtitle {\n    font-size: 16px;\n    color: #8A8A8A;\n    margin-bottom: 32px;\n    font-style: italic;\n  }\n  table {\n    border-collapse: collapse;\n    width: 100%;\n    margin: 20px 0;\n    font-size: 15px;\n  }\n  th {\n    background: #3A3A3A;\n    color: #FAF8F5;\n    padding: 12px 16px;\n    text-align: left;\n    font-weight: 600;\n    font-size: 13px;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n  }\n  td {\n    border-bottom: 1px solid #e8e4e0;\n    padding: 11px 16px;\n    text-align: left;\n  }\n  tr:hover td {\n    background: rgba(178, 152, 110, 0.06);\n  }\n  .score-high { color: #5D8057; font-weight: 700; }\n  .score-mid { color: #B2986E; font-weight: 700; }\n  .score-low { color: #A86464; font-weight: 700; }\n\n  /* Executive Summary Card */\n  .exec-summary {\n    background: white;\n    border-radius: 12px;\n    padding: 28px 32px;\n    margin: 28px 0;\n    box-shadow: 0 2px 12px rgba(0,0,0,0.06);\n    border-top: 4px solid #B2986E;\n  }\n  .exec-summary h2 {\n    margin-top: 0;\n    border: none;\n    padding-bottom: 0;\n  }\n\n  /* Metric Cards */\n  .metric-row {\n    display: flex;\n    gap: 20px;\n    margin: 24px 0;\n  }\n  .metric-card {\n    flex: 1;\n    background: white;\n    border-radius: 10px;\n    padding: 20px 24px;\n    box-shadow: 0 1px 6px rgba(0,0,0,0.04);\n    text-align: center;\n  }\n  .metric-card .value {\n    font-size: 32px;\n    font-weight: 700;\n    margin: 8px 0 4px;\n  }\n  .metric-card .label {\n    font-size: 13px;\n    color: #8A8A8A;\n    text-transform: uppercase;\n    letter-spacing: 0.5px;\n  }\n  .metric-card .sublabel {\n    font-size: 14px;\n    color: #6E8AA4;\n    margin-top: 4px;\n  }\n\n  /* Verdict Box */\n  .verdict-box {\n    background: white;\n    border: 2px solid #5D8057;\n    border-radius: 12px;\n    padding: 24px 32px;\n    text-align: center;\n    margin: 32px 0;\n    box-shadow: 0 2px 8px rgba(93,128,87,0.1);\n  }\n  .verdict-box.cautious {\n    border-color: #B2986E;\n    box-shadow: 0 2px 8px rgba(178,152,110,0.1);\n  }\n  .verdict-box.negative {\n    border-color: #A86464;\n    box-shadow: 0 2px 8px rgba(168,100,100,0.1);\n  }\n\n  /* Power Assessment Bars */\n  .power-bar {\n    display: flex;\n    align-items: center;\n    margin: 8px 0;\n    gap: 12px;\n  }\n  .power-bar .name {\n    width: 160px;\n    font-size: 14px;\n    font-weight: 600;\n    text-align: right;\n  }\n  .power-bar .bar-bg {\n    flex: 1;\n    height: 24px;\n    background: #f0ede8;\n    border-radius: 12px;\n    overflow: hidden;\n  }\n  .power-bar .bar-fill {\n    height: 100%;\n    border-radius: 12px;\n    transition: width 0.3s ease;\n  }\n  .power-bar .bar-fill.strong { background: linear-gradient(90deg, #5D8057, #7BA075); }\n  .power-bar .bar-fill.moderate { background: linear-gradient(90deg, #B2986E, #C8AE84); }\n  .power-bar .bar-fill.weak { background: linear-gradient(90deg, #A86464, #BE7A7A); }\n  .power-bar .bar-fill.none { background: #d8d4d0; }\n\n  /* Insight callouts */\n  .insight {\n    background: rgba(110, 138, 164, 0.08);\n    border-left: 4px solid #6E8AA4;\n    padding: 16px 20px;\n    margin: 20px 0;\n    border-radius: 0 8px 8px 0;\n    font-size: 15px;\n  }\n  .insight strong { color: #6E8AA4; }\n\n  .risk-callout {\n    background: rgba(168, 100, 100, 0.06);\n    border-left: 4px solid #A86464;\n    padding: 16px 20px;\n    margin: 20px 0;\n    border-radius: 0 8px 8px 0;\n    font-size: 15px;\n  }\n  .risk-callout strong { color: #A86464; }\n\n  /* Print styles */\n  @media print {\n    body { padding: 20px; background: white; }\n    .exec-summary, .metric-card { box-shadow: none; border: 1px solid #e8e4e0; }\n  }\n</style>\n</head>\n<body>\n\n<h1>Moat & Fragility Analysis: [TICKER]</h1>\n<p class=\"subtitle\">[Company Name] | [Sector] | Market Cap: $[X]B | Analysis Date: [Date]</p>\n\n<div class=\"exec-summary\">\n  <h2>Executive Summary</h2>\n  <div class=\"metric-row\">\n    <div class=\"metric-card\">\n      <div class=\"label\">CA Score</div>\n      <div class=\"value score-high\">X.X</div>\n      <div class=\"sublabel\">out of 5.0</div>\n    </div>\n    <div class=\"metric-card\">\n      <div class=\"label\">Moat Width</div>\n      <div class=\"value\" style=\"font-size:24px;\">Wide</div>\n      <div class=\"sublabel\">Primary: [Power]</div>\n    </div>\n    <div class=\"metric-card\">\n      <div class=\"label\">Anti-Fragility</div>\n      <div class=\"value\" style=\"font-size:24px;\">Anti-Fragile</div>\n      <div class=\"sublabel\">Fortress balance sheet</div>\n    </div>\n  </div>\n  <p><strong>Thesis:</strong> [One-sentence investment thesis]</p>\n</div>\n\n<h2>Section 1: Quantitative Analysis (CA Score)</h2>\n<!-- Pillar-by-pillar scoring with evidence and narrative -->\n<!-- CA radar chart (SVG) -->\n<!-- Revenue & market share trend chart (SVG) -->\n<!-- ROIC vs WACC chart (SVG) -->\n\n<h2>Section 2: Qualitative Moat Analysis (7 Powers)</h2>\n<!-- Power assessment bars (use .power-bar divs above) -->\n<!-- Power-by-power deep analysis -->\n<!-- Moat interaction / flywheel narrative -->\n<!-- Moat width determination -->\n\n<h2>Section 3: Anti-Fragility Assessment</h2>\n<!-- Skin in the Game -->\n<!-- Financial Health table -->\n<!-- Optionality inventory with TAM estimates -->\n<!-- Black swan exposure matrix -->\n<!-- Scenario analysis (bull / base / bear) -->\n\n<h2>Section 4: Comparative Analysis</h2>\n<!-- Side-by-side if comparison tickers provided -->\n\n<h2>Section 5: Investment Thesis & Conclusion</h2>\n<!-- One-sentence thesis -->\n<!-- Moat durability timeline -->\n<!-- Top 3 risks with early warning signals -->\n<!-- Catalysts for next 12-24 months -->\n<!-- Final verdict -->\n\n</body>\n</html>\n```\n\n### PDF Generation\n\nConvert the HTML report to PDF:\n\n```bash\n# Option A: Chrome headless (preferred, no install)\n# macOS\n\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" \\\n  --headless --disable-gpu --print-to-pdf=./output/report/moat-analysis.pdf \\\n  --print-to-pdf-no-header \\\n  \"file://$(pwd)/output/report/moat-analysis.html\"\n\n# Linux\ngoogle-chrome --headless --disable-gpu --print-to-pdf=./output/report/moat-analysis.pdf \\\n  --print-to-pdf-no-header \\\n  \"file://$(pwd)/output/report/moat-analysis.html\"\n\n# Option B: puppeteer-core (system Chrome, no browser download)\nnpm install puppeteer-core\nnode -e \"\nconst puppeteer = require('puppeteer-core');\nconst path = require('path');\n(async () => {\n  const execPaths = ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'];\n  const execPath = execPaths.find(p => { try { require('fs').accessSync(p); return true; } catch { return false; } });\n  if (!execPath) { console.error('No Chrome found'); process.exit(1); }\n  const browser = await puppeteer.launch({ executablePath: execPath, headless: 'new' });\n  const page = await browser.newPage();\n  await page.goto('file://' + path.resolve('./output/report/moat-analysis.html'), { waitUntil: 'networkidle0' });\n  await page.pdf({ path: './output/report/moat-analysis.pdf', format: 'A4', printBackground: true,\n    margin: { top: '0.75in', right: '0.75in', bottom: '0.75in', left: '0.75in' },\n    displayHeaderFooter: true,\n    headerTemplate: '<div style=\\\"font-size:8px;text-align:center;width:100%;font-family:Palatino,serif;color:#8A8A8A;\\\">Moat & Fragility Analysis</div>',\n    footerTemplate: '<div style=\\\"font-size:8px;text-align:center;width:100%;font-family:Palatino,serif;color:#8A8A8A;\\\"><span class=\\\"pageNumber\\\"></span> / <span class=\\\"totalPages\\\"></span></div>'\n  });\n  await browser.close();\n  console.log('PDF report generated');\n})();\n\"\n```\n\n---\n\n## 7. Figures & Charts\n\n### Figure Strategy: Reuse + Generate\n\nFor every visual need, follow this decision process:\n\n```\nDoes a source document (10-K, earnings presentation, annual report) have a relevant chart?\n├─ YES → Is it high quality and directly relevant?\n│   ├─ YES → EXTRACT AND EMBED. Earnings presentations especially contain investor-quality charts.\n│   └─ NO (low resolution, wrong metric, outdated)\n│       → RECREATE as SVG with the palette colors for visual consistency.\n└─ NO → Is this a standard analysis chart (CA radar, ROIC vs WACC, revenue trend)?\n    ├─ YES → GENERATE NEW SVG using the palette and templates below.\n    └─ NO → Skip — not every section needs a chart, but data-heavy sections always do.\n```\n\n### Per-Section Chart Requirements\n\n| Report Section | Required Charts | Type |\n|---|---|---|\n| Executive Summary | 3 metric cards (CA Score, Moat Width, Anti-Fragility) | HTML metric cards (in template) |\n| Section 1: Quantitative Analysis | **CA radar chart** + **Revenue & market share trend** + **ROIC vs WACC** | SVG (3 charts minimum) |\n| Section 2: Moat Analysis | **7 Powers heatmap** (horizontal bar chart) | SVG or HTML power bars |\n| Section 3: Anti-Fragility | **Financial health table** + optionally a **scenario analysis chart** | HTML table + optional SVG |\n| Section 4: Comparative | **Side-by-side comparison table** (if comparison tickers) | HTML table |\n| Section 5: Conclusion | **Moat durability timeline** (optional) | SVG timeline |\n\n**Minimum total charts**: 5 for single-company analysis, 7+ for comparative analysis.\n\n### SVG Quality Rules\n\nWhen generating SVG charts:\n- Minimum **40px spacing** between adjacent elements (bars, data points, labels)\n- All text labels must have **12px padding** from edges — no text overlapping chart elements\n- Axis labels outside the plot area, never overlapping data points\n- Font: Palatino, 14px for labels, 11px for axis marks, 16px for chart title\n- Max chart width: 800px for report embeds, 420px for side-by-side charts\n- **Verify before output**: mentally check that no labels overlap bars, no axis text clips, and all data points are visible\n\n### Color Palette for Charts\n\n| Role | Hex | Usage |\n|------|-----|-------|\n| Primary data | `#6E8AA4` | Main data series, bars, lines |\n| Positive/Strong | `#5D8057` | Good metrics, gains, strengths |\n| Caution/Moderate | `#B2986E` | Neutral metrics, warnings |\n| Negative/Weak | `#A86464` | Bad metrics, losses, risks |\n| Grid/Axis | `#e0dcd8` | Chart gridlines, axes |\n| Labels | `#3A3A3A` | All text labels |\n| Background | `#FAF8F5` | Chart background |\n\n### CA Score Radar Chart\n\n```svg\n<svg width=\"420\" height=\"420\" viewBox=\"0 0 420 420\" xmlns=\"http://www.w3.org/2000/svg\">\n  <style>\n    .grid { stroke: #e0dcd8; stroke-width: 1; fill: none; }\n    .axis-label {\n      font-family: 'Palatino Linotype', 'Book Antiqua', serif;\n      font-size: 14px; fill: #3A3A3A; font-weight: 600;\n    }\n    .score-area { fill: rgba(110, 138, 164, 0.18); stroke: #6E8AA4; stroke-width: 2.5; }\n    .score-point { fill: #6E8AA4; }\n    .scale-label {\n      font-family: 'Palatino Linotype', serif;\n      font-size: 11px; fill: #8A8A8A;\n    }\n  </style>\n  <!-- Concentric diamond grid (5 levels for score 1-5) -->\n  <!-- Score polygon overlay with filled area -->\n  <!-- Score dots at vertices -->\n  <!-- Axis labels: Market Position, Position Trend, Pricing Power, Future ROIC -->\n  <!-- Scale numbers along one axis -->\n</svg>\n```\n\n### Moat Power Heatmap\n\nUse a 7-row horizontal bar chart where bar length and color reflect Power strength:\n- **None**: 0% width, `#d8d4d0`\n- **Weak**: 33% width, `#A86464` gradient\n- **Moderate**: 66% width, `#B2986E` gradient\n- **Strong**: 100% width, `#5D8057` gradient\n\nInclude a small trajectory arrow (↑ strengthening, → stable, ↓ eroding) after each bar.\n\n---\n\n## 8. Quality Checklist\n\nBefore finalizing the report:\n\n- [ ] All 4 CA pillars scored with specific evidence and narrative explanation\n- [ ] CA Score correctly calculated as average\n- [ ] All 7 Powers assessed with current strength, trajectory, and durability\n- [ ] Each Power includes quantitative proxy and erosion risk analysis\n- [ ] Moat interaction analysis identifies reinforcing dynamics\n- [ ] Moat width rating consistent with Power scores\n- [ ] All 5 Anti-Fragility tests completed with data\n- [ ] Scenario analysis includes bull/base/bear with probabilities\n- [ ] Anti-Fragility rating consistent with test results\n- [ ] Investment thesis is one clear sentence\n- [ ] Top 3 risks identified with early warning signals\n- [ ] Executive summary accurately reflects detailed analysis\n- [ ] All data sources cited with dates\n- [ ] Minimum 5 charts/visuals for single-company, 7+ for comparative\n- [ ] CA radar chart, revenue trend, and ROIC vs WACC charts are all present\n- [ ] 7 Powers heatmap is included with trajectory indicators\n- [ ] All SVG charts use palette colors with no label overlap\n- [ ] Source document figures extracted and embedded where relevant\n- [ ] PDF renders cleanly without clipping or formatting issues\n- [ ] Competitor comparison included (if tickers provided)\n- [ ] Tone is professional and evidence-based",
+      "status": "active",
+      "startDate": null,
+      "targetDate": null,
+      "lead": null,
+      "health": null,
+      "initiativeId": null,
+      "teamId": "96d77ff5-e7fa-4c9a-86f0-70d41f774183",
+      "progress": 0,
+      "labels": [],
+      "color": "#71717A",
+      "icon": "🪁",
+      "sourceDirectory": null,
+      "repository": null,
+      "defaultEnvironment": null,
+      "computeBackends": [],
+      "mergeQueueEnabled": false,
+      "mergeQueueMergeMethod": "squash",
+      "source": {
+        "isGit": false,
+        "localPath": "/Users/zhuoran_cisco/Documents/astro-outputs/Molt/crwv",
+        "remoteType": "none"
+      },
+      "projectType": "plan",
+      "githubOwner": null,
+      "githubRepo": null,
+      "githubRepoId": null,
+      "references": [],
+      "githubSyncSettings": null,
+      "projectBranch": "astro/cd31d9",
+      "projectPrUrl": null,
+      "projectPrNumber": null,
+      "createdAt": "2026-03-11T21:04:10.647Z",
+      "updatedAt": "2026-03-12T02:12:21.377Z"
+    },
+    "nodes": [
+      {
+        "id": "c0428769-78b5-4781-901e-ddec3ce3df1f",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 3,
+        "type": "task",
+        "title": "Retrieve SEC, Proxy, IR, And Earnings Sources",
+        "description": "Collect official company materials for CRWV (and each approved peer): SEC EDGAR 10-K/10-Q for 5 years, DEF 14A for insider ownership/governance, relevant Form 4 summaries, investor relations annual reports and earnings presentations, and latest earnings release/transcript references. Store raw files and link metadata in `data/processed/source-register.csv` with retrieval date and coverage period.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "cb4134a0-933c-464d-b84a-8895617e707a"
+        ],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 40,
+          "y": 240
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "high",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "20b4cc48-033d-4cea-89de-d5fb07b454b1",
+        "labelIds": [
+          "l5"
+        ],
+        "actualEndDate": "2026-03-11T22:21:10.828Z",
+        "content": "<p>Collect official company materials for CRWV (and each approved peer): SEC EDGAR 10-K/10-Q for 5 years, DEF 14A for insider ownership/governance, relevant Form 4 summaries, investor relations annual reports and earnings presentations, and latest earnings release/transcript references. Store raw files and link metadata in `data/processed/source-register.csv` with retrieval date and coverage period.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-11T22:21:10.876Z"
+      },
+      {
+        "id": "757e30ff-b6df-43eb-b9f9-750d74d31fe2",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 6,
+        "type": "task",
+        "title": "Compute CA Score And Quant Narrative",
+        "description": "Score the four CA pillars (Market Position, Position Trend, Pricing Power, Future ROIC) on 1-5 using the moat-fragility methodology from the provided vision doc, each weighted 25%. Produce `analysis/ca-score.md` with scoring table, evidence per pillar, and a ~300-word quantitative synthesis narrative. Output machine-readable scores to `data/processed/ca-pillars.csv` and calculate total CA Score as arithmetic average.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 40,
+          "y": 440
+        },
+        "startDate": "2026-03-12",
+        "endDate": "2026-03-12",
+        "priority": "high",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "20b4cc48-033d-4cea-89de-d5fb07b454b1",
+        "labelIds": [
+          "l5"
+        ],
+        "actualEndDate": "2026-03-12T00:34:32.380Z",
+        "content": "<p>Score the four CA pillars (Market Position, Position Trend, Pricing Power, Future ROIC) on 1-5 using the moat-fragility methodology from the provided vision doc, each weighted 25%. Produce `analysis/ca-score.md` with scoring table, evidence per pillar, and a ~300-word quantitative synthesis narrative. Output machine-readable scores to `data/processed/ca-pillars.csv` and calculate total CA Score as arithmetic average.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-12T00:34:32.421Z",
+        "autoPr": false,
+        "clientId": "757e30ff-b6df-43eb-b9f9-750d74d31fe2",
+        "positionX": 40,
+        "positionY": 440,
+        "syncSource": null,
+        "githubPrData": null,
+        "githubComments": [],
+        "commitAfterSha": null,
+        "githubIssueUrl": null,
+        "githubSyncedAt": null,
+        "commitBeforeSha": null,
+        "mergeQueueStatus": null,
+        "githubIssueNumber": null,
+        "githubSyncVersion": 0
+      },
+      {
+        "id": "3e5e6744-59c2-4e1b-a88a-7ecbcdfa09ff",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 7,
+        "type": "task",
+        "title": "Run 7 Powers Moat Assessment",
+        "description": "Evaluate all 7 Powers for CRWV (and peers if enabled): current strength, trajectory, durability horizon, 2-3 concrete examples per power, quantitative proxy, and erosion risk. Add moat interaction/flywheel analysis, assign moat width (None/Narrow/Wide/Very Wide), and identify primary moat powers. Write `analysis/moat-analysis.md` and structured results `data/processed/powers-assessment.csv`.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "79b1e459-dbd5-4c98-b73c-5a9c3ff14eb1"
+        ],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 300,
+          "y": 440
+        },
+        "startDate": "2026-03-12",
+        "endDate": "2026-03-12",
+        "priority": "high",
+        "estimate": "L",
+        "dueDate": null,
+        "milestoneId": "20b4cc48-033d-4cea-89de-d5fb07b454b1",
+        "labelIds": [
+          "l5"
+        ],
+        "actualEndDate": "2026-03-12T01:47:11.268Z",
+        "content": "<p>Evaluate all 7 Powers for CRWV (and peers if enabled): current strength, trajectory, durability horizon, 2-3 concrete examples per power, quantitative proxy, and erosion risk. Add moat interaction/flywheel analysis, assign moat width (None/Narrow/Wide/Very Wide), and identify primary moat powers. Write `analysis/moat-analysis.md` and structured results `data/processed/powers-assessment.csv`.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-12T01:47:11.749Z",
+        "mergeQueueStatus": null,
+        "autoPr": false
+      },
+      {
+        "id": "8c218588-7ea9-4c81-bafc-74094ffe95f5",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 8,
+        "type": "task",
+        "title": "Execute Anti-Fragility Core Tests",
+        "description": "Perform anti-fragility tests: skin in the game, financial health fortress table, optionality inventory, black swan exposure matrix (with risk correlation notes). Use official filings and trustworthy sources with citations and explicit date ranges. Write `analysis/anti-fragility.md` and structured outputs in `data/processed/anti-fragility-metrics.csv`.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 560,
+          "y": 440
+        },
+        "startDate": "2026-03-12",
+        "endDate": "2026-03-12",
+        "priority": "high",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "20b4cc48-033d-4cea-89de-d5fb07b454b1",
+        "labelIds": [
+          "l5"
+        ],
+        "actualEndDate": "2026-03-12T00:31:13.375Z",
+        "content": "<p>Perform anti-fragility tests: skin in the game, financial health fortress table, optionality inventory, black swan exposure matrix (with risk correlation notes). Use official filings and trustworthy sources with citations and explicit date ranges. Write `analysis/anti-fragility.md` and structured outputs in `data/processed/anti-fragility-metrics.csv`.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-12T00:31:13.456Z",
+        "autoPr": false,
+        "clientId": "8c218588-7ea9-4c81-bafc-74094ffe95f5",
+        "positionX": 560,
+        "positionY": 440,
+        "syncSource": null,
+        "githubPrData": null,
+        "githubComments": [],
+        "commitAfterSha": null,
+        "githubIssueUrl": null,
+        "githubSyncedAt": null,
+        "commitBeforeSha": null,
+        "mergeQueueStatus": null,
+        "githubIssueNumber": null,
+        "githubSyncVersion": 0
+      },
+      {
+        "id": "402f2cfc-8429-47b8-b13e-12c928fe1e79",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 9,
+        "type": "task",
+        "title": "Scenario Model And Thesis Synthesis",
+        "description": "Build bull/base/bear scenarios with explicit assumptions and probabilities, estimate expected CA trajectory, and synthesize one-sentence investment thesis, moat durability outlook, top 3 ranked risks with early warning signals, and catalysts (12-24 months). Save outputs to `analysis/investment-thesis.md` and `data/processed/scenario-model.csv`.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "757e30ff-b6df-43eb-b9f9-750d74d31fe2",
+          "3e5e6744-59c2-4e1b-a88a-7ecbcdfa09ff",
+          "8c218588-7ea9-4c81-bafc-74094ffe95f5"
+        ],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 40,
+          "y": 540
+        },
+        "startDate": "2026-03-12",
+        "endDate": "2026-03-12",
+        "priority": "high",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "20b4cc48-033d-4cea-89de-d5fb07b454b1",
+        "labelIds": [
+          "l5"
+        ],
+        "actualEndDate": "2026-03-12T01:52:16.417Z",
+        "content": "<p>Build bull/base/bear scenarios with explicit assumptions and probabilities, estimate expected CA trajectory, and synthesize one-sentence investment thesis, moat durability outlook, top 3 ranked risks with early warning signals, and catalysts (12-24 months). Save outputs to `analysis/investment-thesis.md` and `data/processed/scenario-model.csv`.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-12T01:52:16.462Z",
+        "mergeQueueStatus": null,
+        "autoPr": false
+      },
+      {
+        "id": "85525fec-89b9-4d24-9514-b7d0887bc9e7",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 10,
+        "type": "task",
+        "title": "Create Required Charts And Figure Set",
+        "description": "Produce report visuals with consistent palette and spacing rules: (1) Revenue & market share trend line chart, (2) ROIC vs WACC bar chart, (3) CA Score radar (4 pillars), (4) 7 Powers heatmap, plus comparative visuals if peers are enabled. Reuse high-quality charts from official filings/presentations where appropriate and recreate as SVG when necessary for clarity. Store in `charts/` and `output/report/assets/` with source attribution map `data/processed/figure-sources.csv`.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "757e30ff-b6df-43eb-b9f9-750d74d31fe2",
+          "3e5e6744-59c2-4e1b-a88a-7ecbcdfa09ff",
+          "8c218588-7ea9-4c81-bafc-74094ffe95f5"
+        ],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 300,
+          "y": 540
+        },
+        "startDate": "2026-03-12",
+        "endDate": "2026-03-12",
+        "priority": "high",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "20b4cc48-033d-4cea-89de-d5fb07b454b1",
+        "labelIds": [
+          "l1"
+        ],
+        "actualEndDate": "2026-03-12T01:59:30.430Z",
+        "content": "<p>Produce report visuals with consistent palette and spacing rules: (1) Revenue &amp; market share trend line chart, (2) ROIC vs WACC bar chart, (3) CA Score radar (4 pillars), (4) 7 Powers heatmap, plus comparative visuals if peers are enabled. Reuse high-quality charts from official filings/presentations where appropriate and recreate as SVG when necessary for clarity. Store in `charts/` and `output/report/assets/` with source attribution map `data/processed/figure-sources.csv`.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-12T01:59:30.476Z",
+        "mergeQueueStatus": null,
+        "autoPr": false
+      },
+      {
+        "id": "841f206e-ea38-4b99-9f2e-5d8d6f412341",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 11,
+        "type": "task",
+        "title": "Assemble Professional Report And Render PDF",
+        "description": "Compile all sections into `output/report/moat-analysis.html` following the specified professional template style, include executive summary cards, tables, chart embeds, citations with dates, and comparative section if enabled. Render `output/report/moat-analysis.pdf` via Playwright/Chrome headless and validate that layout has no clipping or overlap.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "402f2cfc-8429-47b8-b13e-12c928fe1e79",
+          "85525fec-89b9-4d24-9514-b7d0887bc9e7"
+        ],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 40,
+          "y": 640
+        },
+        "startDate": "2026-03-12",
+        "endDate": "2026-03-12",
+        "priority": "urgent",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "20b4cc48-033d-4cea-89de-d5fb07b454b1",
+        "labelIds": [
+          "l1"
+        ],
+        "actualEndDate": "2026-03-12T02:06:49.623Z",
+        "content": "<p>Compile all sections into `output/report/moat-analysis.html` following the specified professional template style, include executive summary cards, tables, chart embeds, citations with dates, and comparative section if enabled. Render `output/report/moat-analysis.pdf` via Playwright/Chrome headless and validate that layout has no clipping or overlap.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-12T02:06:49.672Z",
+        "mergeQueueStatus": null,
+        "autoPr": false
+      },
+      {
+        "id": "03abdb3d-9954-4ab6-9f0a-9b97e415a805",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 12,
+        "type": "decision",
+        "title": "Human Quality Review And Sign-Off",
+        "description": "Perform final analyst review for depth, internal consistency, scoring logic compliance, source trustworthiness, and narrative quality. Confirm the quality checklist is satisfied (all pillars, 7 powers, anti-fragility tests, scenario analysis, charts, citations, and thesis coherence). Decide whether revisions are required before completion.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "841f206e-ea38-4b99-9f2e-5d8d6f412341"
+        ],
+        "environment": null,
+        "verification": "human",
+        "position": {
+          "x": 40,
+          "y": 740
+        },
+        "startDate": "2026-03-12",
+        "endDate": "2026-03-12",
+        "priority": null,
+        "estimate": null,
+        "dueDate": null,
+        "milestoneId": null,
+        "labelIds": [],
+        "actualEndDate": "2026-03-12T02:10:03.786Z",
+        "content": "<p>Perform final analyst review for depth, internal consistency, scoring logic compliance, source trustworthiness, and narrative quality. Confirm the quality checklist is satisfied (all pillars, 7 powers, anti-fragility tests, scenario analysis, charts, citations, and thesis coherence). Decide whether revisions are required before completion.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-12T02:10:03.835Z",
+        "mergeQueueStatus": null,
+        "autoPr": false
+      },
+      {
+        "id": "20b4cc48-033d-4cea-89de-d5fb07b454b1",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 13,
+        "type": "milestone",
+        "title": "Competitive Advantage Analysis Complete",
+        "description": "Final milestone: comprehensive moat-fragility analysis package delivered with PDF report, chart set, and auditable source-backed fact base.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "03abdb3d-9954-4ab6-9f0a-9b97e415a805"
+        ],
+        "environment": null,
+        "verification": "human",
+        "position": {
+          "x": 40,
+          "y": 840
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": null,
+        "estimate": null,
+        "dueDate": null,
+        "milestoneId": null,
+        "labelIds": [],
+        "content": "<p>Final milestone: comprehensive moat-fragility analysis package delivered with PDF report, chart set, and auditable source-backed fact base.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-12T02:10:10.550Z",
+        "mergeQueueStatus": null,
+        "autoPr": false
+      },
+      {
+        "id": "cb4134a0-933c-464d-b84a-8895617e707a",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 2,
+        "type": "decision",
+        "title": "Confirm Peer Scope And Supplementary Docs",
+        "description": "Human decision: finalize whether the run is CRWV-only or comparative, and provide concrete comparison tickers and supplementary document paths (if any). This decision controls whether comparative tables/charts are mandatory and which document ingestion sub-steps execute.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "21e54203-ee3b-40b6-9d6d-4c359a805e8f"
+        ],
+        "environment": null,
+        "verification": "human",
+        "position": {
+          "x": 40,
+          "y": 140
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": null,
+        "estimate": null,
+        "dueDate": null,
+        "milestoneId": null,
+        "labelIds": [],
+        "actualEndDate": "2026-03-11T21:26:02.735Z",
+        "content": "<p>Human decision: finalize whether the run is CRWV-only or comparative, and provide concrete comparison tickers and supplementary document paths (if any). This decision controls whether comparative tables/charts are mandatory and which document ingestion sub-steps execute.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-11T21:26:02.774Z"
+      },
+      {
+        "id": "21e54203-ee3b-40b6-9d6d-4c359a805e8f",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 1,
+        "type": "task",
+        "title": "Initialize Analysis Workspace",
+        "description": "Create the project skeleton for a reproducible moat analysis pipeline: `data/raw/{sec,ir,earnings,yahoo,industry}`, `data/processed`, `analysis`, `charts`, `output/report`, and a source registry file `data/processed/source-register.csv` with columns for metric, value, date, source URL, source type, and confidence (confirmed/estimated). Define a metric dictionary for the 5-year horizon and peer-ready schema so CRWV and optional comparison tickers share identical fields.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 40,
+          "y": 40
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "high",
+        "estimate": "S",
+        "dueDate": null,
+        "milestoneId": "20b4cc48-033d-4cea-89de-d5fb07b454b1",
+        "labelIds": [
+          "l5"
+        ],
+        "actualEndDate": "2026-03-11T21:21:08.523Z",
+        "content": "<p>Create the project skeleton for a reproducible moat analysis pipeline: `data/raw/{sec,ir,earnings,yahoo,industry}`, `data/processed`, `analysis`, `charts`, `output/report`, and a source registry file `data/processed/source-register.csv` with columns for metric, value, date, source URL, source type, and confidence (confirmed/estimated). Define a metric dictionary for the 5-year horizon and peer-ready schema so CRWV and optional comparison tickers share identical fields.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-11T21:21:08.569Z"
+      },
+      {
+        "id": "771138e4-6729-45b5-b7da-420e92240612",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 4,
+        "type": "task",
+        "title": "Pull Yahoo Finance And Industry Market Data",
+        "description": "Use `curl`-based Yahoo Finance retrieval for historical prices, key statistics, and financial statement endpoints (TTM + annual history) for CRWV and approved peers. Collect external market sizing and share context from trustworthy industry sources (Gartner/IDC/Statista/public equivalents) and record exact publication dates. Store outputs in `data/raw/yahoo` and `data/raw/industry` with citations.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [
+          "cb4134a0-933c-464d-b84a-8895617e707a"
+        ],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 300,
+          "y": 240
+        },
+        "startDate": "2026-03-11",
+        "endDate": "2026-03-11",
+        "priority": "high",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "20b4cc48-033d-4cea-89de-d5fb07b454b1",
+        "labelIds": [
+          "l5"
+        ],
+        "actualEndDate": "2026-03-11T22:50:02.006Z",
+        "content": "<p>Use `curl`-based Yahoo Finance retrieval for historical prices, key statistics, and financial statement endpoints (TTM + annual history) for CRWV and approved peers. Collect external market sizing and share context from trustworthy industry sources (Gartner/IDC/Statista/public equivalents) and record exact publication dates. Store outputs in `data/raw/yahoo` and `data/raw/industry` with citations.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-11T22:50:02.593Z"
+      },
+      {
+        "id": "79b1e459-dbd5-4c98-b73c-5a9c3ff14eb1",
+        "projectId": "cd31d9cc-ab64-4158-97bb-71f8ec83c014",
+        "number": 5,
+        "type": "task",
+        "title": "Normalize Five-Year Financial Fact Base",
+        "description": "Build `data/processed/fact-base.csv` and `data/processed/fact-base.md` with 5-year normalized metrics: revenue, margins, market share/TAM proxies, ARPU/pricing trend, ROIC and WACC inputs, debt/equity, current ratio, cash, FCF, insider ownership. Enforce data rules: cross-reference key metrics with at least two sources, flag estimated vs confirmed, isolate one-time items, and standardize date ranges and units.",
+        "status": "planned",
+        "parentId": null,
+        "dependencies": [],
+        "environment": null,
+        "verification": "auto",
+        "position": {
+          "x": 40,
+          "y": 340
+        },
+        "startDate": "2026-03-11",
+        "endDate": null,
+        "priority": "urgent",
+        "estimate": "M",
+        "dueDate": null,
+        "milestoneId": "20b4cc48-033d-4cea-89de-d5fb07b454b1",
+        "labelIds": [
+          "l5"
+        ],
+        "content": "<p>Build `data/processed/fact-base.csv` and `data/processed/fact-base.md` with 5-year normalized metrics: revenue, margins, market share/TAM proxies, ARPU/pricing trend, ROIC and WACC inputs, debt/equity, current ratio, cash, FCF, insider ownership. Enforce data rules: cross-reference key metrics with at least two sources, flag estimated vs confirmed, isolate one-time items, and standardize date ranges and units.</p>",
+        "attachments": [],
+        "links": [],
+        "acceptanceCriteria": [],
+        "createdAt": "2026-03-11T21:06:42.174Z",
+        "updatedAt": "2026-03-12T00:14:56.778Z",
+        "autoPr": false,
+        "clientId": "79b1e459-dbd5-4c98-b73c-5a9c3ff14eb1",
+        "positionX": 40,
+        "positionY": 340,
+        "syncSource": null,
+        "githubPrData": null,
+        "githubComments": [],
+        "commitAfterSha": null,
+        "githubIssueUrl": null,
+        "githubSyncedAt": null,
+        "commitBeforeSha": null,
+        "mergeQueueStatus": null,
+        "githubIssueNumber": null,
+        "githubSyncVersion": 0
+      }
+    ],
+    "edges": [
+      {
+        "id": "86425ab1-ee24-48ec-a8d4-19df4c0d99c1",
+        "source": "21e54203-ee3b-40b6-9d6d-4c359a805e8f",
+        "target": "cb4134a0-933c-464d-b84a-8895617e707a",
+        "type": "dependency"
+      },
+      {
+        "id": "f8e7d6ce-0892-4bf0-b34a-051413bf1a61",
+        "source": "cb4134a0-933c-464d-b84a-8895617e707a",
+        "target": "c0428769-78b5-4781-901e-ddec3ce3df1f",
+        "type": "branch"
+      },
+      {
+        "id": "2141a069-f0f8-4b02-9fa5-75dad9cd71fc",
+        "source": "cb4134a0-933c-464d-b84a-8895617e707a",
+        "target": "771138e4-6729-45b5-b7da-420e92240612",
+        "type": "branch"
+      },
+      {
+        "id": "783b5f83-d6b4-492e-9f65-7b2f430e07dd",
+        "source": "c0428769-78b5-4781-901e-ddec3ce3df1f",
+        "target": "79b1e459-dbd5-4c98-b73c-5a9c3ff14eb1",
+        "type": "dependency"
+      },
+      {
+        "id": "5a12f556-4112-466f-b97a-84ddf48a0cf2",
+        "source": "771138e4-6729-45b5-b7da-420e92240612",
+        "target": "79b1e459-dbd5-4c98-b73c-5a9c3ff14eb1",
+        "type": "dependency"
+      },
+      {
+        "id": "7adb9ac9-0793-45f4-a0b8-6eff4f03f8de",
+        "source": "79b1e459-dbd5-4c98-b73c-5a9c3ff14eb1",
+        "target": "757e30ff-b6df-43eb-b9f9-750d74d31fe2",
+        "type": "branch"
+      },
+      {
+        "id": "3f447eb2-dadd-4c41-a8c5-458d47d7047e",
+        "source": "79b1e459-dbd5-4c98-b73c-5a9c3ff14eb1",
+        "target": "3e5e6744-59c2-4e1b-a88a-7ecbcdfa09ff",
+        "type": "branch"
+      },
+      {
+        "id": "d2d1871d-6b3b-4fd4-bdc4-c99312c38fe5",
+        "source": "79b1e459-dbd5-4c98-b73c-5a9c3ff14eb1",
+        "target": "8c218588-7ea9-4c81-bafc-74094ffe95f5",
+        "type": "branch"
+      },
+      {
+        "id": "6dd307ae-7936-45ea-9919-eb50ee131501",
+        "source": "757e30ff-b6df-43eb-b9f9-750d74d31fe2",
+        "target": "402f2cfc-8429-47b8-b13e-12c928fe1e79",
+        "type": "dependency"
+      },
+      {
+        "id": "a2e408f5-9ca6-4044-aadb-eb1be0fcb695",
+        "source": "3e5e6744-59c2-4e1b-a88a-7ecbcdfa09ff",
+        "target": "402f2cfc-8429-47b8-b13e-12c928fe1e79",
+        "type": "dependency"
+      },
+      {
+        "id": "d6bc79db-fa4a-4980-b75d-d5755eb07547",
+        "source": "8c218588-7ea9-4c81-bafc-74094ffe95f5",
+        "target": "402f2cfc-8429-47b8-b13e-12c928fe1e79",
+        "type": "dependency"
+      },
+      {
+        "id": "1c0bcb6b-714f-43d8-a58d-186362ba912a",
+        "source": "757e30ff-b6df-43eb-b9f9-750d74d31fe2",
+        "target": "85525fec-89b9-4d24-9514-b7d0887bc9e7",
+        "type": "dependency"
+      },
+      {
+        "id": "eb8764c9-ebe6-46c5-8e7b-35b99c826193",
+        "source": "3e5e6744-59c2-4e1b-a88a-7ecbcdfa09ff",
+        "target": "85525fec-89b9-4d24-9514-b7d0887bc9e7",
+        "type": "dependency"
+      },
+      {
+        "id": "9e1ce9d8-7ecd-4ceb-afef-a1f628178d21",
+        "source": "8c218588-7ea9-4c81-bafc-74094ffe95f5",
+        "target": "85525fec-89b9-4d24-9514-b7d0887bc9e7",
+        "type": "dependency"
+      },
+      {
+        "id": "21d7f961-674b-4114-8e73-38a8a921cf59",
+        "source": "402f2cfc-8429-47b8-b13e-12c928fe1e79",
+        "target": "841f206e-ea38-4b99-9f2e-5d8d6f412341",
+        "type": "dependency"
+      },
+      {
+        "id": "991dcfab-916e-4739-b6d2-3f7a2ebc8351",
+        "source": "85525fec-89b9-4d24-9514-b7d0887bc9e7",
+        "target": "841f206e-ea38-4b99-9f2e-5d8d6f412341",
+        "type": "dependency"
+      },
+      {
+        "id": "d7afff22-bdd0-4170-8b01-4c8d7471b662",
+        "source": "841f206e-ea38-4b99-9f2e-5d8d6f412341",
+        "target": "03abdb3d-9954-4ab6-9f0a-9b97e415a805",
+        "type": "dependency"
+      },
+      {
+        "id": "3b17aea6-a997-473a-a8f2-7d4ebc820931",
+        "source": "03abdb3d-9954-4ab6-9f0a-9b97e415a805",
+        "target": "20b4cc48-033d-4cea-89de-d5fb07b454b1",
+        "type": "dependency"
+      }
+    ]
+  }
+}
