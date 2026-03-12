@@ -1,0 +1,29 @@
+<svg width='800' height='460' viewBox='0 0 800 460' xmlns='http://www.w3.org/2000/svg'>
+  <style>
+    .bg { fill: #FAF8F5; }
+    .title { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; font-size: 16px; font-weight: 600; fill: #3A3A3A; }
+    .axis { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; font-size: 11px; fill: #3A3A3A; }
+    .axis-label { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; font-size: 14px; font-weight: 600; fill: #3A3A3A; }
+    .grid { stroke: #e0dcd8; }
+    .value { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; font-size: 11px; fill: #3A3A3A; }
+    .legend { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; font-size: 12px; fill: #3A3A3A; }
+  </style>
+  <rect class='bg' x='0' y='0' width='800' height='460'/>
+  <text x='20' y='34' class='title'>ROIC vs WACC (FY2023-FY2025)</text>
+
+  <line x1='90' y1='90' x2='90' y2='350' stroke='#3A3A3A' stroke-width='1.2'/>
+  <line x1='90' y1='350' x2='710' y2='350' stroke='#3A3A3A' stroke-width='1.2'/>
+
+  <line x1='90' y1='350.0' x2='710' y2='350.0' class='grid' style='stroke-width:1'/><text x='76' y='354.0' class='axis' text-anchor='end'>-2%</text><line x1='90' y1='306.7' x2='710' y2='306.7' class='grid' style='stroke-width:1.5'/><text x='76' y='310.7' class='axis' text-anchor='end'>0%</text><line x1='90' y1='263.3' x2='710' y2='263.3' class='grid' style='stroke-width:1'/><text x='76' y='267.3' class='axis' text-anchor='end'>2%</text><line x1='90' y1='220.0' x2='710' y2='220.0' class='grid' style='stroke-width:1'/><text x='76' y='224.0' class='axis' text-anchor='end'>4%</text><line x1='90' y1='176.7' x2='710' y2='176.7' class='grid' style='stroke-width:1'/><text x='76' y='180.7' class='axis' text-anchor='end'>6%</text><line x1='90' y1='133.3' x2='710' y2='133.3' class='grid' style='stroke-width:1'/><text x='76' y='137.3' class='axis' text-anchor='end'>8%</text><line x1='90' y1='90.0' x2='710' y2='90.0' class='grid' style='stroke-width:1'/><text x='76' y='94.0' class='axis' text-anchor='end'>10%</text>
+  <rect x='152.3' y='306.7' width='34' height='20.9' fill='#A86464' rx='4'/><rect x='200.3' y='283.6' width='34' height='23.1' fill='#B2986E' rx='4'/><rect x='359.0' y='243.9' width='34' height='62.8' fill='#6E8AA4' rx='4'/><rect x='407.0' y='212.0' width='34' height='94.7' fill='#B2986E' rx='4'/><rect x='565.7' y='306.7' width='34' height='2.6' fill='#A86464' rx='4'/><rect x='613.7' y='116.8' width='34' height='189.8' fill='#B2986E' rx='4'/>
+  <text x='193.3' y='374' class='axis' text-anchor='middle'>2023</text><text x='169.3' y='341.5' class='value' text-anchor='middle'>-0.96%</text><text x='217.3' y='275.6' class='value' text-anchor='middle'>1.07%</text><text x='400.0' y='374' class='axis' text-anchor='middle'>2024</text><text x='376.0' y='235.9' class='value' text-anchor='middle'>2.90%</text><text x='424.0' y='204.0' class='value' text-anchor='middle'>4.37%</text><text x='606.7' y='374' class='axis' text-anchor='middle'>2025</text><text x='582.7' y='323.3' class='value' text-anchor='middle'>-0.12%</text><text x='630.7' y='108.8' class='value' text-anchor='middle'>8.76%</text>
+
+  <text x='34' y='220.0' class='axis-label' text-anchor='middle' transform='rotate(-90 34 220.0)'>Percent</text>
+
+  <rect x='500' y='40' width='14' height='14' fill='#6E8AA4' rx='2'/>
+  <text x='522' y='51' class='legend'>ROIC</text>
+  <rect x='580' y='40' width='14' height='14' fill='#B2986E' rx='2'/>
+  <text x='602' y='51' class='legend'>WACC</text>
+
+  <text x='20' y='438' class='axis'>Source: data/processed/fact-base.csv (metric_id: roic_pct, wacc_pct)</text>
+</svg>

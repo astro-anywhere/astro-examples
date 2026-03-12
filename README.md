@@ -13,6 +13,12 @@ Each example includes the **planning DAG** (exported as `.astro.json`), a **visu
 | [1](academic-presentations/1-physics-llm-one/) | [Physics of Language Models: Part 1](https://arxiv.org/abs/2305.13673) -- Allen-Zhu & Li, ICML 2024 | 40-slide deck (light+dark PDF), blog post, A0 poster | 12 tasks, 15 edges |
 | [2](academic-presentations/2-physics-lm-canon-layers/) | Physics of Language Models: Parts 4.1 & 4.2 -- Canon Layers & Scaling | 33-slide deck (light+dark PDF), blog post, A0 poster | 10 tasks, 18 edges |
 
+### Moat Analysis
+
+| # | Company | Deliverables | DAG |
+|---|---------|-------------|-----|
+| [1](moat-analysis/1-crwv-moat-fragility/) | [CRWV](https://finance.yahoo.com/quote/CRWV/) -- CuriosityStream Moat & Fragility | HTML+PDF report, CA radar, moat heatmap, ROIC vs WACC, scenario chart (5 SVGs) | 13 tasks, 18 edges |
+
 ### Paper Reviews
 
 | # | Paper | Deliverables | DAG |
@@ -32,6 +38,12 @@ academic-presentations/
       slides/              # 40 HTML slides + combined PDFs
       blog/                # Markdown post + figures/
       poster/              # HTML + A0 PDF + figures/
+
+moat-analysis/
+  1-crwv-moat-fragility/
+    plan/                  # DAG visualization + detailed task docs
+    deliverables/          # HTML + PDF report with SVG charts
+      assets/              # CA radar, moat heatmap, ROIC, revenue, scenario SVGs
 
 paper-reviews/
   1-gba-sparse-autoencoder/

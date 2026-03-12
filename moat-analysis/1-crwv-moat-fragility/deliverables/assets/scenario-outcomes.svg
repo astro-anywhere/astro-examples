@@ -1,0 +1,56 @@
+<svg width='800' height='420' viewBox='0 0 800 420' xmlns='http://www.w3.org/2000/svg'>
+  <style>
+    .bg { fill: #FAF8F5; }
+    .title { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; font-size: 16px; font-weight: 600; fill: #3A3A3A; }
+    .axis { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; font-size: 11px; fill: #3A3A3A; }
+    .axis-label { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; font-size: 14px; font-weight: 600; fill: #3A3A3A; }
+    .legend { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; font-size: 12px; fill: #3A3A3A; }
+    .value { font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; font-size: 11px; fill: #3A3A3A; }
+    .grid { stroke: #e0dcd8; stroke-width: 1; }
+  </style>
+  <rect x='0' y='0' width='800' height='420' class='bg'/>
+  <text x='20' y='34' class='title'>Scenario Outcomes (FY2028): Revenue and CA Score</text>
+
+  <line x1='90' y1='70' x2='90' y2='320' stroke='#3A3A3A' stroke-width='1.2'/>
+  <line x1='90' y1='320' x2='710' y2='320' stroke='#3A3A3A' stroke-width='1.2'/>
+
+  <line x1='90' y1='320' x2='710' y2='320' class='grid'/><text x='76' y='324' class='axis' text-anchor='end'>0</text>
+  <line x1='90' y1='270' x2='710' y2='270' class='grid'/><text x='76' y='274' class='axis' text-anchor='end'>6</text>
+  <line x1='90' y1='220' x2='710' y2='220' class='grid'/><text x='76' y='224' class='axis' text-anchor='end'>12</text>
+  <line x1='90' y1='170' x2='710' y2='170' class='grid'/><text x='76' y='174' class='axis' text-anchor='end'>18</text>
+  <line x1='90' y1='120' x2='710' y2='120' class='grid'/><text x='76' y='124' class='axis' text-anchor='end'>24</text>
+  <line x1='90' y1='70' x2='710' y2='70' class='grid'/><text x='76' y='74' class='axis' text-anchor='end'>30</text>
+
+  <rect x='160' y='53.3' width='110' height='266.7' fill='#5D8057' rx='6'/>
+  <rect x='345' y='211.7' width='110' height='108.3' fill='#6E8AA4' rx='6'/>
+  <rect x='530' y='274.2' width='110' height='45.8' fill='#A86464' rx='6'/>
+
+  <text x='215' y='47' class='value' text-anchor='middle'>$32.0B</text>
+  <text x='400' y='205' class='value' text-anchor='middle'>$13.0B</text>
+  <text x='585' y='268' class='value' text-anchor='middle'>$5.5B</text>
+
+  <circle cx='215' cy='203.3' r='5' fill='#B2986E'/>
+  <circle cx='400' cy='256.3' r='5' fill='#B2986E'/>
+  <circle cx='585' cy='306.3' r='5' fill='#B2986E'/>
+  <line x1='215' y1='203.3' x2='400' y2='256.3' stroke='#B2986E' stroke-width='2'/>
+  <line x1='400' y1='256.3' x2='585' y2='306.3' stroke='#B2986E' stroke-width='2'/>
+
+  <text x='215' y='192' class='value' text-anchor='middle'>CA 3.50</text>
+  <text x='400' y='245' class='value' text-anchor='middle'>CA 2.75</text>
+  <text x='585' y='295' class='value' text-anchor='middle'>CA 1.25</text>
+
+  <text x='215' y='340' class='axis' text-anchor='middle'>Bull (20%)</text>
+  <text x='400' y='340' class='axis' text-anchor='middle'>Base (60%)</text>
+  <text x='585' y='340' class='axis' text-anchor='middle'>Bear (20%)</text>
+
+  <text x='34' y='195' class='axis-label' text-anchor='middle' transform='rotate(-90 34 195)'>Revenue (USD, billions)</text>
+
+  <rect x='470' y='42' width='14' height='14' fill='#6E8AA4' rx='2'/>
+  <text x='490' y='53' class='legend'>Revenue bars</text>
+  <line x1='595' y1='49' x2='617' y2='49' stroke='#B2986E' stroke-width='2'/>
+  <circle cx='606' cy='49' r='4' fill='#B2986E'/>
+  <text x='624' y='53' class='legend'>CA score line</text>
+
+  <text x='20' y='386' class='axis'>Expected value: Revenue $15.3B and CA 2.60 (probability-weighted)</text>
+  <text x='20' y='402' class='axis'>Source: data/processed/scenario-model.csv (generated 2026-03-11)</text>
+</svg>
